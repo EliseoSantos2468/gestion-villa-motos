@@ -3,28 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Resibo;
+use App\Models\Recibo;
 
-class ResiboController extends Controller
+class ReciboController extends Controller
 {
     public function index(){
-        $resibos = Resibo::all();
+        $recibos = Recibo::all();
 
-        if($resibos->isEmpty()){
+        if($recibos->isEmpty()){
             $data = [
-                'message' => 'no hay registros de resibo'
+                'message' => 'no hay registros de recibo'
 
             ];
             return response()->json($data, 200);
         }
 
-        return response()->json($resibos, 200);
+        return response()->json($recibos, 200);
     }
 
     public function show($id){
-        $resibo = Resibo::findOrFail($id);
+        $recibo = Recibo::findOrFail($id);
 
-        return response()->json($resibo, 200);
+        return response()->json($recibo, 200);
     }
 
     public function store(Request $request){
@@ -33,12 +33,12 @@ class ResiboController extends Controller
             'total' => 'required|numeric', 
         ]);
 
-        $resibo = Resibo::create([
+        $recibo = Recibo::create([
             'fecha' => $request->fecha,
             'total' => $request->total,
         ]);
 
-        return response()->json($resibo, 200);
+        return response()->json($recibo, 200);
     }
 
     public function update(Request $request, $id){
@@ -47,20 +47,20 @@ class ResiboController extends Controller
             'total' => 'required|numeric', 
         ]);
 
-        $resibo = Resibo::findOrFail($id);
+        $recibo = Recibo::findOrFail($id);
 
-        $resibo->update([
+        $recibo->update([
             'fecha' => $request->fecha,
             'total' => $request->total,
         ]);
 
-        return response()->json($resibo, 200);
+        return response()->json($recibo, 200);
     }
 
     public function destroy($id){
-        $resibo = Resibo::findOrFail($id);
+        $recibo = Recibo::findOrFail($id);
 
-        $resibo->delete();
+        $recibo->delete();
 
         return response()->json('eliminado con exito', 200);
     }
