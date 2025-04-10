@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReferenciaController;
 use App\Http\Controllers\DireccionController;
+use App\Http\Controllers\ClasificacionController;
 use Illuminate\Support\Facades\Redis;
 
 Route::get('/user', function (Request $request) {
@@ -24,4 +25,12 @@ Route::prefix('direccion')->group(function(){
     Route::post('/crear', [DireccionController::class, 'store'])->name('crearDireccion');
     Route::put('/actualizar/{id}', [DireccionController::class, 'update'])->name('actualizarDireccion');
     Route::delete('/borrar/{id}', [DireccionController::class, 'destroy'])->name('borrarDireccion');
+});
+
+Route::prefix('clasificacion')->group(function(){
+    Route::get('/mostrar', [ClasificacionController::class, 'index'])->name('mostrarClasificaciones');
+    Route::get('/mostrar/{id}', [ClasificacionController::class, 'show'])->name('mostrarClasificacion');
+    Route::post('/crear', [ClasificacionController::class, 'store'])->name('crearClasificacion');
+    Route::put('/actualizar/{id}', [ClasificacionController::class, 'update'])->name('actualizarClasificacion');
+    Route::delete('/borrar/{id}', [ClasificacionController::class, 'destroy'])->name('borrarClasificacion');
 });
