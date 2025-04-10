@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReferenciaController;
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\ClasificacionController;
+use App\Http\Controllers\ResiboController;
 use Illuminate\Support\Facades\Redis;
 
 Route::get('/user', function (Request $request) {
@@ -33,4 +34,12 @@ Route::prefix('clasificacion')->group(function(){
     Route::post('/crear', [ClasificacionController::class, 'store'])->name('crearClasificacion');
     Route::put('/actualizar/{id}', [ClasificacionController::class, 'update'])->name('actualizarClasificacion');
     Route::delete('/borrar/{id}', [ClasificacionController::class, 'destroy'])->name('borrarClasificacion');
+});
+
+Route::prefix('recibo')->group(function(){
+    Route::get('/mostrar', [ResiboController::class, 'index'])->name('mostrarResibos');
+    Route::get('/mostrar/{id}', [ResiboController::class, 'show'])->name('mostrarResibo');
+    Route::post('/crear', [ResiboController::class, 'store'])->name('crearResibo');
+    Route::put('/actualizar/{id}', [ResiboController::class, 'update'])->name('actualizarResibo');
+    Route::delete('/borrar/{id}', [ResiboController::class, 'destroy'])->name('borrarResibo');
 });
