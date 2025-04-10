@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resibos', function (Blueprint $table) {
+        Schema::create('recibos', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
             $table->decimal('total',8 , 2);

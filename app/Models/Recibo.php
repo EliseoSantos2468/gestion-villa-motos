@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Resibo extends Model
+class Recibo extends Model
 {
-    protected $table='resibos';
+    protected $table='recibos';
 
     protected $fillable=[
         'fecha',
