@@ -8,6 +8,7 @@ use App\Http\Controllers\ClasificacionController;
 use App\Http\Controllers\ReciboController;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\CuotaController;
+use App\Http\Controllers\InteresController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -51,4 +52,12 @@ Route::prefix('cuota')->group(function(){
     Route::post('/crear', [CuotaController::class, 'store'])->name('crearCuota');
     Route::put('/actualizar/{id}', [CuotaController::class, 'update'])->name('actualizarCuota');
     Route::delete('/borrar/{id}', [CuotaController::class, 'destroy'])->name('borrarCuota');
+});
+
+Route::prefix('interes')->group(function(){
+    Route::get('/mostrar', [InteresController::class, 'index'])->name('mostrarIntereses');
+    Route::get('/mostrar/{id}', [InteresController::class, 'show'])->name('mostrarInteres');
+    Route::post('/crear', [InteresController::class, 'store'])->name('crearInteres');
+    Route::put('/actualizar/{id}', [InteresController::class, 'update'])->name('actualizarInteres');
+    Route::delete('/borrar/{id}', [InteresController::class, 'destroy'])->name('borrarInteres');
 });
