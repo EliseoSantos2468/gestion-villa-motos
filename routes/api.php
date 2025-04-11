@@ -7,6 +7,7 @@ use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\ClasificacionController;
 use App\Http\Controllers\ReciboController;
 use Illuminate\Support\Facades\Redis;
+use App\Http\Controllers\CuotaController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -37,9 +38,17 @@ Route::prefix('clasificacion')->group(function(){
 });
 
 Route::prefix('recibo')->group(function(){
-    Route::get('/mostrar', [ReciboController::class, 'index'])->name('mostrarResibos');
-    Route::get('/mostrar/{id}', [ReciboController::class, 'show'])->name('mostrarResibo');
+    Route::get('/mostrar', [ReciboController::class, 'index'])->name('mostrarRecibos');
+    Route::get('/mostrar/{id}', [ReciboController::class, 'show'])->name('mostrarRecibo');
     Route::post('/crear', [ReciboController::class, 'store'])->name('crearResibo');
     Route::put('/actualizar/{id}', [ReciboController::class, 'update'])->name('actualizarResibo');
     Route::delete('/borrar/{id}', [ReciboController::class, 'destroy'])->name('borrarResibo');
+});
+
+Route::prefix('cuota')->group(function(){
+    Route::get('/mostrar', [CuotaController::class, 'index'])->name('mostrarCuotas');
+    Route::get('/mostrar/{id}', [CuotaController::class, 'show'])->name('mostrarCuota');
+    Route::post('/crear', [CuotaController::class, 'store'])->name('crearCuota');
+    Route::put('/actualizar/{id}', [CuotaController::class, 'update'])->name('actualizarCuota');
+    Route::delete('/borrar/{id}', [CuotaController::class, 'destroy'])->name('borrarCuota');
 });
