@@ -26,12 +26,12 @@ class ReferenciaController extends Controller
     public function mostrarReferencia($id){
         $referencia = Referencia::findOrFail($id);
 
-        if($referencia->isempty()){
-            $data = [
-            'message' => 'el usuario no existe'
-            ];
-            return response()->json($data, 200);
-        }
+        // if($referencia->isempty()){
+        //     $data = [
+        //     'message' => 'el usuario no existe'
+        //     ];
+        //     return response()->json($data, 200);
+        // }
 
         // return view('', compact('referencia'));
         return response()->json($referencia, 200);//debug api
