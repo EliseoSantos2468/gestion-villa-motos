@@ -1,0 +1,29 @@
+:root{
+    --colorPrincipal: #282828;
+    --colorSecundario: #00a5f3;
+    --blanco: #fff;
+    --negro: #000;
+}
+.header{
+    background-color: var(--colorPrincipal);
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.header-user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    text-decoration: none;
+    background-color: var(--blanco);
+    margin-right: 2rem;
+}
+.header-user span{
+    font-size: 2rem;
+}
