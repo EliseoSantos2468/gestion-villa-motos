@@ -27,9 +27,9 @@
     <aside class="sidebar">
         {{-- cabezera del sidebar --}}
         <header class="sidebar-header">
-            <a href="#" class="header-logo">
-                <img src="{{ asset('images/villamotos3.jpeg') }}" alt="Logo">
-            </a>
+        <a href="#" class="header-logo">
+    <img src="{{ asset('images/villamotos4.png') }}" alt="Logo" style="width: 165px; height: 75px;">
+</a>
 
             <button class="sidebar-toggler">
                 <span class="material-symbols-rounded">
