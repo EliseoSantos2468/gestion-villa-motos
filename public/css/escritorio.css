@@ -1,0 +1,162 @@
+:root{
+    --colorPrincipal: #282828;
+    --colorSecundario: #00a5f3;
+    --blanco: #fff;
+    --negro: #000;
+    --clientesDato: blue;
+    --ventasDato: yellow;
+    --ventasHoyDato: green;
+    --ventasMesDato: red;
+}
+
+.escritorio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15.25rem;
+}
+
+@media (max-width: 785px){
+    .escritorio{
+        margin: 0;
+    }
+}
+
+.escritorio-titulo{
+    width: 95%;
+    text-align: start;
+}
+/* datos */
+.datos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+}
+
+
+.datos-clientes, .datos-ventas, .datos-ventasHoy, .datos-ventasMes{
+    width: 15rem;
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    color: var(--blanco);
+}
+
+@media (max-width: 785px){
+    .datos{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .datos-clientes, .datos-ventas, .datos-ventasHoy, .datos-ventasMes{
+        width: 90%;
+    }
+}
+
+.datos-clientes h3, .datos-ventas h3, .datos-ventasHoy h3, .datos-ventasMes h3{
+    background-color: var(--blanco);
+    color: var(--negro);
+    border-radius: 1rem;
+    padding: 5px;
+    width: 2rem;
+    text-align: center;
+}
+
+.datos-clientes{
+    background-color: var(--clientesDato);
+}
+.datos-ventas{
+    background-color: var(--ventasDato);
+}
+.datos-ventasHoy{
+    background-color: var(--ventasHoyDato);
+}
+.datos-ventasMes{
+    background-color: var(--ventasMesDato);
+}
+
+/* tablas */
+
+.graficas{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+    margin-top: 2rem;
+}
+.graficas-dias, .graficas-meses{
+    height: 20rem;
+    width: 45%;
+    border: 1px solid grey;
+    border-radius: 1rem;
+}
+
+.graficas-dias h2, .graficas-meses h2{
+    margin: 1.5rem 0 1rem 1rem;
+}
+
+/* tabla de ventas */
+
+.escritorio-ultimasVentas{
+    width: 95%;
+    margin-top: 2rem;
+    border: 1px solid black;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.tabla-ventas {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tabla-ventas thead {
+    background-color: #f9fbfc;
+    color: #111;
+  }
+  
+  .tabla-ventas th,
+  .tabla-ventas td {
+    padding: 12px 16px;
+    text-align: left;
+  }
+  
+  .tabla-ventas tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .badge {
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+  }
+  
+  .badge.finalizado {
+    background-color: #2e7d32; /* Verde */
+  }
+  
+  .badge.pendiente {
+    background-color: #fbc02d; /* Amarillo */
+    color: black;
+  }
+
+  @media (max-width: 768px) {
+    .tabla-ventas th,
+    .tabla-ventas td {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  
+  
