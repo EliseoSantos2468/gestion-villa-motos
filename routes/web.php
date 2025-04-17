@@ -14,4 +14,8 @@ Route::prefix('inicio')->group(function(){
     Route::get('/clientes', function(){
         return view('gestion.clientes');
     })->name('Clientes');
+
+    Route::get('/creditos', function(){
+        return view('gestion.creditos');
+    })->name('Creditos');
 });

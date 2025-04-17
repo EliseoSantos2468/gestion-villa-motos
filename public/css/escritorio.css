@@ -26,6 +26,7 @@
 .escritorio-titulo{
     width: 95%;
     text-align: start;
+    padding: 20px;
 }
 /* datos */
 .datos{

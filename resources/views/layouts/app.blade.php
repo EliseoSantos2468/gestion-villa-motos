@@ -29,9 +29,9 @@
     <aside class="sidebar">
         {{-- cabezera del sidebar --}}
         <header class="sidebar-header">
-            <a href="#" class="header-logo">
-                <img src="{{ asset('images/villamotos3.jpeg') }}" alt="Logo">
-            </a>
+        <a href="#" class="header-logo">
+    <img src="{{ asset('images/villamotos4.png') }}" alt="Logo" style="width: 165px; height: 75px;">
+</a>
 
             <button class="sidebar-toggler">
                 <span class="material-symbols-rounded">
@@ -83,16 +83,16 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('Creditos')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             description
                         </span>
-                        <span class="nav-label">Cotizaciones</span>
+                        <span class="nav-label">Creditos</span>
                     </a>
 
                     <ul class="dropdown-menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-title">Cotizaciones</a>
+                            <a href="#" class="nav-link dropdown-title">Creditos</a>
                     </ul>
                 </li>
                 <li class="nav-item">
