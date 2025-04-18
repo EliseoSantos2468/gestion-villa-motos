@@ -1,0 +1,246 @@
+:root{
+    --colorPrincipal: #282828;
+    --colorSecundario: #00a5f3;
+    --blanco: #fff;
+    --negro: #000;
+    --botonAgregar:rgb(16, 16, 222);
+    --botonAgregarHover:rgb(15, 15, 182);
+    --botonEditar: rgb(167, 167, 17);
+    --botonEditarHover: rgb(231, 231, 23);
+    --botonEliminar: rgb(207, 9, 9);
+    --botonEliminarHover: rgb(227, 10, 10);
+}
+
+.nuevaVenta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15.25rem;
+}
+
+@media (max-width: 785px){
+    .nuevaVenta{
+        margin: 0;
+    }
+}
+
+.nuevaVenta h1{
+    width: 95%;
+    padding: 20px;
+}
+
+.acciones{
+    display: flex;
+    width: 95%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 785px){
+    .acciones{
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+.nuevaVenta-cliente{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-cliente{
+    width: 28.58rem;
+    height: 2.12rem;
+}
+
+.btn-agregar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--botonAgregar);
+    color: var(--blanco);
+    border-radius: 5px;
+    width: 2.12rem;
+    height: 2.12rem;
+    text-decoration: none;
+}
+
+.btn-agregar:hover{
+    background-color: var(--botonAgregarHover);     
+}
+
+.btn-detalle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 9rem;
+    height: 2.29rem;
+    border-radius: 5px;
+    background-color: var(--botonAgregar);
+    color: var(--blanco);
+}
+
+@media (max-width: 785px){
+    .btn-detalle{
+        width: 28.58rem;
+        height: 2.12rem;
+    }
+}
+
+.btn-detalle:hover{
+    background-color: var(--botonAgregarHover);
+}
+.btn-detalle p{
+    margin: 0;
+}
+
+/* tabla ventas */
+
+.tabla {
+    width: 95%;
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tabla-venta {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.tabla-venta thead {
+    background-color: #f9fbfc;
+    color: #111;
+}
+
+.tabla-venta th,
+.tabla-venta td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla-venta tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla-venta tbody tr:hover {
+    background-color: #e9e9e9;
+}
+
+.columna-botones {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-editar, 
+.btn-eliminar{
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.btn-editar {
+    background-color: var(--botonEditar);
+    color: var(--negro);
+}
+
+.btn-editar:hover {
+    background-color: var(--botonEditarHover);
+}
+
+.btn-editar p {
+    margin: 0;
+}
+
+.btn-eliminar {
+    background-color: var(--botonEliminar);
+    color: var(--blanco);
+}
+
+.btn-eliminar:hover {
+    background-color: var(--botonEliminarHover);
+}
+
+.btn-eliminar p {
+    margin: 0;
+}
+
+/* total */
+.contenedorTotal{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    margin: 1rem 1rem;
+}
+
+@media (max-width: 785px){
+    .contenedorTotal{
+        justify-content: center;
+    }
+}
+
+.total{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 26rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+}
+
+.total-precio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgb(220, 215, 215);
+    width: 95%;
+    padding: 1rem;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.total-precio span{
+    color: green;
+}
+
+.total-boton{
+    width: 95%;
+    height: 3.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: var(--blanco);
+    background-color: green;
+    border-radius: 16px;
+}
+
+.total-boton:hover{
+    background-color: rgb(3, 87, 3);
+}
+
+.total-boton p{
+    margin: 0;
+}

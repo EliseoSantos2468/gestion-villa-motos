@@ -15,6 +15,14 @@ Route::prefix('inicio')->group(function(){
         return view('gestion.clientes');
     })->name('Clientes');
 
+    Route::get('/Ventas', function(){
+        return view('gestion.ventas');
+    })->name('Ventas');
+
+    Route::get('/Ventas/nueva', function(){
+        return view('gestion.venta_nueva');
+    })->name('nueva_venta');
+
     Route::get('/creditos', function(){
         return view('gestion.creditos');
     })->name('Creditos');
