@@ -1,0 +1,192 @@
+:root {
+    --colorPrincipal: #282828;
+    --colorSecundario: #00a5f3;
+    --blanco: #fff;
+    --negro: #000;
+    --botonEnviar: #4CAF50;
+    --botonEnviarHover: #45a049;
+    --cardMision: #e3f2fd;
+    --cardVision: #fff8e1;
+}
+
+/* Contenedor principal */
+.soporte-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15.25rem;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+@media (max-width: 785px) {
+    .soporte-container {
+        margin: 0;
+        padding: 1rem;
+    }
+}
+
+.soporte-container h1, 
+.soporte-container h2 {
+    color: var(--colorPrincipal);
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Tarjetas de información */
+.empresa-card, 
+.card-mision, 
+.card-vision {
+    background-color: var(--blanco);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.empresa-header, 
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--colorPrincipal);
+}
+
+.empresa-header h2, 
+.card-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.empresa-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.empresa-dato {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.empresa-dato p {
+    margin: 0;
+}
+
+/* Mision y Vision */
+.mision-vision {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .mision-vision {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card-mision {
+    background-color: var(--cardMision);
+    border-left: 4px solid var(--colorSecundario);
+}
+
+.card-vision {
+    background-color: var(--cardVision);
+    border-left: 4px solid #ffc107;
+}
+
+/* Canales de soporte */
+.canales-soporte {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.canal {
+    background-color: var(--blanco);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.canal h4 {
+    color: var(--colorPrincipal);
+    margin: 1rem 0 0.5rem;
+}
+
+.canal p {
+    margin: 0.25rem 0;
+    color: #555;
+}
+
+/* Formulario de contacto */
+.formulario-soporte {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--colorPrincipal);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--colorSecundario);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 165, 243, 0.2);
+}
+
+.btn-enviar {
+    background-color: var(--botonEnviar);
+    color: var(--blanco);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: var(--botonEnviarHover);
+}
+
+/* Iconos */
+.material-symbols-rounded {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
