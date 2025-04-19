@@ -9,7 +9,7 @@
         <div class="ventas-acciones">
             <input type="text" placeholder="Buscar ventas">
 
-            <a href="{{route('nueva_venta')}}" class="boton-crear">
+            <a href="{{route('inicio.ventas.nueva')}}" class="boton-crear">
                 <span class="material-symbols-rounded">
                     add
                 </span>

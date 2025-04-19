@@ -41,4 +41,8 @@ Route::prefix('inicio')->group(function(){
     Route::get('/soporte', function(){
         return view('gestion.soporte');
     })->name('inicio.soporte');
+
+    Route::get('/reportes', function(){
+        return view('gestion.reportes');
+    })->name('inicio.reportes');
 });

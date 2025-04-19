@@ -1,0 +1,87 @@
+:root{
+    --colorPrincipal: #282828;
+    --colorSecundario: #00a5f3;
+    --blanco: #fff;
+    --negro: #000;
+    --btnGenerar:rgb(16, 16, 222);
+    --btnGenerarHover:rgb(15, 15, 182);
+}
+
+.reportes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15.25rem;
+}
+
+@media (max-width: 785px){
+    .reportes{
+        margin: 0;
+    }
+}
+
+.reportes h1{
+    width: 95%;
+    padding: 20px;
+}
+
+.contenedorSelect{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reportesSelect{
+    width: 17rem;
+    height: 2.5rem;
+}
+
+.btn_generar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--btnGenerar);
+    color: var(--blanco);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.btn_generar:hover{
+    background-color: var(--btnGenerarHover);
+}
+
+.btn_generar p{
+    margin: 0;
+}
+
+#formularioContenedor{
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    gap: 1rem;
+    width: 95%;
+    margin: 1rem 0;
+}
+
+#formularioContenedor div{
+    display: flex;
+    flex-direction: column;
+}
+
+#formularioContenedor input{
+    width: 30rem;
+    height: 2.5rem;
+}
+
+#formularioContenedor select{
+    width: 100%;
+    height: 2.5rem;
+}
+
+#formularioContenedor .vendedor, #formularioContenedor .cliente{
+    flex: 1 1 100%;
+}

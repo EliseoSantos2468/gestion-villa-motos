@@ -44,7 +44,7 @@
 
             <ul class="nav-list primay-nav">
                 <li class="nav-item">
-                    <a href="{{route('Escritorio')}}" class="nav-link">
+                    <a href="{{route('inicio.escritorio')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             computer
                         </span>
@@ -57,7 +57,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('Clientes')}}" class="nav-link">
+                    <a href="{{route('inicio.clientes')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             groups
                         </span>
@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('Ventas')}}" class="nav-link">
+                    <a href="{{route('inicio.ventas')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             shopping_cart
                         </span>
@@ -83,7 +83,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('Creditos')}}" class="nav-link">
+                    <a href="{{route('inicio.creditos')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             description
                         </span>
@@ -96,7 +96,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('inicio.reportes')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             stacks
                         </span>
@@ -137,7 +137,7 @@
 
             <ul class="nav-list secondary-nav">
                 <li class="nav-item">
-                    <a href="{{route('Soporte')}}" class="nav-link">
+                    <a href="{{route('inicio.soporte')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             help
                         </span>
