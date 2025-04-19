@@ -137,7 +137,7 @@
 
             <ul class="nav-list secondary-nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('Soporte')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             help
                         </span>

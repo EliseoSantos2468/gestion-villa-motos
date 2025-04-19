@@ -1,0 +1,292 @@
+:root {
+    --primary: #0066cc;
+    --primary-dark: #004d99;
+    --secondary: #00a5f3;
+    --white: #ffffff;
+    --gray-light: #f5f7fa;
+    --gray-medium: #e1e5eb;
+    --gray-dark: #6c757d;
+    --black: #212529;
+    --success: #28a745;
+    --error: #dc3545;
+}
+
+/* Estilos base */
+.register-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.register-hero {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.register-hero::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+}
+
+.register-hero::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    bottom: -50px;
+    left: -50px;
+}
+
+.hero-content {
+    max-width: 500px;
+    z-index: 1;
+    text-align: center;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-features {
+    text-align: left;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.feature-icon {
+    background: rgba(255, 255, 255, 0.2);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+/* Formulario */
+.register-form-container {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+    background: var(--white);
+}
+
+.form-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    color: var(--gray-dark);
+    font-size: 0.95rem;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--black);
+}
+
+.input-group {
+    position: relative;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 3rem;
+    border: 1px solid var(--gray-medium);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: var(--gray-light);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    background-color: var(--white);
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-dark);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--gray-dark);
+    cursor: pointer;
+}
+
+/* Términos y condiciones */
+.terms-group {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.terms-group input {
+    margin-right: 0.5rem;
+    accent-color: var(--primary);
+}
+
+.terms-link {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}
+
+/* Botón de envío */
+.submit-btn {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 102, 204, 0.1);
+}
+
+.submit-btn:hover {
+    background: linear-gradient(to right, var(--primary-dark), var(--primary));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 102, 204, 0.15);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Enlace de login */
+.login-link {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--gray-dark);
+    margin-top: 1.5rem;
+}
+
+.login-link a {
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Indicador de fortaleza de contraseña */
+.password-strength {
+    height: 4px;
+    background: var(--gray-medium);
+    margin-top: 0.5rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.password-strength::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--error);
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .register-hero {
+        display: none;
+    }
+
+    .register-form-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .register-form-container {
+        padding: 2rem;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+}
