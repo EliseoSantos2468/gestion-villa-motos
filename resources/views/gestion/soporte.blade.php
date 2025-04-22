@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('css/soporte.css')}}">
 
     <div class="soporte-container">
-        <h1>Soporte Villamotos</h1>
+        <h1>Soporte </h1>
 
         <div class="informacion-empresa">
             <div class="empresa-card">

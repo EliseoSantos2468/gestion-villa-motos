@@ -45,4 +45,12 @@ Route::prefix('inicio')->group(function(){
     Route::get('/reportes', function(){
         return view('gestion.reportes');
     })->name('inicio.reportes');
+
+    Route::get('/kardex', function(){
+        return view('gestion.kardex');
+    })->name('inicio.kardex');
+
+    Route::get('/perfil', function(){
+        return view('gestion.perfil');
+    })->name('inicio.perfil');
 });
