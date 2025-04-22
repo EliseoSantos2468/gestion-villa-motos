@@ -7,25 +7,6 @@
         
         <h1 class="escritorio-titulo">Escritorio</h1>
 
-        <div class="datos">
-            <div class="datos-clientes">
-                <h2>Clientes</h2>
-                <h3>9</h3>
-            </div>
-            <div class="datos-ventas">
-                <h2>Ventas</h2>
-                <h3>10</h3>
-            </div>
-            <div class="datos-ventasHoy">
-                <h2>Ventas Hoy</h2>
-                <h3>11</h3>
-            </div>
-            <div class="datos-ventasMes">
-                <h2>Ventas Mes</h2>
-                <h3>12</h3>
-            </div>
-        </div>
-
         <div class="graficas">
             <div class="graficas-dias">
 

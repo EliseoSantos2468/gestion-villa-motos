@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,11 @@
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <title>App</title>
 </head>
+
 <body>
 
     <header class="header">
-        <a href="#" class="header-user">
+        <a href="{{route('inicio.perfil')}}" class="header-user">
             <span class="material-symbols-rounded">
                 person
             </span>
@@ -29,9 +31,9 @@
     <aside class="sidebar">
         {{-- cabezera del sidebar --}}
         <header class="sidebar-header">
-        <a href="#" class="header-logo">
-    <img src="{{ asset('images/villamotos4.png') }}" alt="Logo" style="width: 165px; height: 75px;">
-</a>
+            <a href="#" class="header-logo">
+                <img src="{{ asset('images/villamotos4.png') }}" alt="Logo" style="width: 165px; height: 75px;">
+            </a>
 
             <button class="sidebar-toggler">
                 <span class="material-symbols-rounded">
@@ -50,7 +52,7 @@
                         </span>
                         <span class="nav-label">Escritorio</span>
                     </a>
-                    
+
                     <ul class="dropdown-menu">
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-title">Escritorio</a>
@@ -63,7 +65,7 @@
                         </span>
                         <span class="nav-label">Clientes</span>
                     </a>
-                    
+
                     <ul class="dropdown-menu">
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-title">Clientes</a>
@@ -108,31 +110,16 @@
                             <a href="#" class="nav-link dropdown-title">Reportes</a>
                     </ul>
                 </li>
-                <li class="nav-item dropdown-container">
-                    <a href="#" class="nav-link dropdown-toggler">
+                <li class="nav-item">
+                    <a href="{{ route('inicio.kardex') }}" class="nav-link">
                         <span class="material-symbols-rounded">
-                            settings
+                            inventory
                         </span>
-                        <span class="nav-label">Configuracion</span>
-                        <span class="dropdown-icon material-symbols-rounded">
-                            keyboard_arrow_down
-                        </span>
+                        <span class="nav-label">Kardex e Inventario</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-title">Configuracion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-link">General</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-link">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-link">Marcas y Modelos</a>
-                        </li>
-                    </ul>
                 </li>
+            </ul>
+            </li>
             </ul>
 
             <ul class="nav-list secondary-nav">
@@ -173,4 +160,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
