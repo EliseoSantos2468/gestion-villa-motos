@@ -3,9 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReferenciaController;
-use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\ClasificacionController;
 use App\Http\Controllers\ReciboController;
+use App\Http\Controllers\BarrioController;
+use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\DepartamentoController;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\InteresController;
@@ -21,14 +23,6 @@ Route::prefix('referenciasPersonales')->group(function(){
     Route::post('/crear/referencia', [ReferenciaController::class, 'crearReferencia'])->name('crearReferencia');
     Route::put('/actualizar/referencia/{id}', [ReferenciaController::class, 'actualizarReferencia'])->name('actualizarReferencia');
     Route::delete('/eliminar/referencia/{id}', [ReferenciaController::class, 'eliminarReferencia'])->name('eliminarReferencia');
-});
-
-Route::prefix('direccion')->group(function(){
-    Route::get('/mostrar', [DireccionController::class, 'index'])->name('mostrarDirecciones');
-    Route::get('/mostrar/{id}', [DireccionController::class, 'show'])->name('mostrarDireccion');
-    Route::post('/crear', [DireccionController::class, 'store'])->name('crearDireccion');
-    Route::put('/actualizar/{id}', [DireccionController::class, 'update'])->name('actualizarDireccion');
-    Route::delete('/borrar/{id}', [DireccionController::class, 'destroy'])->name('borrarDireccion');
 });
 
 Route::prefix('clasificacion')->group(function(){
@@ -69,4 +63,28 @@ Route::prefix('saldos')->group(function(){
     Route::post('/crear', [SaldosController::class, 'store'])->name('crearSaldo');
     Route::put('/actualizar/{id}', [SaldosController::class, 'update'])->name('actualizarSaldo');
     Route::delete('/borrar/{id}', [SaldosController::class, 'destroy'])->name('borrarSaldo');
+});
+
+Route::prefix('barrio')->group(function(){
+    Route::get('/mostrar', [BarrioController::class, 'index'])->name('mostrarBarrios');
+    Route::get('/mostrar/{id}', [BarrioController::class, 'show'])->name('mostrarBarrio');
+    Route::post('/crear', [BarrioController::class, 'store'])->name('crearBarrio');
+    Route::put('/actualizar/{id}', [BarrioController::class, 'update'])->name('actualizarBarrio');
+    Route::delete('/borrar/{id}', [BarrioController::class, 'destroy'])->name('borrarBarrio');
+});
+
+Route::prefix('municipio')->group(function(){
+    Route::get('/mostrar', [MunicipioController::class, 'index'])->name('mostrarMunicipios');
+    Route::get('/mostrar/{id}', [MunicipioController::class, 'show'])->name('mostrarMunicipio');
+    Route::post('/crear', [MunicipioController::class, 'store'])->name('crearMunicipio');
+    Route::put('/actualizar/{id}', [MunicipioController::class, 'update'])->name('actualizarMunicipio');
+    Route::delete('/borrar/{id}', [MunicipioController::class, 'destroy'])->name('borrarMunicipio');
+});
+
+Route::prefix('departamento')->group(function(){
+    Route::get('/mostrar', [DepartamentoController::class, 'index'])->name('mostrarDepartamentos');
+    Route::get('/mostrar/{id}', [DepartamentoController::class, 'show'])->name('mostrarDepartamento');
+    Route::post('/crear', [DepartamentoController::class, 'store'])->name('crearDepartamento');
+    Route::put('/actualizar/{id}', [DepartamentoController::class, 'update'])->name('actualizarDepartamento');
+    Route::delete('/borrar/{id}', [DepartamentoController::class, 'destroy'])->name('borrarDepartamento');
 });
