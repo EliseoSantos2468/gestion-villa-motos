@@ -8,6 +8,8 @@ use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\BarrioController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\InteresController;
@@ -87,4 +89,20 @@ Route::prefix('departamento')->group(function(){
     Route::post('/crear', [DepartamentoController::class, 'store'])->name('crearDepartamento');
     Route::put('/actualizar/{id}', [DepartamentoController::class, 'update'])->name('actualizarDepartamento');
     Route::delete('/borrar/{id}', [DepartamentoController::class, 'destroy'])->name('borrarDepartamento');
+});
+
+Route::prefix('marca')->group(function(){
+    Route::get('/mostrar', [MarcaController::class, 'index'])->name('mostrarMarcas');
+    Route::get('/mostrar/{id}', [MarcaController::class, 'show'])->name('mostrarMarca');
+    Route::post('/crear', [MarcaController::class, 'store'])->name('crearMarca');
+    Route::put('/actualizar/{id}', [MarcaController::class, 'update'])->name('actualizarMarca');
+    Route::delete('/borrar/{id}', [MarcaController::class, 'destroy'])->name('borrarMarca');
+});
+
+Route::prefix('producto')->group(function(){
+    Route::get('/mostrar', [ProductoController::class, 'index'])->name('mostrarProductos');
+    Route::get('/mostrar/{id}', [ProductoController::class, 'show'])->name('mostrarProducto');
+    Route::post('/crear', [ProductoController::class, 'store'])->name('crearProducto');
+    Route::put('/actualizar/{id}', [ProductoController::class, 'update'])->name('actualizarProducto');
+    Route::delete('/borrar/{id}', [ProductoController::class, 'destroy'])->name('borrarProducto');
 });
