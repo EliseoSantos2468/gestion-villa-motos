@@ -104,12 +104,16 @@
 
 /* Formulario */
 .register-form-container {
-    width: 450px;
+    width: 100%;
+    max-width: 450px;  /* Ajusta el ancho máximo */
+    margin: 1rem;      /* Espacio alrededor */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem;
+    padding: 2rem;     /* Menos padding para que quede más cercano a la pantalla */
     background: var(--white);
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra para mayor enfoque */
 }
 
 .form-header {
@@ -159,6 +163,7 @@
     font-size: 0.95rem;
     transition: all 0.3s ease;
     background-color: var(--gray-light);
+    box-sizing: border-box; /* Asegura que el tamaño no se desborde */
 }
 
 .form-input:focus {
@@ -276,7 +281,7 @@
 
     .register-form-container {
         width: 100%;
-        max-width: 500px;
+        max-width: 450px;
         margin: 0 auto;
     }
 }

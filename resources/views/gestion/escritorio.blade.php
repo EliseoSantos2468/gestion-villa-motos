@@ -64,11 +64,11 @@
         </div>
 
         <div class="escritorio-ultimasVentas">
-            <h2>Ultimas Ventas</h2>
+            <h2>Historico de Ventas</h2>
             <table class="tabla-ventas">
                 <thead>
                   <tr>
-                    <th>Código</th>
+                    <th>ID</th>
                     <th>Fecha</th>
                     <th>Cliente</th>
                     <th>Total</th>

@@ -14,7 +14,7 @@
                 <div class="empresa-body">
                     <div class="empresa-dato">
                         <span class="material-symbols-rounded">apartment</span>
-                        <p><strong>Nombre:</strong> Villamotos S.A. de C.V.</p>
+                        <p><strong>Nombre:</strong> CrediRepuestos S.A. de C.V.</p>
                     </div>
                     <div class="empresa-dato">
                         <span class="material-symbols-rounded">location_on</span>
@@ -26,11 +26,11 @@
                     </div>
                     <div class="empresa-dato">
                         <span class="material-symbols-rounded">mail</span>
-                        <p><strong>Correo:</strong> info@villamotos.com</p>
+                        <p><strong>Correo:</strong> info@credirepuestos.com</p>
                     </div>
                     <div class="empresa-dato">
                         <span class="material-symbols-rounded">public</span>
-                        <p><strong>Sitio Web:</strong> www.villamotos.com</p>
+                        <p><strong>Sitio Web:</strong> www.credirepuestos.com</p>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <h3>Misión</h3>
                     </div>
                     <div class="card-body">
-                        <p>Proveer soluciones integrales en el mercado de motocicletas, ofreciendo productos de calidad, servicios excepcionales y financiamiento accesible para contribuir al desarrollo económico de nuestros clientes.</p>
+                        <p>Proveer soluciones integrales en el mercado de los repuestos, ofreciendo productos de calidad, servicios excepcionales y financiamiento accesible para contribuir al desarrollo económico de nuestros clientes.</p>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                         <h3>Visión</h3>
                     </div>
                     <div class="card-body">
-                        <p>Ser la empresa líder en venta y financiamiento de motocicletas en El Salvador, reconocida por nuestra innovación, calidad de servicio y compromiso con el desarrollo de nuestros clientes.</p>
+                        <p>Ser la empresa líder en venta y financiamiento de repuestos en El Salvador, reconocida por nuestra innovación, calidad de servicio y compromiso con el desarrollo de nuestros clientes.</p>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 <div class="canal">
                     <span class="material-symbols-rounded">support_agent</span>
                     <h4>Soporte Técnico</h4>
-                    <p>soporte@villamotos.com</p>
+                    <p>soporte@credirepuestos.com</p>
                     <p>Tel: (503) 2222-3333</p>
                     <p>Horario: L-V 8:00 AM - 5:00 PM</p>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="canal">
                     <span class="material-symbols-rounded">credit_card</span>
                     <h4>Soporte Financiero</h4>
-                    <p>creditos@villamotos.com</p>
+                    <p>creditos@credirepuestos.com</p>
                     <p>Tel: (503) 2222-4444</p>
                     <p>Horario: L-V 8:00 AM - 4:00 PM</p>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="canal">
                     <span class="material-symbols-rounded">receipt</span>
                     <h4>Facturación</h4>
-                    <p>facturacion@villamotos.com</p>
+                    <p>facturacion@credirepuestos.com</p>
                     <p>Tel: (503) 2222-5555</p>
                     <p>Horario: L-V 8:00 AM - 3:00 PM</p>
                 </div>
