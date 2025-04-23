@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Villamotos</title>
-    
+
     <!-- Fuentes -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    
+
     <!-- CSS específico para registro -->
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 </head>
+
 <body>
     <div class="register-container">
         <!-- Hero Section -->
         <div class="register-hero">
             <div class="hero-content">
                 <img src="{{ asset('images/villamotos4.png') }}" alt="Villamotos Logo" class="logo floating">
-                <h1 class="hero-title">Únete a Villamotos</h1>
+                <h1 class="hero-title">Únete ya!</h1>
                 <p class="hero-subtitle">Crea tu cuenta para acceder al sistema de gestión</p>
-                
+
                 <div class="hero-features">
                     <div class="feature-item">
                         <div class="feature-icon">
@@ -51,7 +53,18 @@
                 <p class="form-subtitle">Completa el formulario para registrarte</p>
             </div>
 
-            <form class="register-form" id="registerForm">
+            @if ($errors->any())
+            <div class="error-message">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <form class="register-form" method="POST" action="{{ route('register') }}">
+                @csrf
                 <div class="form-group">
                     <label for="name" class="form-label">Nombre Completo</label>
                     <div class="input-group">
@@ -69,6 +82,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="role" class="form-label">Rol</label>
+                    <div class="input-group">
+                        <span class="material-symbols-rounded input-icon">group</span>
+                        <select id="role" name="role" class="form-input">
+                            <option value="admin">Administrador</option>
+                            <option value="user">Usuario</option>
+                            <option value="guest">Invitado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="password" class="form-label">Contraseña</label>
                     <div class="input-group">
                         <span class="material-symbols-rounded input-icon">lock</span>
@@ -77,7 +102,6 @@
                             <span class="material-symbols-rounded">visibility</span>
                         </button>
                     </div>
-                    <div class="password-strength"></div>
                 </div>
 
                 <div class="form-group">
@@ -98,7 +122,7 @@
                     Registrarse
                 </button>
 
-                <p class="login-link">¿Ya tienes una cuenta? <a href="#" class="login-link">Inicia sesión aquí</a></p>
+                <p class="login-link">¿Ya tienes una cuenta? <a href="{{route('login')}}" class="login-link">Inicia sesión aquí</a></p>
             </form>
         </div>
     </div>
@@ -106,4 +130,5 @@
     <!-- JavaScript específico para registro -->
     <script src="{{ asset('js/auth/register.js') }}"></script>
 </body>
+
 </html>
