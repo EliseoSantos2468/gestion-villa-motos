@@ -12,4 +12,8 @@ class Referencia extends Model
         'telefono_ref',
         'nombre_ref'
     ];
+
+    public function clientes(){
+        return $this->belongsToMany(cliente::class, 'cliente_referencia')->withTimestamps();
+    }
 }

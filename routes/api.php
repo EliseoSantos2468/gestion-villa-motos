@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReferenciaController;
 use App\Http\Controllers\ClasificacionController;
 use App\Http\Controllers\ReciboController;
-use App\Http\Controllers\BarrioController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\InteresController;
@@ -67,14 +67,6 @@ Route::prefix('saldos')->group(function(){
     Route::delete('/borrar/{id}', [SaldosController::class, 'destroy'])->name('borrarSaldo');
 });
 
-Route::prefix('barrio')->group(function(){
-    Route::get('/mostrar', [BarrioController::class, 'index'])->name('mostrarBarrios');
-    Route::get('/mostrar/{id}', [BarrioController::class, 'show'])->name('mostrarBarrio');
-    Route::post('/crear', [BarrioController::class, 'store'])->name('crearBarrio');
-    Route::put('/actualizar/{id}', [BarrioController::class, 'update'])->name('actualizarBarrio');
-    Route::delete('/borrar/{id}', [BarrioController::class, 'destroy'])->name('borrarBarrio');
-});
-
 Route::prefix('municipio')->group(function(){
     Route::get('/mostrar', [MunicipioController::class, 'index'])->name('mostrarMunicipios');
     Route::get('/mostrar/{id}', [MunicipioController::class, 'show'])->name('mostrarMunicipio');
@@ -105,4 +97,12 @@ Route::prefix('producto')->group(function(){
     Route::post('/crear', [ProductoController::class, 'store'])->name('crearProducto');
     Route::put('/actualizar/{id}', [ProductoController::class, 'update'])->name('actualizarProducto');
     Route::delete('/borrar/{id}', [ProductoController::class, 'destroy'])->name('borrarProducto');
+});
+
+Route::prefix('cliente')->group(function(){
+    Route::get('/mostrar', [ClienteController::class, 'index'])->name('mostrarClientes');
+    Route::get('/mostrar/{id}', [ClienteController::class, 'show'])->name('mostrarCliente');
+    Route::post('/crear', [ClienteController::class, 'store'])->name('crearCliente');
+    Route::put('/actualizar/{id}', [ClienteController::class, 'update'])->name('actualizarCliente');
+    Route::delete('/borrar/{id}', [ClienteController::class, 'destroy'])->name('borrarCliente');
 });

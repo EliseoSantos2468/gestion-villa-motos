@@ -32,21 +32,18 @@ class ProductoController extends Controller
     public function store(Request $request){
         $request->validate([
             'nombre_producto' => 'required|string|max:355',
-            'precio_cliente' => 'required|numeric',
-            'precio_mayoreo' => 'required|numeric',
             'descripcion_producto' => 'required|string|max:355',
-            'venta_producto' => 'required|integer',
             'marcas' => 'required|array',
             'marcas.*.id' => 'required|exists:marca,id',
             'marcas.*.cantidad' => 'required|integer|min:1',
+            'marcas.*.precio_cliente' => 'required|numeric',
+            'marcas.*.precio_mayoreo' => 'required|numeric',
+            'marcas.*.venta_producto' => 'required|integer',
         ]);
 
         $producto = Producto::create([
             'nombre_producto' => $request->nombre_producto,
-            'precio_cliente' => $request->precio_cliente,
-            'precio_mayoreo' => $request->precio_mayoreo,
             'descripcion_producto' => $request->descripcion_producto,
-            'venta_producto' => $request->venta_producto,
         ]);
 
         $this->asignarMarcas($request, $producto->id);
@@ -61,7 +58,12 @@ class ProductoController extends Controller
         $datosParaSync = [];
 
         foreach($request->marcas as $marca){
-            $datosParaSync[$marca['id']] = ['cantidad' => $marca['cantidad']];
+            $datosParaSync[$marca['id']] = [
+                'cantidad' => $marca['cantidad'],
+                'precio_cliente' => $marca['precio_cliente'],
+                'precio_mayoreo' => $marca['precio_mayoreo'],
+                'venta_producto' => $marca['venta_producto'],
+            ];
         }
 
         $producto->marcas()->syncWithoutDetaching($datosParaSync);
@@ -72,34 +74,45 @@ class ProductoController extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'nombre_producto' => 'required|string|max:355',
-            'precio_cliente' => 'required|numeric',
-            'precio_mayoreo' => 'required|numeric',
             'descripcion_producto' => 'required|string|max:355',
-            'venta_producto' => 'required|integer',
             'marcas' => 'required|array',
             'marcas.*.id' => 'required|exists:marca,id',
             'marcas.*.cantidad' => 'required|integer|min:1',
+            'marcas.*.precio_cliente' => 'required|numeric',
+            'marcas.*.precio_mayoreo' => 'required|numeric',
+            'marcas.*.venta_producto' => 'required|integer',
         ]);
 
         $producto = Producto::findOrFail($id);
 
         $producto->update([
             'nombre_producto' => $request->nombre_producto,
-            'precio_cliente' => $request->precio_cliente,
-            'precio_mayoreo' => $request->precio_mayoreo,
             'descripcion_producto' => $request->descripcion_producto,
-            'venta_producto' => $request->venta_producto,
         ]);
 
         $marcasNuevas = [];
 
         foreach ($request->marcas as $marca) {
-            $marcasNuevas[$marca['id']] = ['cantidad' => $marca['cantidad']];
+            $marcasNuevas[$marca['id']] = [
+                'cantidad' => $marca['cantidad'],
+                'precio_cliente' => $marca['precio_cliente'],
+                'precio_mayoreo' => $marca['precio_mayoreo'],
+                'venta_producto' => $marca['venta_producto'],
+            ];
     
             if ($producto->marcas()->where('marca_id', $marca['id'])->exists()) {
-                $producto->marcas()->updateExistingPivot($marca['id'], ['cantidad' => $marca['cantidad']]);
+                $producto->marcas()->updateExistingPivot($marca['id'], [
+                                                                        'cantidad' => $marca['cantidad'],
+                                                                        'precio_cliente' => $marca['precio_cliente'],
+                                                                        'precio_mayoreo' => $marca['precio_mayoreo'],
+                                                                        'venta_producto' => $marca['venta_producto'],
+                                                                    ]);
             } else {
-                $producto->marcas()->attach($marca['id'], ['cantidad' => $marca['cantidad']]);
+                $producto->marcas()->attach($marca['id'], [
+                                                            'cantidad' => $marca['cantidad'],
+                                                            'precio_cliente' => $marca['precio_cliente'],
+                                                            'venta_producto' => $marca['venta_producto'],
+                                                        ]);
             }
         }
 

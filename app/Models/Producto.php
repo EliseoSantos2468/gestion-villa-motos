@@ -10,15 +10,15 @@ class Producto extends Model
 
     protected $fillable = [
         'nombre_producto',
-        'precio_cliente',
-        'precio_mayoreo',
         'descripcion_producto',
-        'venta_producto',
     ];
 
     public function marcas(){
         return $this->belongsToMany(Marca::class, 'producto_marca')
                     ->withPivot('cantidad')
+                    ->withPivot('precio_cliente')
+                    ->withPivot('precio_mayoreo')
+                    ->withPivot('venta_producto')
                     ->withTimestamps();
     }
 }
