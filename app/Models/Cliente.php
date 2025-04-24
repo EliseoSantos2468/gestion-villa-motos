@@ -31,6 +31,10 @@ class Cliente extends Model
         return $this->belongsTo(Departamento::class);
     }
 
+    public function recibos(){
+        return $this->hasMany(Recibo::class);
+    }
+
     public function referencias(){
         return $this->belongsToMany(referencia::class, 'cliente_referencia')->withTimestamps();
     }
