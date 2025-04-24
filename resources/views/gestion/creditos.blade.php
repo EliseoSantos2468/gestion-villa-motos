@@ -21,6 +21,7 @@
             <table class="tabla-clientes">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Telefono</th>
@@ -29,6 +30,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>1</td>
                         <td>Edras Lazo</td>
                         <td>lazo@ues.edu.sv</td>
                         <td>7891-9523</td>
@@ -50,6 +52,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>2</td>
                         <td>CRISTIAN ALBERTO PINEDA</td>
                         <td>lazo@ues.edu.sv</td> 
                         <td>7891-9523</td>

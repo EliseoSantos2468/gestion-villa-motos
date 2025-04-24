@@ -6,27 +6,47 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string|in:user,admin', // roles incluidos
-            'password_confirmation' => 'required|string|min:8',
+            'name' => 'required|string|min:3|max:100',
+            'email' => 'required|email:rfc,dns|max:255|unique:users,email',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'max:100',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+                'confirmed' // Asegura que coincida con password_confirmation
+            ],
+            'terms' => 'accepted' // Si estás usando checkbox de términos
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.min' => 'El nombre debe tener al menos 3 caracteres.',
+            'name.max' => 'El nombre no debe exceder los 100 caracteres.',
+
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'Debe ser un correo válido.',
+            'email.unique' => 'Este correo ya está registrado.',
+            'email.max' => 'El correo no debe exceder los 255 caracteres.',
+
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.max' => 'La contraseña no debe exceder los 100 caracteres.',
+            'password.regex' => 'La contraseña debe contener al menos una mayúscula, una minúscula y un número.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+
+            'terms.accepted' => 'Debes aceptar los términos y condiciones.',
         ];
     }
 }

@@ -111,6 +111,28 @@
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+.tabla-venta td:nth-child(4) {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.tabla-venta td:nth-child(4):hover::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #333;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 100;
+    white-space: normal;
+    width: auto;
+    max-width: 400px;
+}
 
 .tabla-venta {
     width: 100%;
@@ -144,22 +166,73 @@
     flex-wrap: wrap;
 }
 
-.btn-editar, 
-.btn-eliminar{
+.columna-botones {
     display: flex;
-    text-decoration: none;
+    gap: 6px; /* Espacio reducido entre botones */
     justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.columna-botones a {
+    display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    padding: 0.5rem 0.8rem;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    justify-content: center;
+    padding: 4px 8px; /* Padding reducido */
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    width: 28px; /* Ancho fijo para mantener uniformidad */
+    height: 28px; /* Alto fijo */
     transition: all 0.2s ease;
 }
 
+/* Estilos específicos para cada botón */
 .btn-editar {
-    background-color: var(--botonEditar);
-    color: var(--negro);
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-informacion {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Efectos hover */
+.btn-editar:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.btn-informacion:hover {
+    background-color: #138496;
+    transform: scale(1.05);
+}
+
+.btn-eliminar:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+/* Ocultar texto en pantallas pequeñas */
+@media (max-width: 768px) {
+    .columna-botones p {
+        display: none;
+    }
+    .columna-botones a {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Estilo para los iconos */
+.material-symbols-rounded {
+    font-size: 16px; /* Tamaño reducido de iconos */
+    line-height: 1;
 }
 
 .btn-editar:hover {

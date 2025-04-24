@@ -137,21 +137,21 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <span class="material-symbols-rounded">
-                            logout
-                        </span>
-                        <span class="nav-label">cerrar sesion</span>
+                        <span class="material-symbols-rounded">logout</span>
+                        <span class="nav-label">Cerrar sesion</span>
                     </a>
 
                     <ul class="dropdown-menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-title">Cerrar sesion</a>
+                            <a href="#" class="nav-link dropdown-title" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Cerrar sesión
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
                     </ul>
                 </li>
-
-            </ul>
-        </nav>
-
     </aside>
 
     @yield('content')

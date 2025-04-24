@@ -18,7 +18,6 @@ class RegisterController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role' => $validated['role'],
         ]);
         // Autenticar al usuario después del registro
         return redirect()->route('login')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');

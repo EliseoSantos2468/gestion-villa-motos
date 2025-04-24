@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Ruta principal
 Route::get('/', function () {
-    return view('gestion.escritorio');
+    return view('auth.login');
 });
 
 Route::get('/register', function () {
@@ -15,10 +15,6 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
-
-Route::get('/login', function () {
-    return view('Auth.login');
-})->name('login');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::get('/logout', function () {
