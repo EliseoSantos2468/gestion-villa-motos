@@ -21,7 +21,7 @@
             <table class="tabla-ventas">
                 <thead>
                   <tr>
-                    <th>Codigo</th>
+                    <th>ID</th>
                     <th>Fecha</th>
                     <th>Cliente</th>
                     <th>Total</th>

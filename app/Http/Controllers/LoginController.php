@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,20 +9,41 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login'); // Asegúrate que esta vista exista
+        return view('auth.login');
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        // Validación mejorada con mensajes personalizados
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8'
+        ], [
+            'email.required' => 'El correo electrónico es obligatorio',
+            'email.email' => 'Debe ingresar un correo válido',
+            'password.required' => 'La contraseña es obligatoria',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres'
+        ]);
 
+        // Autenticación del usuario
+        $request->session()->regenerate();
+        
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/inicio/escritorio'); // Redirige a la ruta deseada después del login
+            return redirect()->intended('inicio.escritorio');
+
         }
 
-        // Si falla, vuelve al login con error
         return back()->withErrors([
-            'email' => 'Las credenciales no son válidas.',
-        ])->withInput($request->only('email'));
+            'email' => 'Credenciales incorrectas',
+        ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect('/login');
     }
 }

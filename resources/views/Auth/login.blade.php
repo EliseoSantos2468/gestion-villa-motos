@@ -62,7 +62,7 @@
                         <label for="email" class="form-label">Correo electrónico</label>
                         <div class="input-group">
                             <span class="material-symbols-rounded input-icon">mail</span>
-                            <input type="email" id="email" name="email" class="form-input" placeholder="ejemplo@villamotos.com" required>
+                            <input type="email" id="email" name="email" class="form-input" value="{{old('email')}}" required placeholder="ejemplo@villamotos.com" required>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                         <label for="password" class="form-label">Contraseña</label>
                         <div class="input-group">
                             <span class="material-symbols-rounded input-icon">lock</span>
-                            <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required>
+                            <input type="password" id="password" name="password" class="form-input" placeholder="Ingrese su contraseña" required>
                             <button type="button" class="toggle-password">
                                 <span class="material-symbols-rounded">visibility</span>
                             </button>
@@ -79,8 +79,8 @@
 
                     <div class="form-options">
                         <div class="remember-me">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">Recordar sesión</label>
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Recordar sesión</label>
                         </div>
                         <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
                     </div>

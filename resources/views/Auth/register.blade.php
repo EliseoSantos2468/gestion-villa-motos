@@ -69,30 +69,25 @@
                     <label for="name" class="form-label">Nombre Completo</label>
                     <div class="input-group">
                         <span class="material-symbols-rounded input-icon">person</span>
-                        <input type="text" id="name" name="name" class="form-input" placeholder="Ej: Carlos Martínez" required>
+                        <input type="text" id="name" name="name" class="form-input" value="{{ old('name') }}" placeholder="Ej: Carlos Martínez" required>
                     </div>
+                    @error('name')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="email" class="form-label">Correo electrónico</label>
                     <div class="input-group">
                         <span class="material-symbols-rounded input-icon">mail</span>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="ejemplo@villamotos.com" required>
+                        <input type="email" id="email" name="email" class="form-input" value="{{ old('email') }}" placeholder="ejemplo@villamotos.com" required>
                     </div>
+                    @error('email')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="role" class="form-label">Rol</label>
-                    <div class="input-group">
-                        <span class="material-symbols-rounded input-icon">group</span>
-                        <select id="role" name="role" class="form-input">
-                            <option value="admin">Administrador</option>
-                            <option value="user">Usuario</option>
-                            <option value="guest">Invitado</option>
-                        </select>
-                    </div>
-                </div>
-
+            
                 <div class="form-group">
                     <label for="password" class="form-label">Contraseña</label>
                     <div class="input-group">
@@ -102,6 +97,9 @@
                             <span class="material-symbols-rounded">visibility</span>
                         </button>
                     </div>
+                    @error('password')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -110,6 +108,7 @@
                         <span class="material-symbols-rounded input-icon">lock_reset</span>
                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-input" placeholder="Repite tu contraseña" required>
                     </div>
+                    {{-- Laravel no valida automáticamente password_confirmation, lo haces tú en RegisterRequest --}}
                 </div>
 
                 <div class="form-group terms-group">
