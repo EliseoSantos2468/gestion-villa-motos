@@ -11,5 +11,16 @@ class Recibo extends Model
     protected $fillable=[
         'fecha',
         'total',
+        'id_cliente'
     ];
+
+    public function cliente(){
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function productos(){
+        return $this->belongsToMany(Producto::class, 'producto_recibo', 'id_recibo', 'id_producto')
+                    ->withPivot('cantidad')
+                    ->withTimestamps();
+    }
 }

@@ -14,11 +14,17 @@ class Producto extends Model
     ];
 
     public function marcas(){
-        return $this->belongsToMany(Marca::class, 'producto_marca')
+        return $this->belongsToMany(Marca::class, 'producto_recibo', 'id_producto', 'id_recibo')
                     ->withPivot('cantidad')
                     ->withPivot('precio_cliente')
                     ->withPivot('precio_mayoreo')
                     ->withPivot('venta_producto')
+                    ->withTimestamps();
+    }
+
+    public function recibos(){
+        return $this->belongsToMany(Recibo::class, 'producto_recibo')
+                    ->withPivot('cantidad')
                     ->withTimestamps();
     }
 }
