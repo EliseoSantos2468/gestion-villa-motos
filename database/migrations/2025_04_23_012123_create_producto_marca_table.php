@@ -16,6 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('producto_id');
             $table->unsignedBigInteger('marca_id');
             $table->integer('cantidad');
+            $table->decimal('precio_cliente', 12, 2);
+            $table->decimal('precio_mayoreo', 12, 2);
+            $table->integer('venta_producto');
             $table->timestamps();
 
             $table->foreign('producto_id')->references('id')->on('producto')->onDelete('cascade');

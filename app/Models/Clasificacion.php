@@ -11,4 +11,8 @@ class Clasificacion extends Model
     protected $fillable= [
         'nombre_clasificacion',
     ];
+
+    public function clientes(){
+        return $this->hasMany(cliente::class);
+    }
 }

@@ -14,10 +14,7 @@ return new class extends Migration
         Schema::create('producto', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_producto', length:355);
-            $table->decimal('precio_cliente', 12, 2);
-            $table->decimal('precio_mayoreo', 12, 2);
             $table->string('descripcion_producto', length:355);
-            $table->integer('venta_producto');
             $table->timestamps();
         });
     }

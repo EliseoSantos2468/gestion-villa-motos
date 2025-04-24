@@ -11,4 +11,12 @@ class Departamento extends Model
     protected $fillable = [
         'nombre_departamento'
     ];
+
+    public function clientes(){
+        return $this->hasMany(cliente::class);
+    }
+
+    public function municipios(){
+        return $this->hasMany(Municipio::class);
+    }
 }
