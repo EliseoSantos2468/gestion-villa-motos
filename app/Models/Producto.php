@@ -14,7 +14,7 @@ class Producto extends Model
     ];
 
     public function marcas(){
-        return $this->belongsToMany(Marca::class, 'producto_recibo', 'id_producto', 'id_recibo')
+        return $this->belongsToMany(Marca::class, 'producto_marca')
                     ->withPivot('cantidad')
                     ->withPivot('precio_cliente')
                     ->withPivot('precio_mayoreo')
@@ -26,5 +26,11 @@ class Producto extends Model
         return $this->belongsToMany(Recibo::class, 'producto_recibo')
                     ->withPivot('cantidad')
                     ->withTimestamps();
+    }
+
+    public function clientes(){
+        return $this->belongsToMany(Cliente::class, 'cliente_producto')
+                                    ->withPivot('cantidad')
+                                    ->withTimestamps();
     }
 }

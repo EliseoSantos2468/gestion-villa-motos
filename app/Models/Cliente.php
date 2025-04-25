@@ -38,4 +38,10 @@ class Cliente extends Model
     public function referencias(){
         return $this->belongsToMany(referencia::class, 'cliente_referencia')->withTimestamps();
     }
+
+    public function productos(){
+        return $this->belongsToMany(Producto::class, 'cliente_producto')
+                                    ->withPivot('cantidad')
+                                    ->withTimestamps();
+    }
 }
