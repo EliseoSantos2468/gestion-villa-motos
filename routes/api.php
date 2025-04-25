@@ -10,6 +10,8 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FechasController;
+use App\Http\Controllers\CreditoController;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\InteresController;
@@ -105,4 +107,20 @@ Route::prefix('cliente')->group(function(){
     Route::post('/crear', [ClienteController::class, 'store'])->name('crearCliente');
     Route::put('/actualizar/{id}', [ClienteController::class, 'update'])->name('actualizarCliente');
     Route::delete('/borrar/{id}', [ClienteController::class, 'destroy'])->name('borrarCliente');
+});
+
+Route::prefix('fechas')->group(function(){
+    Route::get('/mostrar', [FechasController::class, 'index'])->name('mostrarFechas');
+    Route::get('/mostrar/{id}', [FechasController::class, 'show'])->name('mostrarFecha');
+    Route::post('/crear', [FechasController::class, 'store'])->name('crearFecha');
+    Route::put('/actualizar/{id}', [FechasController::class, 'update'])->name('actualizarFecha');
+    Route::delete('/borrar/{id}', [FechasController::class, 'destroy'])->name('borrarFecha');
+});
+
+Route::prefix('credito')->group(function(){
+    Route::get('/mostrar', [CreditoController::class, 'index'])->name('mostrarCreditos');
+    Route::get('/mostrar/{id}', [CreditoController::class, 'show'])->name('mostrarCredito');
+    Route::post('/crear', [CreditoController::class, 'store'])->name('crearCredito');
+    Route::put('/actualizar/{id}', [CreditoController::class, 'update'])->name('actualizarCredito');
+    Route::delete('/borrar/{id}', [CreditoController::class, 'destroy'])->name('borrarCredito');
 });
