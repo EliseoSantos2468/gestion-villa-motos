@@ -12,9 +12,15 @@ use GuzzleHttp\Client;
 class ClienteController extends Controller
 {
     public function index(){
-        $cliente = Cliente::with(['referencias' => function ($query) {
-            $query->select('referencias_personales.id', 'nombre_ref', 'telefono_ref');
-        }])->get();
+        $cliente = Cliente::with([
+            'referencias' => function($query){
+                $query->select('referencias_personales.id', 'nombre_ref', 'telefono_ref');
+            },
+            'productos' => function($query){
+                $query->select('producto.id', 'nombre_producto')
+                        ->withPivot('cantidad');
+            }
+        ])->get();
 
         if($cliente->isEmpty()){
             $data = [

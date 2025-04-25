@@ -8,9 +8,16 @@ use App\Models\Producto;
 class ProductoController extends Controller
 {
     public function index(){
-        $productos = Producto::with(['marcas' => function ($query) {
-            $query->select('marca.id', 'nombre_marca')->withPivot('cantidad');
-        }])->get();
+        $productos = Producto::with([
+            'marcas' => function ($query) {
+                $query->select('marca.id', 'nombre_marca')
+                      ->withPivot('cantidad');
+            },
+            'clientes' => function ($query) {
+                $query->select('cliente.id', 'nombres_cliente','apellidos_cliente')
+                      ->withPivot('cantidad');
+            }
+        ])->get();
 
         if($productos->isEmpty()){
             $data=[

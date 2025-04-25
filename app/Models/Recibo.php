@@ -19,7 +19,7 @@ class Recibo extends Model
     }
 
     public function productos(){
-        return $this->belongsToMany(Producto::class, 'producto_recibo', 'id_recibo', 'id_producto')
+        return $this->belongsToMany(Producto::class, 'producto_recibo')
                     ->withPivot('cantidad')
                     ->withTimestamps();
     }
