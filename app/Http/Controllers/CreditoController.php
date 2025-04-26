@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Credito;
+use App\Models\Cuota;
+use App\Models\Fechas;
+use App\Models\Interes;
+use App\Models\Saldos;
+use App\Models\Cliente;
 
 class CreditoController extends Controller
 {
@@ -24,18 +29,61 @@ class CreditoController extends Controller
         return response()->json($credito, 200);
     }
 
-    public function store(Request $request){  
+    public function store(Request $request)
+    {
         $request->validate([
             'monto_facturado' => 'required|numeric',
             'interes_moratorio' => 'required|numeric',
-            'prima' => 'required|numeric',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date',
+            'fecha_limite' => 'required|date',
+            'numero_cuotas' => 'required|integer',
+            'interes_id' => 'required|exists:interes,id',
+            'cliente_id' => 'required|exists:cliente,id',
         ]);
-        
+    
+        // Calcular prima, capital y valor de cuota
+        $interes = Interes::findOrFail($request->interes_id);
+        $prima = $request->monto_facturado * 0.5;
+        $capital = $request->monto_facturado - $prima;
+        $valor_cuota = ($capital / $request->numero_cuotas) * $interes->interes_general;
+    
+        // Buscar o crear la cuota
+        $cuota = Cuota::firstOrCreate(
+            ['numero_cuotas' => $request->numero_cuotas, 'valor_cuota' => $valor_cuota]
+        );
+    
+        // Buscar o crear las fechas
+        $fecha = Fechas::firstOrCreate(
+            [
+                'fecha_inicio' => $request->fecha_inicio,
+                'fecha_fin' => $request->fecha_fin,
+                'fecha_limite' => $request->fecha_limite
+            ]
+        );
+    
+        // Crear el crédito con todos los datos
         $credito = Credito::create([
-            'monto_facturado' =>$request->monto_facturado,
-            'interes_moratorio' =>$request->interes_moratorio,
-            'prima' =>$request->prima,
+            'monto_facturado' => $request->monto_facturado,
+            'interes_moratorio' => $request->interes_moratorio,
+            'prima' => $prima,
+            'cuota_id' => $cuota->id,
+            'interes_id' => $request->interes_id,
+            'cliente_id' => $request->cliente_id,
+            'fechas_id' => $fecha->id,
         ]);
+    
+        // Crear los saldos
+        $saldo= Saldos::create([
+            'saldo_p_interes' => $capital * $interes->interes_general,
+            'saldo_pendiente' => $capital,
+            'credito_id' => $credito->id
+        ]);
+
+        $cliente = Cliente::findOrFail($request->cliente_id);
+        
+        $cliente->monto_max = $cliente->monto_max - $saldo->saldo_p_interes;
+        $cliente->save();
 
         return response()->json($credito, 200);
     }
@@ -45,6 +93,10 @@ class CreditoController extends Controller
             'monto_facturado' => 'required|numeric',
             'interes_moratorio' => 'required|numeric',
             'prima' => 'required|numeric',
+            'cuota_id' => 'required|exists:cuotas,id',
+            'interes_id' => 'required|exists:interes,id',
+            'cliente_id' => 'required|exists:cliente,id',
+            'fechas_id' => 'required|exists:fechas,id',
         ]);
         
         $credito = Credito::findOrFail($id);

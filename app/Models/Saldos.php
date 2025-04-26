@@ -11,6 +11,11 @@ class Saldos extends Model
     protected $fillable = [
         'saldo_mora',
         'saldo_p_interes',
-        'saldo_pendiente'
+        'saldo_pendiente',
+        'credito_id'
     ];
+
+    public function creditos(){
+        return $this->belongsTo(Credito::class);
+    }
 }

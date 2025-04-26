@@ -13,4 +13,8 @@ class Fechas extends Model
         'fecha_fin',
         'fecha_limite',
     ];
+
+    public function credito(){
+        return $this->hasMany(Credito::class);
+    }
 }

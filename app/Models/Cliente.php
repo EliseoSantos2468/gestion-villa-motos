@@ -44,4 +44,8 @@ class Cliente extends Model
                                     ->withPivot('cantidad')
                                     ->withTimestamps();
     }
+
+    public function credito(){
+        return $this->hasMany(Credito::class);
+    }
 }
