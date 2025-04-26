@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('saldos', function (Blueprint $table) {
             $table->id();
-            $table->decimal('saldo_mora', 10, 2); // Saldo total
+            $table->decimal('saldo_mora', 10, 2)->nullable(); // Saldo total
             $table->decimal('saldo_p_interes', 10, 2); // Saldo de la cuota
             $table->decimal('saldo_pendiente', 10, 2); 
+            $table->unsignedBigInteger('credito_id'); 
             $table->timestamps();
+
+            $table->foreign('credito_id')->references('id')->on('credito')->onDelete('cascade');
         });
     }
 

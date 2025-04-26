@@ -12,5 +12,25 @@ class Credito extends Model
         'monto_facturado',
         'interes_moratorio',
         'prima',
+        'cuota_id',
+        'interes_id',
+        'cliente_id',
+        'fechas_id',
     ];
+
+    public function cuotas(){
+        return $this->belongsTo(Cuota::class);
+    }
+    public function intereses(){
+        return $this->belongsTo(Interes::class);
+    }
+    public function saldo(){
+        return $this->hasMany(Saldos::class);
+    }
+    public function clientes(){
+        return $this->belongsTo(Cliente::class);
+    }
+    public function fechas(){
+        return $this->belongsTo(Fechas::class);
+    }
 }

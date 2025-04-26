@@ -12,15 +12,18 @@ use GuzzleHttp\Client;
 class ClienteController extends Controller
 {
     public function index(){
-        $cliente = Cliente::with([
-            'referencias' => function($query){
-                $query->select('referencias_personales.id', 'nombre_ref', 'telefono_ref');
-            },
-            'productos' => function($query){
-                $query->select('producto.id', 'nombre_producto')
-                        ->withPivot('cantidad');
-            }
-        ])->get();
+            $cliente = Cliente::with([
+                'referencias' => function($query){
+                    $query->select('referencias_personales.id', 'nombre_ref', 'telefono_ref');
+                },
+                'productos' => function($query){
+                    $query->select('producto.id', 'nombre_producto')
+                            ->withPivot('cantidad');
+                },
+                'credito' => function($query){
+                    $query->select('id', 'monto_facturado', 'interes_moratorio', 'prima', 'cliente_id');
+                }
+            ])->get();
 
         if($cliente->isEmpty()){
             $data = [
@@ -46,10 +49,8 @@ class ClienteController extends Controller
             'dui_cliente' => 'required|string|max:455', 
             'telefono_cliente' => 'required|string|max:455', 
             'nit_cliente' => 'required|string|max:455', 
-            'email_cliente' => 'required|email|max:455', 
-            'monto_max' => 'required|numeric', 
+            'email_cliente' => 'required|email|max:455',  
             'barrio' => 'required|string|max:355', 
-            'id_clasificacion' => 'required|exists:clasificacion,id', 
             'id_departamento' => 'required|exists:departamento,id', 
             'id_municipio' => 'required|exists:municipio,id', 
             'referencias' => 'required|array', 
@@ -72,9 +73,9 @@ class ClienteController extends Controller
             'telefono_cliente' => $request->telefono_cliente,
             'nit_cliente' => $request->nit_cliente,
             'email_cliente' => $request->email_cliente,
-            'monto_max' => $request->monto_max,
+            'monto_max' => 1000.00,
             'barrio' => $request->barrio,
-            'id_clasificacion' => $request->id_clasificacion,
+            'id_clasificacion' => 1,
             'id_departamento' => $request->id_departamento,
             'id_municipio' => $request->id_municipio,
         ]);

@@ -11,4 +11,8 @@ class Cuota extends Model
         'numero_cuotas',
         'valor_cuota',
     ];
+
+    public function credito(){
+        return $this->hasMany(Credito::class);
+    }
 }
