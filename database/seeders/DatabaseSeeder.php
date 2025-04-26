@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Clasificacion;
+use App\Models\Departamento;
+use App\Models\Interes;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            UserSeeder::class,
+            ReferenciasPersonalesSeeder::class,
+            ClasificacionSeeder::class,
+            InteresSeeder::class,
+            DepartamentoSeeder::class,
+            MunicipioSeeder::class,
+            MarcaSeeder::class,
+            ProductoMarcaSeeder::class,
+            ReferenciasPersonalesSeeder::class,
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
         ]);
     }
 }

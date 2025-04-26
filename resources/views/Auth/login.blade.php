@@ -56,8 +56,8 @@
                     <p class="form-subtitle">Ingresa tus credenciales para acceder al sistema</p>
                 </div>
 
-                <form class="login-form" method="POST" action="{{ route('login') }}">
-                    @csrf
+                <form class="login-form" method="POST" action="{{ route('login.post') }}">
+                @csrf
                     <div class="form-group">
                         <label for="email" class="form-label">Correo electrónico</label>
                         <div class="input-group">

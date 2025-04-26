@@ -5,18 +5,23 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 
-// Ruta principal
+// Muestra la vista de login
 Route::get('/', function () {
-    return view('auth.login');
-});
+    return view('Auth.login');
+})->name('login');
 
+// Muestra la vista de registro
 Route::get('/register', function () {
     return view('Auth.register');
 })->name('register');
 
+// Procesa el formulario de registro
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 
+// Procesa el formulario de login
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+
+// Cierra la sesión y redirige al login
 Route::get('/logout', function () {
     Auth::logout();
     return redirect()->route('login');
