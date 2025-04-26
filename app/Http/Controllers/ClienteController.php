@@ -75,7 +75,7 @@ class ClienteController extends Controller
             'email_cliente' => $request->email_cliente,
             'monto_max' => 1000.00,
             'barrio' => $request->barrio,
-            'id_clasificacion' => 1,
+            'id_clasificacion' => 3,
             'id_departamento' => $request->id_departamento,
             'id_municipio' => $request->id_municipio,
         ]);
