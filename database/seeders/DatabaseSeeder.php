@@ -24,9 +24,10 @@ class DatabaseSeeder extends Seeder
             DepartamentoSeeder::class,
             MunicipioSeeder::class,
             MarcaSeeder::class,
+            ProductoSeeder::class,
             ProductoMarcaSeeder::class,
-            ReferenciasPersonalesSeeder::class,
-
+            ClienteSeeder::class,
+            ClienteReferenciaSeeder::class,
         ]);
     }
 }
