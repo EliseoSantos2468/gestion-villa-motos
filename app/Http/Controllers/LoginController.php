@@ -16,8 +16,8 @@ class LoginController extends Controller
     {
         // Validación mejorada con mensajes personalizados
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8'
+            'email' => 'required',
+            'password' => 'required'
         ], [
             'email.required' => 'El correo electrónico es obligatorio',
             'email.email' => 'Debe ingresar un correo válido',
@@ -25,12 +25,9 @@ class LoginController extends Controller
             'password.min' => 'La contraseña debe tener al menos 8 caracteres'
         ]);
 
-        // Autenticación del usuario
-        $request->session()->regenerate();
-        
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('inicio.escritorio');
-
+            $request->session()->regenerate(); // Esto aquí
+            return redirect()->route('inicio.escritorio');
         }
 
         return back()->withErrors([

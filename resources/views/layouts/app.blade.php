@@ -136,19 +136,16 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('logout') }}" class="nav-link">
                         <span class="material-symbols-rounded">logout</span>
                         <span class="nav-label">Cerrar sesion</span>
                     </a>
 
                     <ul class="dropdown-menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-title" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="" class="nav-link dropdown-title"">
                                 Cerrar sesión
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
                         </li>
                     </ul>
                 </li>

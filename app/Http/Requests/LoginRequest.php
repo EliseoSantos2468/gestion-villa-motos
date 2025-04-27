@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoginRequest extends FormRequest
 {
@@ -23,17 +24,17 @@ class LoginRequest extends FormRequest
             'email' => [
                 'required',
                 'string',
-                'email:rfc,dns',
+                'email',
                 'max:255',
                 // Validación personalizada para existencia del correo si lo deseas
-                // Rule::exists('users', 'email')->where(fn ($query) => $query->where('active', true)),
+              Rule::exists('users', 'email')->where(fn ($query) => $query->where('active', true)),
             ],
             'password' => [
                 'required',
                 'string',
                 'min:8',
                 'max:100',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', // Al menos una minúscula, una mayúscula y un número
+              'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', // Al menos una minúscula, una mayúscula y un número
             ],
         ];
     }
