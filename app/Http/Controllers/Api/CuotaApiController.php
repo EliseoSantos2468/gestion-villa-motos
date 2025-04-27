@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Cuota;
+use App\Http\Controllers\Controller;
 
-class CuotaController extends Controller
+class CuotaApiController extends Controller
 {
     public function index(){
         $cuotas = Cuota::all();  

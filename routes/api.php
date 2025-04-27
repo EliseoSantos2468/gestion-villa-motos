@@ -2,125 +2,125 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ReferenciaController;
-use App\Http\Controllers\ClasificacionController;
-use App\Http\Controllers\ReciboController;
-use App\Http\Controllers\MunicipioController;
-use App\Http\Controllers\DepartamentoController;
-use App\Http\Controllers\MarcaController;
-use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\FechasController;
-use App\Http\Controllers\CreditoController;
+use App\Http\Controllers\Api\ReferenciaApiController;
+use App\Http\Controllers\Api\ClasificacionApiController;
+use App\Http\Controllers\Api\ReciboApiController;
+use App\Http\Controllers\Api\MunicipioApiController;
+use App\Http\Controllers\Api\DepartamentoApiController;
+use App\Http\Controllers\Api\MarcaApiController;
+use App\Http\Controllers\Api\ProductoApiController;
+use App\Http\Controllers\Api\ClienteApiController;
+use App\Http\Controllers\Api\FechasApiController;
+use App\Http\Controllers\Api\CreditoApiController;
 use Illuminate\Support\Facades\Redis;
-use App\Http\Controllers\CuotaController;
-use App\Http\Controllers\InteresController;
-use App\Http\Controllers\SaldosController;
+use App\Http\Controllers\Api\CuotaApiController;
+use App\Http\Controllers\Api\InteresApiController;
+use App\Http\Controllers\Api\SaldosApiController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
 Route::prefix('referenciasPersonales')->group(function(){
-    Route::get('/referencias', [ReferenciaController::class, 'index'])->name('mostrarReferencias');
-    Route::get('/referencia/{id}', [ReferenciaController::class, 'mostrarReferencia'])->name('mostrarReferencia');
-    Route::post('/crear/referencia', [ReferenciaController::class, 'crearReferencia'])->name('crearReferencia');
-    Route::put('/actualizar/referencia/{id}', [ReferenciaController::class, 'actualizarReferencia'])->name('actualizarReferencia');
-    Route::delete('/eliminar/referencia/{id}', [ReferenciaController::class, 'eliminarReferencia'])->name('eliminarReferencia');
+    Route::get('/referencias', [ReferenciaApiController::class, 'index'])->name('mostrarReferencias');
+    Route::get('/referencia/{id}', [ReferenciaApiController::class, 'mostrarReferencia'])->name('mostrarReferencia');
+    Route::post('/crear/referencia', [ReferenciaApiController::class, 'crearReferencia'])->name('crearReferencia');
+    Route::put('/actualizar/referencia/{id}', [ReferenciaApiController::class, 'actualizarReferencia'])->name('actualizarReferencia');
+    Route::delete('/eliminar/referencia/{id}', [ReferenciaApiController::class, 'eliminarReferencia'])->name('eliminarReferencia');
 });
 
 Route::prefix('clasificacion')->group(function(){
-    Route::get('/mostrar', [ClasificacionController::class, 'index'])->name('mostrarClasificaciones');
-    Route::get('/mostrar/{id}', [ClasificacionController::class, 'show'])->name('mostrarClasificacion');
-    Route::post('/crear', [ClasificacionController::class, 'store'])->name('crearClasificacion');
-    Route::put('/actualizar/{id}', [ClasificacionController::class, 'update'])->name('actualizarClasificacion');
-    Route::delete('/borrar/{id}', [ClasificacionController::class, 'destroy'])->name('borrarClasificacion');
+    Route::get('/mostrar', [ClasificacionApiController::class, 'index'])->name('mostrarClasificaciones');
+    Route::get('/mostrar/{id}', [ClasificacionApiController::class, 'show'])->name('mostrarClasificacion');
+    Route::post('/crear', [ClasificacionApiController::class, 'store'])->name('crearClasificacion');
+    Route::put('/actualizar/{id}', [ClasificacionApiController::class, 'update'])->name('actualizarClasificacion');
+    Route::delete('/borrar/{id}', [ClasificacionApiController::class, 'destroy'])->name('borrarClasificacion');
 });
 
 Route::prefix('recibo')->group(function(){
-    Route::get('/mostrar', [ReciboController::class, 'index'])->name('mostrarRecibos');
-    Route::get('/mostrar/{id}', [ReciboController::class, 'show'])->name('mostrarRecibo');
-    Route::post('/crear', [ReciboController::class, 'store'])->name('crearResibo');
-    Route::put('/actualizar/{id}', [ReciboController::class, 'update'])->name('actualizarResibo');
-    Route::delete('/borrar/{id}', [ReciboController::class, 'destroy'])->name('borrarResibo');
+    Route::get('/mostrar', [ReciboApiController::class, 'index'])->name('mostrarRecibos');
+    Route::get('/mostrar/{id}', [ReciboApiController::class, 'show'])->name('mostrarRecibo');
+    Route::post('/crear', [ReciboApiController::class, 'store'])->name('crearResibo');
+    Route::put('/actualizar/{id}', [ReciboApiController::class, 'update'])->name('actualizarResibo');
+    Route::delete('/borrar/{id}', [ReciboApiController::class, 'destroy'])->name('borrarResibo');
 });
 
 Route::prefix('cuota')->group(function(){
-    Route::get('/mostrar', [CuotaController::class, 'index'])->name('mostrarCuotas');
-    Route::get('/mostrar/{id}', [CuotaController::class, 'show'])->name('mostrarCuota');
-    Route::post('/crear', [CuotaController::class, 'store'])->name('crearCuota');
-    Route::put('/actualizar/{id}', [CuotaController::class, 'update'])->name('actualizarCuota');
-    Route::delete('/borrar/{id}', [CuotaController::class, 'destroy'])->name('borrarCuota');
+    Route::get('/mostrar', [CuotaApiController::class, 'index'])->name('mostrarCuotas');
+    Route::get('/mostrar/{id}', [CuotaApiController::class, 'show'])->name('mostrarCuota');
+    Route::post('/crear', [CuotaApiController::class, 'store'])->name('crearCuota');
+    Route::put('/actualizar/{id}', [CuotaApiController::class, 'update'])->name('actualizarCuota');
+    Route::delete('/borrar/{id}', [CuotaApiController::class, 'destroy'])->name('borrarCuota');
 });
 
 Route::prefix('interes')->group(function(){
-    Route::get('/mostrar', [InteresController::class, 'index'])->name('mostrarIntereses');
-    Route::get('/mostrar/{id}', [InteresController::class, 'show'])->name('mostrarInteres');
-    Route::post('/crear', [InteresController::class, 'store'])->name('crearInteres');
-    Route::put('/actualizar/{id}', [InteresController::class, 'update'])->name('actualizarInteres');
-    Route::delete('/borrar/{id}', [InteresController::class, 'destroy'])->name('borrarInteres');
+    Route::get('/mostrar', [InteresApiController::class, 'index'])->name('mostrarIntereses');
+    Route::get('/mostrar/{id}', [InteresApiController::class, 'show'])->name('mostrarInteres');
+    Route::post('/crear', [InteresApiController::class, 'store'])->name('crearInteres');
+    Route::put('/actualizar/{id}', [InteresApiController::class, 'update'])->name('actualizarInteres');
+    Route::delete('/borrar/{id}', [InteresApiController::class, 'destroy'])->name('borrarInteres');
 });
 
 Route::prefix('saldos')->group(function(){
-    Route::get('/mostrar', [SaldosController::class, 'index'])->name('mostrarSaldos');
-    Route::get('/mostrar/{id}', [SaldosController::class, 'show'])->name('mostrarSaldo');
-    Route::post('/crear', [SaldosController::class, 'store'])->name('crearSaldo');
-    Route::put('/actualizar/{id}', [SaldosController::class, 'update'])->name('actualizarSaldo');
-    Route::delete('/borrar/{id}', [SaldosController::class, 'destroy'])->name('borrarSaldo');
+    Route::get('/mostrar', [SaldosApiController::class, 'index'])->name('mostrarSaldos');
+    Route::get('/mostrar/{id}', [SaldosApiController::class, 'show'])->name('mostrarSaldo');
+    Route::post('/crear', [SaldosApiController::class, 'store'])->name('crearSaldo');
+    Route::put('/actualizar/{id}', [SaldosApiController::class, 'update'])->name('actualizarSaldo');
+    Route::delete('/borrar/{id}', [SaldosApiController::class, 'destroy'])->name('borrarSaldo');
 });
 
 Route::prefix('municipio')->group(function(){
-    Route::get('/mostrar', [MunicipioController::class, 'index'])->name('mostrarMunicipios');
-    Route::get('/mostrar/{id}', [MunicipioController::class, 'show'])->name('mostrarMunicipio');
-    Route::post('/crear', [MunicipioController::class, 'store'])->name('crearMunicipio');
-    Route::put('/actualizar/{id}', [MunicipioController::class, 'update'])->name('actualizarMunicipio');
-    Route::delete('/borrar/{id}', [MunicipioController::class, 'destroy'])->name('borrarMunicipio');
+    Route::get('/mostrar', [MunicipioApiController::class, 'index'])->name('mostrarMunicipios');
+    Route::get('/mostrar/{id}', [MunicipioApiController::class, 'show'])->name('mostrarMunicipio');
+    Route::post('/crear', [MunicipioApiController::class, 'store'])->name('crearMunicipio');
+    Route::put('/actualizar/{id}', [MunicipioApiController::class, 'update'])->name('actualizarMunicipio');
+    Route::delete('/borrar/{id}', [MunicipioApiController::class, 'destroy'])->name('borrarMunicipio');
 });
 
 Route::prefix('departamento')->group(function(){
-    Route::get('/mostrar', [DepartamentoController::class, 'index'])->name('mostrarDepartamentos');
-    Route::get('/mostrar/{id}', [DepartamentoController::class, 'show'])->name('mostrarDepartamento');
-    Route::post('/crear', [DepartamentoController::class, 'store'])->name('crearDepartamento');
-    Route::put('/actualizar/{id}', [DepartamentoController::class, 'update'])->name('actualizarDepartamento');
-    Route::delete('/borrar/{id}', [DepartamentoController::class, 'destroy'])->name('borrarDepartamento');
+    Route::get('/mostrar', [DepartamentoApiController::class, 'index'])->name('mostrarDepartamentos');
+    Route::get('/mostrar/{id}', [DepartamentoApiController::class, 'show'])->name('mostrarDepartamento');
+    Route::post('/crear', [DepartamentoApiController::class, 'store'])->name('crearDepartamento');
+    Route::put('/actualizar/{id}', [DepartamentoApiController::class, 'update'])->name('actualizarDepartamento');
+    Route::delete('/borrar/{id}', [DepartamentoApiController::class, 'destroy'])->name('borrarDepartamento');
 });
 
 Route::prefix('marca')->group(function(){
-    Route::get('/mostrar', [MarcaController::class, 'index'])->name('mostrarMarcas');
-    Route::get('/mostrar/{id}', [MarcaController::class, 'show'])->name('mostrarMarca');
-    Route::post('/crear', [MarcaController::class, 'store'])->name('crearMarca');
-    Route::put('/actualizar/{id}', [MarcaController::class, 'update'])->name('actualizarMarca');
-    Route::delete('/borrar/{id}', [MarcaController::class, 'destroy'])->name('borrarMarca');
+    Route::get('/mostrar', [MarcaApiController::class, 'index'])->name('mostrarMarcas');
+    Route::get('/mostrar/{id}', [MarcaApiController::class, 'show'])->name('mostrarMarca');
+    Route::post('/crear', [MarcaApiController::class, 'store'])->name('crearMarca');
+    Route::put('/actualizar/{id}', [MarcaApiController::class, 'update'])->name('actualizarMarca');
+    Route::delete('/borrar/{id}', [MarcaApiController::class, 'destroy'])->name('borrarMarca');
 });
 
 Route::prefix('producto')->group(function(){
-    Route::get('/mostrar', [ProductoController::class, 'index'])->name('mostrarProductos');
-    Route::get('/mostrar/{id}', [ProductoController::class, 'show'])->name('mostrarProducto');
-    Route::post('/crear', [ProductoController::class, 'store'])->name('crearProducto');
-    Route::put('/actualizar/{id}', [ProductoController::class, 'update'])->name('actualizarProducto');
-    Route::delete('/borrar/{id}', [ProductoController::class, 'destroy'])->name('borrarProducto');
+    Route::get('/mostrar', [ProductoApiController::class, 'index'])->name('mostrarProductos');
+    Route::get('/mostrar/{id}', [ProductoApiController::class, 'show'])->name('mostrarProducto');
+    Route::post('/crear', [ProductoApiController::class, 'store'])->name('crearProducto');
+    Route::put('/actualizar/{id}', [ProductoApiController::class, 'update'])->name('actualizarProducto');
+    Route::delete('/borrar/{id}', [ProductoApiController::class, 'destroy'])->name('borrarProducto');
 });
 
 Route::prefix('cliente')->group(function(){
-    Route::get('/mostrar', [ClienteController::class, 'index'])->name('mostrarClientes');
-    Route::get('/mostrar/{id}', [ClienteController::class, 'show'])->name('mostrarCliente');
-    Route::post('/crear', [ClienteController::class, 'store'])->name('crearCliente');
-    Route::put('/actualizar/{id}', [ClienteController::class, 'update'])->name('actualizarCliente');
-    Route::delete('/borrar/{id}', [ClienteController::class, 'destroy'])->name('borrarCliente');
+    Route::get('/mostrar', [ClienteApiController::class, 'index'])->name('mostrarClientes');
+    Route::get('/mostrar/{id}', [ClienteApiController::class, 'show'])->name('mostrarCliente');
+    Route::post('/crear', [ClienteApiController::class, 'store'])->name('crearCliente');
+    Route::put('/actualizar/{id}', [ClienteApiController::class, 'update'])->name('actualizarCliente');
+    Route::delete('/borrar/{id}', [ClienteApiController::class, 'destroy'])->name('borrarCliente');
 });
 
 Route::prefix('fechas')->group(function(){
-    Route::get('/mostrar', [FechasController::class, 'index'])->name('mostrarFechas');
-    Route::get('/mostrar/{id}', [FechasController::class, 'show'])->name('mostrarFecha');
-    Route::post('/crear', [FechasController::class, 'store'])->name('crearFecha');
-    Route::put('/actualizar/{id}', [FechasController::class, 'update'])->name('actualizarFecha');
-    Route::delete('/borrar/{id}', [FechasController::class, 'destroy'])->name('borrarFecha');
+    Route::get('/mostrar', [FechasApiController::class, 'index'])->name('mostrarFechas');
+    Route::get('/mostrar/{id}', [FechasApiController::class, 'show'])->name('mostrarFecha');
+    Route::post('/crear', [FechasApiController::class, 'store'])->name('crearFecha');
+    Route::put('/actualizar/{id}', [FechasApiController::class, 'update'])->name('actualizarFecha');
+    Route::delete('/borrar/{id}', [FechasApiController::class, 'destroy'])->name('borrarFecha');
 });
 
 Route::prefix('credito')->group(function(){
-    Route::get('/mostrar', [CreditoController::class, 'index'])->name('mostrarCreditos');
-    Route::get('/mostrar/{id}', [CreditoController::class, 'show'])->name('mostrarCredito');
-    Route::post('/crear', [CreditoController::class, 'store'])->name('crearCredito');
-    Route::put('/actualizar/{id}', [CreditoController::class, 'update'])->name('actualizarCredito');
-    Route::delete('/borrar/{id}', [CreditoController::class, 'destroy'])->name('borrarCredito');
+    Route::get('/mostrar', [CreditoApiController::class, 'index'])->name('mostrarCreditos');
+    Route::get('/mostrar/{id}', [CreditoApiController::class, 'show'])->name('mostrarCredito');
+    Route::post('/crear', [CreditoApiController::class, 'store'])->name('crearCredito');
+    Route::put('/actualizar/{id}', [CreditoApiController::class, 'update'])->name('actualizarCredito');
+    Route::delete('/borrar/{id}', [CreditoApiController::class, 'destroy'])->name('borrarCredito');
 });

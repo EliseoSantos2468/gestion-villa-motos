@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use App\Http\Controllers\Controller;
 
-class ProductoController extends Controller
+class ProductoApiController extends Controller
 {
     public function index(){
         $productos = Producto::with([

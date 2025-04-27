@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Departamento;
+use App\Http\Controllers\Controller;
 
 
-class DepartamentoController extends Controller
+class DepartamentoApiController extends Controller
 {
     public function index(){
-        $departamento = Departamento::all();
+        $departamentos = Departamento::with('municipios')->get();
 
-        if($departamento->isEmpty()){
+        if($departamentos->isEmpty()){
             $data=[
                 'message' => 'no hay ningun registro de departamento',
             ];
@@ -19,11 +20,11 @@ class DepartamentoController extends Controller
             return response()->json($data, 200);
         }
 
-        return response()->json($departamento, 200);
+        return response()->json($departamentos, 200);
     }
 
     public function show($id){
-        $departamento = Departamento::findOrFail($id);
+        $departamento = Departamento::with('municipios')->get()->findOrFail($id);
 
         return response()->json($departamento, 200);
     }
