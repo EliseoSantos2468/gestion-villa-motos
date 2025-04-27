@@ -28,8 +28,7 @@ Route::get('/logout', function () {
 })->name('logout');
 
 // Rutas protegidas (requieren autenticación)
-// middleware('auth')->
-Route::prefix('inicio')->group(function () {
+Route::middleware('auth')->prefix('inicio')->group(function () {
     Route::get('/escritorio', function () {
         return view('gestion.escritorio');
     })->name('inicio.escritorio');

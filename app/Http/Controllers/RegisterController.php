@@ -14,11 +14,13 @@ class RegisterController extends Controller
     {
         $validated = $request->validated();
     
+        $hashedPassword = Hash::make($validated['password']);
+
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-        ]);
+            'password' => $hashedPassword,
+        ]);        
         // Autenticar al usuario después del registro
         return redirect()->route('login')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');
     }
