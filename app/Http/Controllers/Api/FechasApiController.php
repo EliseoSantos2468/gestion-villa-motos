@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\fechas;
+use App\Http\Controllers\Controller;
 
-
-class FechasController extends Controller
+class FechasApiController extends Controller
 {
     public function index(){
         $fechas = Fechas::all();  

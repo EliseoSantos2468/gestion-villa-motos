@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Interes;
+use App\Http\Controllers\Controller;
 
-class InteresController extends Controller
+class InteresApiController extends Controller
 {
     public function index(){
         $intereses = Interes::all();  

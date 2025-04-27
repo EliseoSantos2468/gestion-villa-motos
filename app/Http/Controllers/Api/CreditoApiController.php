@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Credito;
@@ -9,8 +9,9 @@ use App\Models\Fechas;
 use App\Models\Interes;
 use App\Models\Saldos;
 use App\Models\Cliente;
+use App\Http\Controllers\Controller;
 
-class CreditoController extends Controller
+class CreditoApiController extends Controller
 {
     public function index(){
         $credito = Credito::all();  

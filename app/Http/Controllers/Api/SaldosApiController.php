@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Saldos;
+use App\Http\Controllers\Controller;
 
-class SaldosController extends Controller
+class SaldosApiController extends Controller
 {
     public function index(){
         $saldos = Saldos::all();  

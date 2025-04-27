@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
@@ -8,8 +8,9 @@ use App\Models\Departamento;
 use App\Models\Referencia;
 use App\Models\Municipio;
 use GuzzleHttp\Client;
+use App\Http\Controllers\Controller;
 
-class ClienteController extends Controller
+class ClienteApiController extends Controller
 {
     public function index(){
             $cliente = Cliente::with([

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Municipio;
 use App\Models\Departamento;
+use App\Http\Controllers\Controller;
 
 
-class MunicipioController extends Controller
+class MunicipioApiController extends Controller
 {
     public function index(){
         $municipio = Municipio::all();

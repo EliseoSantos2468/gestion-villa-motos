@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Marca;
+use App\Http\Controllers\Controller;
 
-class MarcaController extends Controller
+class MarcaApiController extends Controller
 {
     public function index(){
         $marca = Marca::all();

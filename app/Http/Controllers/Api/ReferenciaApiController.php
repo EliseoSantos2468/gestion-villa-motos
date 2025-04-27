@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Referencia;
+use App\Http\Controllers\Controller;
 
-class ReferenciaController extends Controller
+class ReferenciaApiController extends Controller
 {
     public function index(){
         $referencias = Referencia::all();  

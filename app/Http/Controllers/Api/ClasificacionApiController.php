@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Clasificacion;
+use App\Http\Controllers\Controller;
 
-class ClasificacionController extends Controller
+class ClasificacionApiController extends Controller
 {
     public function index(){
         $clasificaciones = Clasificacion::all();

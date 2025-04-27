@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Recibo;
 use App\Models\Cliente;
 use App\Models\Producto;
+use App\Http\Controllers\Controller;
 
-class ReciboController extends Controller
+class ReciboApiController extends Controller
 {
     public function index(){
         $recibos = Recibo::with(['productos' => function ($query) {
