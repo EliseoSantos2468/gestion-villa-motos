@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
@@ -33,9 +34,13 @@ Route::middleware('auth')->prefix('inicio')->group(function () {
         return view('gestion.escritorio');
     })->name('inicio.escritorio');
 
-    Route::get('/clientes', function () {
-        return view('gestion.clientes');
-    })->name('inicio.clientes');
+    Route::prefix('cliente')->group(function(){
+        Route::get('/mostrar', [ClienteController::class, 'index'])->name('mostrarClientes');
+        Route::get('/mostrar/{id}', [ClienteController::class, 'show'])->name('mostrarCliente');
+        Route::post('/crear', [ClienteController::class, 'store'])->name('crearCliente');
+        Route::put('/actualizar/{id}', [ClienteController::class, 'update'])->name('actualizarCliente');
+        Route::delete('/borrar/{id}', [ClienteController::class, 'destroy'])->name('borrarCliente');
+    });
 
     Route::get('/ventas', function () {
         return view('gestion.ventas');

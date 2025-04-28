@@ -6,6 +6,12 @@
 <div class="clientes">
   <h1>Clientes</h1>
 
+  @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+  @endif
+
   <div class="clientes-acciones">
     <input type="text" placeholder="Buscar Clientes">
 
@@ -22,50 +28,39 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Nombre</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
           <th>Correo</th>
           <th>Telefono</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Edras Lazo</td>
-          <td>lazo@ues.edu.sv</td>
-          <td>7891-9523</td>
-          <td class="columna-botones">
-    <a href="" class="btn-editar" title="Editar">
-        <span class="material-symbols-rounded">edit</span>
-        <span class="btn-text">editar</span>
-    </a>
-    <a href="" class="btn-eliminar" title="Eliminar">
-        <span class="material-symbols-rounded">delete</span>
-        <span class="btn-text">Eliminar</span>
-    </a>
-</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>CRISTIAN ALBERTO PINEDA</td>
-          <td>lazo@ues.edu.sv</td>
-          <td>7891-9523</td>
-          <td class="columna-botones">
-            <a href="" class="btn-editar">
-              <span class="material-symbols-rounded">
-                edit
-              </span>
-              <p>editar</p>
-            </a>
 
-            <a href="" class="btn-eliminar">
-              <span class="material-symbols-rounded">
-                delete
-              </span>
-              <p>Eliminar</p>
-            </a>
-          </td>
+        @foreach ($clientes as $cliente)
+        <tr>
+            <td>{{$cliente->id}}</td>
+            <td>{{$cliente->nombres_cliente}}</td>
+            <td>{{$cliente->apellidos_cliente}}</td>
+            <td>{{$cliente->email_cliente}}</td>
+            <td>{{$cliente->telefono_cliente}}</td>
+            <td class="columna-botones">
+              <a href="" class="btn-editar" title="Editar">
+                  <span class="material-symbols-rounded">edit</span>
+                  <span class="btn-text">editar</span>
+              </a>
+              <form action="{{route('borrarCliente', $cliente->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn-eliminar" title="Eliminar">
+                    <span class="material-symbols-rounded">delete</span>
+                    <span class="btn-text">Eliminar</span>
+                </button>
+              </form>
+            </td>
         </tr>
+        @endforeach
+
       </tbody>
     </table>
   </div>
@@ -80,16 +75,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="POST" action="{{route('crearCliente')}}">
+          @csrf
           <!-- Sección de Nombre Completo -->
           <div class="row mb-3">
             <div class="col">
               <label class="form-label">Nombre Completo</label>
-              <input type="text" class="form-control" placeholder="Nombre">
+              <input type="text" name="nombres_cliente" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="col">
+              <label class="form-label">Apellidos</label>
+              <input type="text" name="apellidos_cliente" class="form-control" placeholder="Apellidos">
             </div>
             <div class="col">
               <label class="form-label">DUI</label>
-              <input type="text" class="form-control" placeholder="00000000-0">
+              <input type="text" name="dui_cliente" class="form-control" placeholder="00000000-0">
             </div>
           </div>
 
@@ -101,13 +101,13 @@
                 <div class="referencia-item mb-2">
                   <div class="row g-2">
                     <div class="col-md-5">
-                      <input type="text" class="form-control" placeholder="Nombre referencia">
+                      <input type="text" class="form-control nombre-referencia" placeholder="Nombre referencia">
                     </div>
                     <div class="col-md-5">
-                    <input type="tel" class="form-control" id="telefono" placeholder="0000-0000" maxlength="9">                   </div>
+                    <input type="tel" class="form-control telefono-referencia" id="telefono" placeholder="0000-0000" maxlength="9">                   </div>
                     <div class="col-md-2">
-                      <button type="button" class="btn btn-sm btn-outline-danger">
-                        <span class="material-symbols-rounded">delete</span>
+                      <button type="button" class="btn btn-sm btn-outline-danger add-referencia">
+                        <span class="material-symbols-rounded">add</span>
                       </button>
                     </div>
                   </div>
@@ -115,6 +115,9 @@
                 <button type="button" class="btn btn-sm btn-outline-primary mt-2">
                   <span class="material-symbols-rounded">add</span> Agregar otra referencia
                 </button>
+                <div id="referencias-lista">
+                  <!-- Aquí se mostrarán las referencias agregadas -->
+              </div>
               </div>
             </div>
           </div>
@@ -123,11 +126,11 @@
           <div class="row mb-3">
             <div class="col">
               <label class="form-label">NIT</label>
-              <input type="text" class="form-control" placeholder="0000-000000-000-0">
+              <input type="text" name="nit_cliente" class="form-control" placeholder="0000-000000-000-0">
             </div>
             <div class="col">
               <label class="form-label">Correo</label>
-              <input type="email" class="form-control" placeholder="Correo">
+              <input type="email" name="email_cliente" class="form-control" placeholder="Correo">
             </div>
           </div>
 
@@ -135,16 +138,18 @@
           <div class="row mb-3">
             <div class="col">
               <label class="form-label">Teléfono</label>
-              <input type="tel" class="form-control" placeholder="0000-0000" 
+              <input type="tel" name="telefono_cliente" class="form-control" placeholder="0000-0000" 
        pattern="[0-9]{4}-[0-9]{4}" 
        maxlength="9"
        oninput="this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\d{4})(\d{0,4})/, '$1$2').slice(0, 9);">
             </div>
             <div class="col">
               <label class="form-label">Departamento</label>
-              <select class="form-select" name="departamento">
+              <select id="departamentoSelect" class="form-select" name="id_departamento">
                 <option value="" selected disabled>Seleccione un departamento</option>
-                <!-- Opciones se agregarán aquí -->
+                @foreach ($departamentos as $departamento)
+                <option value="{{ $departamento->id }}">{{ $departamento->nombre_departamento }}</option>
+                @endforeach
               </select>
             </div>
           </div>
@@ -152,24 +157,114 @@
           <div class="row mb-3">
             <div class="col">
               <label class="form-label">Municipio</label>
-              <select class="form-select" name="municipio" disabled>
+              <select id="municipioSelect" class="form-select" name="id_municipio">
                 <option value="" selected disabled>Seleccione un municipio</option>
                 <!-- Opciones se agregarán aquí -->
               </select>
             </div>
             <div class="col">
               <label class="form-label">Barrio/Colonia</label>
-              <input type="text" class="form-control" placeholder="Dirección">
+              <input type="text" name="barrio" class="form-control" placeholder="Dirección">
             </div>
           </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  let referenciasCount = 0; // Para numerar las referencias correctamente
+
+  document.querySelector('.add-referencia').addEventListener('click', function() {
+      const nombreReferencia = document.querySelector('.nombre-referencia').value;
+      const telefonoReferencia = document.querySelector('.telefono-referencia').value;
+      const referenciasContainer = document.querySelector('.referencias-container');
+      const listaReferencias = document.getElementById('referencias-lista');
+
+      if (nombreReferencia && telefonoReferencia) {
+          // Crear un contenedor para esta referencia
+          const referenciaDiv = document.createElement('div');
+          referenciaDiv.classList.add('referencia-item');
+          referenciaDiv.dataset.index = referenciasCount; // Guardamos el número de referencia para identificarla
+
+          // Crear inputs ocultos
+          const inputNombre = document.createElement('input');
+          inputNombre.type = 'hidden';
+          inputNombre.name = `referencias[${referenciasCount}][nombre_ref]`;
+          inputNombre.value = nombreReferencia;
+          inputNombre.classList.add(`input-nombre-${referenciasCount}`);
+
+          const inputTelefono = document.createElement('input');
+          inputTelefono.type = 'hidden';
+          inputTelefono.name = `referencias[${referenciasCount}][telefono_ref]`;
+          inputTelefono.value = telefonoReferencia;
+          inputTelefono.classList.add(`input-telefono-${referenciasCount}`);
+
+          // Crear texto visible
+          const texto = document.createElement('p');
+          texto.innerHTML = `Nombre: ${nombreReferencia}, Teléfono: ${telefonoReferencia}`;
+
+          // Crear botón de eliminar
+          const botonEliminar = document.createElement('button');
+          botonEliminar.type = 'button';
+          botonEliminar.classList.add('btn', 'btn-sm', 'btn-danger', 'ms-2');
+          botonEliminar.innerText = 'Eliminar';
+          botonEliminar.addEventListener('click', function() {
+              // Eliminar inputs ocultos
+              document.querySelector(`.input-nombre-${referenciasCount}`)?.remove();
+              document.querySelector(`.input-telefono-${referenciasCount}`)?.remove();
+              // Eliminar visualmente la referencia
+              referenciaDiv.remove();
+          });
+
+          referenciaDiv.appendChild(texto);
+          referenciaDiv.appendChild(botonEliminar);
+
+          listaReferencias.appendChild(referenciaDiv);
+
+          // Agregar inputs ocultos al formulario
+          referenciasContainer.appendChild(inputNombre);
+          referenciasContainer.appendChild(inputTelefono);
+
+          // Limpiar campos
+          document.querySelector('.nombre-referencia').value = '';
+          document.querySelector('.telefono-referencia').value = '';
+
+          referenciasCount++; // Incrementar para siguiente referencia
+      } else {
+          alert('Por favor, completa ambos campos.');
+      }
+  });
+</script>
+
+<script>
+  const departamentosConMunicipios = @json($departamentos);
+
+  const departamentoSelect = document.getElementById('departamentoSelect');
+  const municipioSelect = document.getElementById('municipioSelect');
+
+  departamentoSelect.addEventListener('change', function() {
+      const departamentoId = this.value;
+
+      // Limpiar municipios anteriores
+      municipioSelect.innerHTML = '<option value="" selected disabled>Seleccione un municipio</option>';
+
+      const departamento = departamentosConMunicipios.find(dep => dep.id == departamentoId);
+
+      if (departamento && departamento.municipios.length > 0) {
+          municipioSelect.disabled = false;
+          departamento.municipios.forEach(municipio => {
+              const option = document.createElement('option');
+              option.value = municipio.id;
+              option.textContent = municipio.nombre_municipio; // cambia a nombre correcto
+              municipioSelect.appendChild(option);
+          });
+      } else {
+          municipioSelect.disabled = true;
+      }
+  });
+</script>
 
 @endsection
