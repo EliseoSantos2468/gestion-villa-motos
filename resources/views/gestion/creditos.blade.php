@@ -1,80 +1,165 @@
 @extends('layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="{{asset('css/creditos.css')}}">
+<link rel="stylesheet" href="{{asset('css/creditos.css')}}">
 
-    <div class="clientes">
-        <h1>Asignacion de creditos</h1>
+<div class="clientes">
+    <h1>Asignacion de creditos</h1>
 
-        <div class="clientes-acciones">
-            <input type="text" placeholder="Buscar Clientes">
+    <div class="clientes-acciones">
+        <input type="text" placeholder="Buscar Clientes">
 
-            <button class="boton-crear" type="button" data-bs-toggle="modal" data-bs-target="#nuevoClienteModal">
-                <span class="material-symbols-rounded">
-                    add
-                </span>
-                <p>Nuevo Cliente</p>
-            </button>
-        </div>
+        <button class="boton-crear" type="button" data-bs-toggle="modal" data-bs-target="#nuevoClienteModal">
+            <span class="material-symbols-rounded">
+                add
+            </span>
+            <p>Nuevo Cliente</p>
+        </button>
+    </div>
 
-        <div class="tabla">
-            <table class="tabla-clientes">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Edras Lazo</td>
-                        <td>lazo@ues.edu.sv</td>
-                        <td>7891-9523</td>
-                        <td class="columna-botones">
-                            <a href="" class="btn-editar">
-                                <span class="material-symbols-rounded">edit</span>
-                                <p>editar</p>
-                            </a>
+    <div class="tabla">
+        <table class="tabla-clientes">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Edras Lazo</td>
+                    <td>lazo@ues.edu.sv</td>
+                    <td>7891-9523</td>
+                    <td class="columna-botones">
+                        <a href="" class="btn-editar">
+                            <span class="material-symbols-rounded">edit</span>
+                            <p>editar</p>
+                        </a>
 
-                            <a href="" class="btn-eliminar">
-                                <span class="material-symbols-rounded">delete</span>
-                                <p>Eliminar</p>
-                            </a>
+                        <a href="" class="btn-eliminar">
+                            <span class="material-symbols-rounded">delete</span>
+                            <p>Eliminar</p>
+                        </a>
 
-                            <button class="btn-asignar" type="button" data-bs-toggle="modal" data-bs-target="#asignarCreditoModal">
-                                <span class="material-symbols-rounded">monetization_on</span>
-                                <p>Asignar Crédito</p>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>CRISTIAN ALBERTO PINEDA</td>
-                        <td>lazo@ues.edu.sv</td> 
-                        <td>7891-9523</td>
-                        <td class="columna-botones">
-                            <a href="" class="btn-editar">
-                                <span class="material-symbols-rounded">edit</span>
-                                <p>editar</p>
-                            </a>
+                        <button class="btn-asignar" type="button" data-bs-toggle="modal" data-bs-target="#asignarCreditoModal">
+                            <span class="material-symbols-rounded">monetization_on</span>
+                            <p>Asignar Crédito</p>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>CRISTIAN ALBERTO PINEDA</td>
+                    <td>lazo@ues.edu.sv</td>
+                    <td>7891-9523</td>
+                    <td class="columna-botones">
+                        <a href="" class="btn-editar">
+                            <span class="material-symbols-rounded">edit</span>
+                            <p>editar</p>
+                        </a>
 
-                            <a href="" class="btn-eliminar">
-                                <span class="material-symbols-rounded">delete</span>
-                                <p>Eliminar</p>
-                            </a>
+                        <a href="" class="btn-eliminar">
+                            <span class="material-symbols-rounded">delete</span>
+                            <p>Eliminar</p>
+                        </a>
 
-                            <button class="btn-asignar" type="button" data-bs-toggle="modal" data-bs-target="#asignarCreditoModal">
-                                <span class="material-symbols-rounded">monetization_on</span>
-                                <p>Asignar Crédito</p>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        <button class="btn-asignar" type="button" data-bs-toggle="modal" data-bs-target="#asignarCreditoModal">
+                            <span class="material-symbols-rounded">monetization_on</span>
+                            <p>Asignar Crédito</p>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="cotizador-credito">
+        <div class="card shadow-lg">
+            <div class="card-body" style="margintop: 20px;">
+                <h2 class="card-title text-center mb-4">Cotizador de Crédito</h2>
+                <form id="cotizadorForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="monto" class="form-label">Monto del Crédito ($):</label>
+                            <input type="number" id="monto" class="form-control" value="10000" min="1000" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="plazo" class="form-label">Plazo (meses):</label>
+                            <input type="number" id="plazo" class="form-control" value="12" min="6" max="60" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="interes" class="form-label">Tasa de Interés (% anual):</label>
+                            <div class="input-group">
+                                <input type="number" id="interes" class="form-control" value="5" min="0" step="0.1" required>
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="frecuencia" class="form-label">Frecuencia de Pago:</label>
+                            <select id="frecuencia" class="form-select">
+                                <option value="mensual">Mensual</option>
+                                <option value="quincenal">Quincenal</option>
+                                <option value="semanal">Semanal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Calcular Cuota</button>
+                </form>
+
+                <div id="resultados" class="mt-4 resultados-container">
+                    <h3 class="text-center">Resultados del Cálculo</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered resultados-table">
+                            <thead>
+                                <tr>
+                                    <th>Concepto</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cuota</td>
+                                    <td id="cuota"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total a Pagar</td>
+                                    <td id="totalPagar"></td>
+                                </tr>
+                                <tr>
+                                    <td>Interés Total</td>
+                                    <td id="interesTotal"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="tablaAmortizacion" class="amortizacion-container">
+                        <h4 class="text-center">Tabla de Amortización</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover amortizacion-table">
+                                <thead>
+                                    <tr>
+                                        <th>Periodo</th>
+                                        <th>Saldo Inicial</th>
+                                        <th>Cuota</th>
+                                        <th>Interés</th>
+                                        <th>Amortización</th>
+                                        <th>Saldo Final</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaAmortizacionBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -192,4 +277,6 @@
             </div>
         </div>
     </div>
-@endsection
+
+
+    @endsection

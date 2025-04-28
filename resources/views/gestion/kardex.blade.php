@@ -32,7 +32,15 @@
                             </div>
                             <div class="col">
                                 <label for="marca">Marca</label>
-                                <input type="text" id="marca" name="marca" class="form-control" placeholder="Ej: HP, Logitech, etc." required>
+                                <select id="marca" name="marca" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione una marca</option>
+                                    <option value="VINI">VINI</option>
+                                    <option value="ENDURO">ENDURO</option>
+                                    <option value="NRP">NRP</option>
+                                    <option value="MICHELIN">MICHELIN</option>
+                                    <option value="TVS">TVS</option>
+                                    <option value="BAJAJ">BAJAJ</option>
+                                </select>
                             </div>
                         </div>
 
