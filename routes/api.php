@@ -102,11 +102,11 @@ Route::prefix('producto')->group(function(){
 });
 
 Route::prefix('cliente')->group(function(){
-    Route::get('/mostrar', [ClienteApiController::class, 'index'])->name('mostrarClientes');
-    Route::get('/mostrar/{id}', [ClienteApiController::class, 'show'])->name('mostrarCliente');
-    Route::post('/crear', [ClienteApiController::class, 'store'])->name('crearCliente');
-    Route::put('/actualizar/{id}', [ClienteApiController::class, 'update'])->name('actualizarCliente');
-    Route::delete('/borrar/{id}', [ClienteApiController::class, 'destroy'])->name('borrarCliente');
+    Route::get('/mostrar', [ClienteApiController::class, 'index'])->name('mostrarApiClientes');
+    Route::get('/mostrar/{id}', [ClienteApiController::class, 'show'])->name('mostrarApiCliente');
+    Route::post('/crear', [ClienteApiController::class, 'store'])->name('crearApiCliente');
+    Route::put('/actualizar/{id}', [ClienteApiController::class, 'update'])->name('actualizarApiCliente');
+    Route::delete('/borrar/{id}', [ClienteApiController::class, 'destroy'])->name('borrarApiCliente');
 });
 
 Route::prefix('fechas')->group(function(){

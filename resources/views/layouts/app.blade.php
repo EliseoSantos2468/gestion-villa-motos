@@ -59,7 +59,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('inicio.clientes')}}" class="nav-link">
+                    <a href="{{route('mostrarClientes')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             groups
                         </span>

@@ -28,7 +28,7 @@ return new class extends Migration
 
             $table->foreign('id_clasificacion')->references('id')->on('clasificacion')->onDelete('cascade');
             $table->foreign('id_departamento')->references('id')->on('departamento')->onDelete('cascade');
-            $table->foreign('id_municipio')->references('id')->on('departamento')->onDelete('cascade');
+            $table->foreign('id_municipio')->references('id')->on('municipio')->onDelete('cascade');
         });
     }
 
