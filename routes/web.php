@@ -38,6 +38,7 @@ Route::middleware('auth')->prefix('inicio')->group(function () {
         Route::get('/mostrar', [ClienteController::class, 'index'])->name('mostrarClientes');
         Route::get('/mostrar/{id}', [ClienteController::class, 'show'])->name('mostrarCliente');
         Route::post('/crear', [ClienteController::class, 'store'])->name('crearCliente');
+        Route::get('/actualizarForm/{id}', [ClienteController::class, 'updateForm'])->name('actualizarClientevista');
         Route::put('/actualizar/{id}', [ClienteController::class, 'update'])->name('actualizarCliente');
         Route::delete('/borrar/{id}', [ClienteController::class, 'destroy'])->name('borrarCliente');
     });

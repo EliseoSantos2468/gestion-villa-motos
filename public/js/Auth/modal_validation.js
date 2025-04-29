@@ -20,16 +20,79 @@ document.addEventListener('DOMContentLoaded', function() {
     const apellidos = button.getAttribute('data-apellidos');
     const dui = button.getAttribute('data-dui');
     const nit = button.getAttribute('data-nit');
+    const idDepartamento = button.getAttribute('data-id_departamento');
+    const departamentoSelect = document.getElementById('departamentoSelectE');
+    const idMunicipio = button.getAttribute('data-id_municipio');
+    departamentoSelect.value = idDepartamento;
     const email = button.getAttribute('data-email');
     const telefono = button.getAttribute('data-telefono');
     const barrio = button.getAttribute('data-barrio');
+
+    // logica para visualizar las referencias
+    
+    const referenciasData = button.getAttribute('data-referencias');
+    console.log('Referencias RAW:', referenciasData);
+    const referencias = referenciasData ? JSON.parse(referenciasData) : [];
+    console.log('Referencias JSON:', referencias);
+
+    const referenciasLista = document.getElementById('referencias-listaA');
+    referenciasLista.innerHTML = ''; // Limpiar antes de agregar (por si ya había)
+
+    // Contador para los inputs
+    let referenciasCount = 0;
+
+    referencias.forEach(referencia => {
+        const nombreReferencia = referencia.nombre_ref;
+        const telefonoReferencia = referencia.telefono_ref;
+    
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('mb-2', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'rounded');
+    
+        // Texto visible
+        const label = document.createElement('span');
+        label.textContent = `Nombre: ${nombreReferencia}, Tel: ${telefonoReferencia}`;
+    
+        // Botón de eliminar
+        const botonEliminar = document.createElement('button');
+        botonEliminar.type = 'button';
+        botonEliminar.className = 'btn btn-sm btn-danger';
+        botonEliminar.textContent = 'Eliminar';
+    
+        botonEliminar.addEventListener('click', function () {
+            referenciasLista.removeChild(wrapper);
+        });
+    
+        // Inputs ocultos
+        const inputNombre = document.createElement('input');
+        inputNombre.type = 'hidden';
+        inputNombre.name = `referencias[${referenciasCount}][nombre_ref]`;
+        inputNombre.value = nombreReferencia;
+    
+        const inputTelefono = document.createElement('input');
+        inputTelefono.type = 'hidden';
+        inputTelefono.name = `referencias[${referenciasCount}][telefono_ref]`;
+        inputTelefono.value = telefonoReferencia;
+    
+        // Ensamblar
+        wrapper.appendChild(label);
+        wrapper.appendChild(botonEliminar);
+        wrapper.appendChild(inputNombre);
+        wrapper.appendChild(inputTelefono);
+    
+        referenciasLista.appendChild(wrapper);
+        referenciasCount++;
+    });
     
     // Rellena los campos del formulario con los datos del cliente
     document.getElementById('cliente-id').value = clienteId;
+
     document.getElementById('nombres_cliente').value = nombres;
     document.getElementById('apellidos_cliente').value = apellidos;
     document.getElementById('dui_cliente').value = dui;
     document.getElementById('nit_cliente').value = nit;
+    document.getElementById('departamentoSelectE').value = idDepartamento;
+    departamentoSelect.dispatchEvent(new Event('change'));
+    document.getElementById('municipioSelectE').value = idMunicipio;
     document.getElementById('email_cliente').value = email;
     document.getElementById('telefono_cliente').value = telefono;
     document.getElementById('barrio').value = barrio;
@@ -165,40 +228,4 @@ document.addEventListener('DOMContentLoaded', function() {
         e.target.value = value.substring(0, 9);
     });
 
-    // Validación del formulario antes de enviar
-    document.querySelector('form').addEventListener('submit', function(event) {
-        let hasErrors = false;
-        const campos = [
-            { campo: 'nombres_cliente', mensaje: 'El nombre es obligatorio' },
-            { campo: 'apellidos_cliente', mensaje: 'Los apellidos son obligatorios' },
-            { campo: 'dui_cliente', mensaje: 'El DUI es obligatorio', formato: /^\d{8}-\d{1}$/, mensajeFormato: 'El formato del DUI debe ser 00000000-0' },
-            { campo: 'nit_cliente', mensaje: 'El NIT es obligatorio', formato: /^\d{4}-\d{6}-\d{3}-\d{1}$/, mensajeFormato: 'El formato del NIT debe ser 0000-000000-000-0' },
-            { campo: 'email_cliente', mensaje: 'El correo electrónico es obligatorio', formato: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, mensajeFormato: 'Ingrese un correo electrónico válido' },
-            { campo: 'telefono_cliente', mensaje: 'El teléfono es obligatorio', formato: /^\d{4}-\d{4}$/, mensajeFormato: 'El formato del teléfono debe ser 0000-0000' },
-            { campo: 'id_departamento', mensaje: 'Debe seleccionar un departamento' },
-            { campo: 'id_municipio', mensaje: 'Debe seleccionar un municipio' },
-            { campo: 'barrio', mensaje: 'La dirección es obligatoria' }
-        ];
-
-        // Validar cada campo
-        campos.forEach(campo => {
-            const input = document.querySelector(`[name="${campo.campo}"]`);
-            if (!input.value.trim()) {
-                mostrarNotificacion(campo.mensaje, 'danger');
-                input.classList.add('is-invalid');
-                hasErrors = true;
-            } else if (campo.formato && !campo.formato.test(input.value)) {
-                mostrarNotificacion(campo.mensajeFormato, 'danger');
-                input.classList.add('is-invalid');
-                hasErrors = true;
-            } else {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
-            }
-        });
-
-        if (hasErrors) {
-            event.preventDefault();
-        }
-    });
 });

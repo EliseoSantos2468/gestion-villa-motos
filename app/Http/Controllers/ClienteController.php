@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clasificacion;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Departamento;
@@ -14,9 +15,9 @@ class ClienteController extends Controller
     public function index(){
         $departamentos = Departamento::with('municipios')->get();
         $clientes = Cliente::with([
-            // 'referencias' => function($query){
-            //     $query->select('referencias_personales.id', 'nombre_ref', 'telefono_ref');
-            // },
+             'referencias' => function($query){
+                 $query->select('referencias_personales.id', 'nombre_ref', 'telefono_ref');
+             }
             // 'productos' => function($query){
             //     $query->select('producto.id', 'nombre_producto')
             //             ->withPivot('cantidad');
@@ -106,6 +107,26 @@ public function asignarReferencia($idReferencias, $id_cliente){
 
 }
 
+public function updateForm($id){
+    $departamentos = Departamento::with('municipios')->get();
+    $clasificaciones = Clasificacion::all();
+    $cliente = Cliente::with([
+        'referencias' => function($query){
+            $query->select('referencias_personales.id', 'nombre_ref', 'telefono_ref');
+        },
+       // 'productos' => function($query){
+       //     $query->select('producto.id', 'nombre_producto')
+       //             ->withPivot('cantidad');
+       // },
+       // 'credito' => function($query){
+       //     $query->select('id', 'monto_facturado', 'interes_moratorio', 'prima', 'cliente_id');
+       // }
+   ])->get()->findOrFail($id);
+
+
+    return view('gestion.actualizarCliente', compact('cliente','departamentos','clasificaciones'));
+}
+
 public function update(Request $request, $id){
     $request->validate([
         'nombres_cliente' => 'required|string|max:255',
@@ -119,8 +140,10 @@ public function update(Request $request, $id){
         'id_clasificacion' => 'required|exists:clasificacion,id', 
         'id_departamento' => 'required|exists:departamento,id', 
         'id_municipio' => 'required|exists:municipio,id', 
-        'referencias' => 'required|array', 
-        'referencias.*.id_referencia' => 'required|exists:referencias_personales,id',  
+        'referencias' => 'array', 
+        'referencias.*.id_referencia',
+        'referencias.*.telefono_ref' => 'string|max:255', 
+        'referencias.*.nombre_ref' => 'string|max:255',  
     ]);
 
     $cliente = Cliente::findOrFail($id);
@@ -149,13 +172,25 @@ public function update(Request $request, $id){
 
     $referenciasNuevas = [];
     
-    foreach ($request->referencias as $referencia) {
-        $referenciasNuevas[]=$referencia['id_referencia'];
+    if (!is_null($request->referencias)) {
+        foreach ($request->referencias as $referencia) {
+            if(!is_null($referencia['id_referencia'])){
+                $referenciasNuevas[]=$referencia['id_referencia'];
+            }else{
+                $referenciaN = Referencia::create([
+                    'telefono_ref' =>$referencia['telefono_ref'],
+                    'nombre_ref' =>$referencia['nombre_ref'],       
+                ]);
+                
+                $referenciasNuevas[] = $referenciaN->id;
+            }
+        }
+        
     }
-    
     $cliente->referencias()->sync($referenciasNuevas);
+
     
-    return response()->json($cliente->load('referencias'), 200);
+    return redirect()->route('mostrarClientes');
 }
 
 public function destroy($id){

@@ -65,18 +65,25 @@
           <td>{{$cliente->email_cliente}}</td>
           <td>{{$cliente->telefono_cliente}}</td>
           <td class="columna-botones">
-            <button type="button" class="btn-editar" title="Editar" data-bs-toggle="modal" data-bs-target="#editarClienteModal"
+            {{-- <button type="button" class="btn-editar" title="Editar" data-bs-toggle="modal" data-bs-target="#editarClienteModal"
               data-id="{{ $cliente->id }}"
               data-nombres="{{ $cliente->nombres_cliente }}"
               data-apellidos="{{ $cliente->apellidos_cliente }}"
               data-dui="{{ $cliente->dui_cliente }}"
               data-nit="{{ $cliente->nit_cliente }}"
+              data-id_departamento="{{ $cliente->id_departamento }}"
+              data-id_municipio="{{ $cliente->id_municipio }}"
               data-email="{{ $cliente->email_cliente }}"
               data-telefono="{{ $cliente->telefono_cliente }}"
+              data-referencias='@json($cliente->referencias)'
               data-barrio="{{ $cliente->barrio }}">
               <span class="material-symbols-rounded">edit</span>
               <span class="btn-text">editar</span>
-            </button>
+            </button> --}}
+            <a href="{{route('actualizarClientevista', $cliente->id)}}">
+              <span class="material-symbols-rounded">edit</span>
+              <span class="btn-text">editar</span>
+            </a>
             <form action="{{route('borrarCliente', $cliente->id)}}" method="POST">
               @csrf
               @method('DELETE')
@@ -198,85 +205,6 @@
   </div>
 </div>
 
-<!-- Modal de Edición -->
-<div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="editarClienteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editarClienteModalLabel">Editar Cliente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="{{ route('actualizarCliente', $cliente->id) }}">
-          @csrf
-          @method('PUT')
-
-          <input type="hidden" name="id_cliente" id="cliente-id">
-
-          <div class="row mb-3">
-            <div class="col">
-              <label class="form-label">Nombre Completo</label>
-              <input type="text" name="nombres_cliente" id="nombres_cliente" class="form-control" value="{{ $cliente->nombres_cliente }}" placeholder="Nombre" required>
-            </div>
-            <div class="col">
-              <label class="form-label">Apellidos</label>
-              <input type="text" name="apellidos_cliente" id="apellidos_cliente" class="form-control" value="{{ $cliente->apellidos_cliente }}" placeholder="Apellidos" required>
-            </div>
-            <div class="col">
-              <label class="form-label">DUI</label>
-              <input type="text" name="dui_cliente" id="dui_cliente" class="form-control" value="{{ $cliente->dui_cliente }}" placeholder="00000000-0" required>
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label class="form-label">NIT</label>
-              <input type="text" name="nit_cliente" id="nit_cliente" class="form-control" value="{{ $cliente->nit_cliente }}" placeholder="0000-000000-000-0" required>
-            </div>
-            <div class="col">
-              <label class="form-label">Correo</label>
-              <input type="email" name="email_cliente" id="email_cliente" class="form-control" value="{{ $cliente->email_cliente }}" placeholder="Correo" required>
-            </div>
-          </div>
-
-          <!-- Resto de tu formulario... -->
-          <div class="row mb-3">
-            <div class="col">
-              <label class="form-label">Teléfono</label>
-              <input type="tel" name="telefono_cliente" class="form-control" placeholder="0000-0000" ">
-            </div>
-            <div class=" col">
-              <label class="form-label">Departamento</label>
-              <select id="departamentoSelect" class="form-select" name="id_departamento">
-                <option value="" selected disabled>Seleccione un departamento</option>
-                @foreach ($departamentos as $departamento)
-                <option value="{{ $departamento->id }}">{{ $departamento->nombre_departamento }}</option>
-                @endforeach
-              </select>
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label class="form-label">Municipio</label>
-              <select id="municipioSelect" class="form-select" name="id_municipio">
-                <option value="" selected disabled>Seleccione un municipio</option>
-                <!-- Opciones se agregarán aquí -->
-              </select>
-            </div>
-            <div class="col">
-              <label class="form-label">Barrio/Colonia</label>
-              <input type="text" name="barrio" class="form-control" placeholder="Dirección">
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Actualizar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <script>
   let referenciasCount = 0; // Para numerar las referencias correctamente
 
@@ -361,13 +289,14 @@
       departamento.municipios.forEach(municipio => {
         const option = document.createElement('option');
         option.value = municipio.id;
-        option.textContent = municipio.nombre_municipio; // cambia a nombre correcto
+        option.textContent = municipio.nombre_municipio; 
         municipioSelect.appendChild(option);
       });
     } else {
       municipioSelect.disabled = true;
     }
   });
+
 </script>
 
 <script src="{{ asset('js/Auth/modal_validation.js') }}"></script>
