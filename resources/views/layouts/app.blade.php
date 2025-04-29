@@ -111,7 +111,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('inicio.kardex') }}" class="nav-link">
+                    <a href="{{ route('mostrarProductos') }}" class="nav-link">
                         <span class="material-symbols-rounded">
                             inventory
                         </span>

@@ -94,11 +94,11 @@ Route::prefix('marca')->group(function(){
 });
 
 Route::prefix('producto')->group(function(){
-    Route::get('/mostrar', [ProductoApiController::class, 'index'])->name('mostrarProductos');
-    Route::get('/mostrar/{id}', [ProductoApiController::class, 'show'])->name('mostrarProducto');
-    Route::post('/crear', [ProductoApiController::class, 'store'])->name('crearProducto');
-    Route::put('/actualizar/{id}', [ProductoApiController::class, 'update'])->name('actualizarProducto');
-    Route::delete('/borrar/{id}', [ProductoApiController::class, 'destroy'])->name('borrarProducto');
+    Route::get('/mostrar', [ProductoApiController::class, 'index'])->name('mostrarApiProductos');
+    Route::get('/mostrar/{id}', [ProductoApiController::class, 'show'])->name('mostrarApiProducto');
+    Route::post('/crear', [ProductoApiController::class, 'store'])->name('crearApiProducto');
+    Route::put('/actualizar/{id}', [ProductoApiController::class, 'update'])->name('actualizarApiProducto');
+    Route::delete('/borrar/{id}', [ProductoApiController::class, 'destroy'])->name('borrarApiProducto');
 });
 
 Route::prefix('cliente')->group(function(){
