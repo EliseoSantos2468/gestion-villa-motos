@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,9 +64,14 @@ Route::middleware('auth')->prefix('inicio')->group(function () {
         return view('gestion.reportes');
     })->name('inicio.reportes');
 
-    Route::get('/kardex', function () {
-        return view('gestion.kardex');
-    })->name('inicio.kardex');
+    Route::prefix('producto')->group(function(){
+        Route::get('/mostrar', [ProductoController::class, 'index'])->name('mostrarProductos');
+        Route::get('/mostrar/{id}', [ProductoController::class, 'show'])->name('mostrarProducto');
+        Route::post('/crear', [ProductoController::class, 'store'])->name('crearProducto');
+        Route::get('/actualizarForm/{id}', [ProductoController::class, 'updateForm'])->name('actualizarProductovista');
+        Route::put('/actualizar/{id}', [ProductoController::class, 'update'])->name('actualizarProducto');
+        Route::delete('/borrar/{id}', [ProductoController::class, 'destroy'])->name('borrarProducto');
+    });
 
     Route::get('/perfil', function () {
         return view('gestion.perfil');
