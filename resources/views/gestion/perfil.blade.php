@@ -9,8 +9,8 @@
     <div class="tarjeta-perfil">
         <h2>Información del Usuario</h2>
         <div class="perfil-info">
-            <p><strong>Nombre:</strong> </p>
-            <p><strong>Correo:</strong> </p>
+            <p><strong>Nombre:</strong> {{ Auth::user()->name }}</p>
+            <p><strong>Correo:</strong> {{ Auth::user()->email }}</p>
             <p><strong>Rol:</strong> </p>
         </div>
     </div>
