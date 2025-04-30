@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\CreditoController;
+use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,9 +34,8 @@ Route::get('/logout', function () {
 
 // Rutas protegidas (requieren autenticación)
 Route::middleware('auth')->prefix('inicio')->group(function () {
-    Route::get('/escritorio', function () {
-        return view('gestion.escritorio');
-    })->name('inicio.escritorio');
+
+    Route::get('/escritorio', [ReciboController::class, 'indexEscritorio'])->name('inicio.escritorio');
 
     Route::prefix('cliente')->group(function(){
         Route::get('/mostrar', [ClienteController::class, 'index'])->name('mostrarClientes');
@@ -83,6 +83,14 @@ Route::middleware('auth')->prefix('inicio')->group(function () {
         Route::get('/actualizarForm/{id}', [ProductoController::class, 'updateForm'])->name('actualizarProductovista');
         Route::put('/actualizar/{id}', [ProductoController::class, 'update'])->name('actualizarProducto');
         Route::delete('/borrar/{id}', [ProductoController::class, 'destroy'])->name('borrarProducto');
+    });
+
+    Route::prefix('marca')->group(function(){
+        Route::get('/mostrar', [MarcaController::class, 'index'])->name('mostrarMarcas');
+        Route::get('/mostrar/{id}', [MarcaController::class, 'show'])->name('mostrarMarca');
+        Route::post('/crear', [MarcaController::class, 'store'])->name('crearMarca');
+        Route::put('/actualizar/{id}', [MarcaController::class, 'update'])->name('actualizarMarca');
+        Route::delete('/borrar/{id}', [MarcaController::class, 'destroy'])->name('borrarMarca');
     });
 
     Route::get('/perfil', function () {

@@ -50,6 +50,18 @@ class ReciboController extends Controller
     
         return view('gestion.venta_nueva', compact('recibos','marcas','productos','clientes'));
     }
+    public function indexEscritorio(){
+        $recibos = Recibo::with([
+            'productos' => function ($query) {
+                $query->select('producto.id', 'nombre_producto');
+            },
+            'cliente' => function ($query) {
+                $query->select('cliente.id', 'nombres_cliente', 'apellidos_cliente');
+            }
+        ])->get();
+
+        return view('gestion.escritorio', compact('recibos'));
+    }
 
     public function show($id){
         $recibo = Recibo::findOrFail($id);
