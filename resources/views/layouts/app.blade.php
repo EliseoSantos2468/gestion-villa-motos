@@ -98,19 +98,6 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('inicio.reportes')}}" class="nav-link">
-                        <span class="material-symbols-rounded">
-                            stacks
-                        </span>
-                        <span class="nav-label">Reportes</span>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-title">Reportes</a>
-                    </ul>
-                </li>
-                <li class="nav-item">
                     <a href="{{ route('mostrarProductos') }}" class="nav-link">
                         <span class="material-symbols-rounded">
                             inventory

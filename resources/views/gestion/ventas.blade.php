@@ -7,7 +7,7 @@
         <h1>Ventas</h1>
 
         <div class="ventas-acciones">
-            <input type="text" placeholder="Buscar ventas">
+        <input type="text" id="busqueda" placeholder="Buscar por ID o Nombre">
 
             <a href="{{route('nuevaVenta')}}" class="boton-crear">
                 <span class="material-symbols-rounded">
@@ -38,27 +38,12 @@
                       <td>{{$recibo->total}}</td>
                       <td>Finalizado</td>
                       <td class="columna-botones">
-                          <a href="" class="btn-editar">
-                              <span class="material-symbols-rounded">
-                                  edit
-                              </span>
-                              <p>editar</p>
-                          </a>
-  
                           <a href="" class="btn-pdf">
                               <span class="material-symbols-rounded">
                                   description
                               </span>
                               <p>PDF</p>
                           </a>
-  
-                          <a href="" class="btn-eliminar">
-                              <span class="material-symbols-rounded">
-                                  block
-                              </span>
-                              <p>Anular</p>
-                          </a>
-  
                       </td>
                     </tr>
                   @endforeach
@@ -66,5 +51,27 @@
               </table>
         </div>
     </div>
-  
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputBusqueda = document.getElementById('busqueda');
+        const filas = document.querySelectorAll('.tabla-ventas tbody tr');
+
+        inputBusqueda.addEventListener('keyup', function () {
+            const filtro = this.value.toLowerCase();
+
+            filas.forEach(fila => {
+                const id = fila.cells[0].textContent.toLowerCase();
+                const nombre = fila.cells[2].textContent.toLowerCase();
+
+                if (id.includes(filtro) || nombre.includes(filtro)) {
+                    fila.style.display = '';
+                } else {
+                    fila.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

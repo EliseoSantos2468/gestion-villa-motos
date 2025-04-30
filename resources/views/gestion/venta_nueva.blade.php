@@ -6,7 +6,7 @@
 <div class="nuevaVenta">
   <h1>Nueva Venta</h1>
 
-  <form action="{{ route('crearResibo') }}" method="POST">
+  <form action="{{ route('crearRecibo') }}" method="POST">
     @csrf
 
     <div class="acciones">
@@ -17,9 +17,6 @@
             <option value="{{ $cliente->id }}">{{ $cliente->nombres_cliente }}</option>
           @endforeach
         </select>
-        <a href="#" class="btn-agregar">
-          <span class="material-symbols-rounded">add</span>
-        </a>
       </div>
 
       <button type="button" class="btn-detalle" data-bs-toggle="modal" data-bs-target="#nuevoDetalleModal">
@@ -149,7 +146,7 @@
     actualizarTotal();
 
     const row = document.createElement('tr');
-    row.setAttribute('data-subtotal', subtotal); // ✅ Guardar el subtotal en la fila
+    row.setAttribute('data-subtotal', subtotal); // Guardar el subtotal en la fila
 
     row.innerHTML = `
       <td>

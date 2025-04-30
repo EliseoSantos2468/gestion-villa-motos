@@ -1,17 +1,17 @@
-:root{
+:root {
     --colorPrincipal: #282828;
     --colorSecundario: #00a5f3;
     --blanco: #fff;
     --negro: #000;
-    --botonAgregar:rgb(16, 16, 222);
-    --botonAgregarHover:rgb(15, 15, 182);
+    --botonAgregar: rgb(16, 16, 222);
+    --botonAgregarHover: rgb(15, 15, 182);
     --botonEditar: rgb(167, 167, 17);
     --botonEditarHover: rgb(231, 231, 23);
     --botonEliminar: rgb(207, 9, 9);
     --botonEliminarHover: rgb(227, 10, 10);
 }
 
-.nuevaVenta{
+.nuevaVenta {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,137 +19,106 @@
     margin-left: 15.25rem;
 }
 
-@media (max-width: 785px){
-    .nuevaVenta{
+@media (max-width: 785px) {
+    .nuevaVenta {
         margin: 0;
     }
 }
 
-.nuevaVenta h1{
+.nuevaVenta h1 {
     width: 95%;
-    padding: 20px;
+    padding: 2rem;
+    font-size: 2rem;
 }
 
-.acciones{
+.acciones {
     display: flex;
     width: 95%;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem; /* Separar botones */
 }
 
-@media (max-width: 785px){
-    .acciones{
+@media (max-width: 785px) {
+    .acciones {
         flex-direction: column;
         gap: 1rem;
     }
 }
 
-.nuevaVenta-cliente{
+.nuevaVenta-cliente {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.select-cliente{
-    width: 28.58rem;
-    height: 2.12rem;
+.select-cliente {
+    width: 35rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    border-radius: 0.7rem;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
 }
 
-.btn-agregar{
+.btn-agregar {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--botonAgregar);
     color: var(--blanco);
     border-radius: 5px;
-    width: 2.12rem;
-    height: 2.12rem;
-    text-decoration: none;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.5rem;
 }
 
-.btn-agregar:hover{
-    background-color: var(--botonAgregarHover);     
+.btn-agregar:hover {
+    background-color: var(--botonAgregarHover);
 }
 
-.btn-detalle{
+.btn-detalle {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 9rem;
-    height: 2.29rem;
+    width: 15rem;
+    height: rem;
     border-radius: 5px;
     background-color: var(--botonAgregar);
     color: var(--blanco);
+    font-size: 1.2rem;
 }
 
-@media (max-width: 785px){
-    .btn-detalle{
-        width: 28.58rem;
-        height: 2.12rem;
+@media (max-width: 785px) {
+    .btn-detalle {
+        width: 100%;
+        height: 3rem;
     }
 }
 
-.btn-detalle:hover{
+.btn-detalle:hover {
     background-color: var(--botonAgregarHover);
 }
-.btn-detalle p{
-    margin: 0;
-}
-
-/* tabla ventas */
 
 .tabla {
-    width: 95%;
-    margin-top: 1rem;
+    width: 100%;
+    margin-top: 1.5rem;
     border: 1px solid #ddd;
     padding: 1rem;
     border-radius: 5px;
     overflow-x: auto;
     background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.tabla-venta td:nth-child(4) {
-    max-width: 200px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: relative;
-}
-
-.tabla-venta td:nth-child(4):hover::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 100%;
-    background: #333;
-    color: white;
-    padding: 5px;
-    border-radius: 4px;
-    z-index: 100;
-    white-space: normal;
-    width: auto;
-    max-width: 400px;
-}
-
-.tabla-venta {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-}
-
-.tabla-venta thead {
-    background-color: #f9fbfc;
-    color: #111;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tabla-venta th,
 .tabla-venta td {
-    padding: 12px 16px;
+    padding: 14px 18px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    font-size: 1.1rem;
 }
 
 .tabla-venta tbody tr:nth-child(even) {
@@ -162,13 +131,7 @@
 
 .columna-botones {
     display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.columna-botones {
-    display: flex;
-    gap: 6px; /* Espacio reducido entre botones */
+    gap: 1rem; /* Separación de botones */
     justify-content: center;
     flex-wrap: nowrap;
 }
@@ -177,16 +140,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 4px 8px; /* Padding reducido */
+    padding: 6px 10px;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 12px; /* Tamaño de fuente más pequeño */
-    width: 28px; /* Ancho fijo para mantener uniformidad */
-    height: 28px; /* Alto fijo */
+    font-size: 14px;
+    width: 36px;
+    height: 36px;
     transition: all 0.2s ease;
 }
 
-/* Estilos específicos para cada botón */
 .btn-editar {
     background-color: #ffc107;
     color: #212529;
@@ -202,7 +164,6 @@
     color: white;
 }
 
-/* Efectos hover */
 .btn-editar:hover {
     background-color: #e0a800;
     transform: scale(1.05);
@@ -218,89 +179,54 @@
     transform: scale(1.05);
 }
 
-/* Ocultar texto en pantallas pequeñas */
-@media (max-width: 768px) {
-    .columna-botones p {
-        display: none;
-    }
-    .columna-botones a {
-        width: 32px;
-        height: 32px;
-    }
-}
-
-/* Estilo para los iconos */
 .material-symbols-rounded {
-    font-size: 16px; /* Tamaño reducido de iconos */
-    line-height: 1;
+    font-size: 20px;
 }
 
-.btn-editar:hover {
-    background-color: var(--botonEditarHover);
-}
-
-.btn-editar p {
-    margin: 0;
-}
-
-.btn-eliminar {
-    background-color: var(--botonEliminar);
-    color: var(--blanco);
-}
-
-.btn-eliminar:hover {
-    background-color: var(--botonEliminarHover);
-}
-
-.btn-eliminar p {
-    margin: 0;
-}
-
-/* total */
-.contenedorTotal{
+.contenedorTotal {
     width: 95%;
     display: flex;
     flex-direction: row;
     justify-content: end;
     align-items: center;
-    margin: 1rem 1rem;
+    margin: 1rem;
 }
 
-@media (max-width: 785px){
-    .contenedorTotal{
+@media (max-width: 785px) {
+    .contenedorTotal {
         justify-content: center;
     }
 }
 
-.total{
+.total {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 26rem;
+    width: 30rem;
+    padding: 1.5rem;
     border: 1px solid #ddd;
-    padding: 1rem;
 }
 
-.total-precio{
+.total-precio {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     background-color: rgb(220, 215, 215);
-    width: 95%;
-    padding: 1rem;
-    font-size: 20px;
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 24px;
     font-weight: bold;
 }
 
-.total-precio span{
+.total-precio span {
     color: green;
 }
 
-.total-boton{
-    width: 95%;
-    height: 3.5rem;
+.total-boton {
+    width: 100%;
+    height: 4rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -310,10 +236,10 @@
     border-radius: 16px;
 }
 
-.total-boton:hover{
+.total-boton:hover {
     background-color: rgb(3, 87, 3);
 }
 
-.total-boton p{
+.total-boton p {
     margin: 0;
 }

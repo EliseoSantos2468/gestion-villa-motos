@@ -40,9 +40,9 @@ Route::prefix('clasificacion')->group(function(){
 Route::prefix('recibo')->group(function(){
     Route::get('/mostrar', [ReciboApiController::class, 'index'])->name('mostrarApiRecibos');
     Route::get('/mostrar/{id}', [ReciboApiController::class, 'show'])->name('mostrarApiRecibo');
-    Route::post('/crear', [ReciboApiController::class, 'store'])->name('crearApiResibo');
-    Route::put('/actualizar/{id}', [ReciboApiController::class, 'update'])->name('actualizarApiResibo');
-    Route::delete('/borrar/{id}', [ReciboApiController::class, 'destroy'])->name('borrarApiResibo');
+    Route::post('/crear', [ReciboApiController::class, 'store'])->name('crearApiRecibo');
+    Route::put('/actualizar/{id}', [ReciboApiController::class, 'update'])->name('actualizarApiRecibo');
+    Route::delete('/borrar/{id}', [ReciboApiController::class, 'destroy'])->name('borrarApiRecibo');
 });
 
 Route::prefix('cuota')->group(function(){

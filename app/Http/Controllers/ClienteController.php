@@ -36,6 +36,7 @@ class ClienteController extends Controller
     }
 
     return view('gestion.clientes', compact('clientes','departamentos'));
+    
 }
 
 public function show($id){

@@ -50,9 +50,9 @@ Route::middleware('auth')->prefix('inicio')->group(function () {
         Route::get('/mostrar', [ReciboController::class, 'index'])->name('mostrarRecibos');
         Route::get('/venta', [ReciboController::class, 'indexVenta'])->name('nuevaVenta');  
         Route::get('/mostrar/{id}', [ReciboController::class, 'show'])->name('mostrarRecibo');
-        Route::post('/crear', [ReciboController::class, 'store'])->name('crearResibo');
-        Route::put('/actualizar/{id}', [ReciboController::class, 'update'])->name('actualizarResibo');
-        Route::delete('/borrar/{id}', [ReciboController::class, 'destroy'])->name('borrarResibo');
+        Route::post('/crear', [ReciboController::class, 'store'])->name('crearRecibo');
+        Route::put('/actualizar/{id}', [ReciboController::class, 'update'])->name('actualizarRecibo');
+        Route::delete('/borrar/{id}', [ReciboController::class, 'destroy'])->name('borrarRecibo');
     });
 
     Route::get('/creditos', function () {

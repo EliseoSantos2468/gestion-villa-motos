@@ -1,0 +1,100 @@
+:root {
+    --color-fondo: #f4f6fa;
+    --color-card: #fff;
+    --color-principal: #282828;
+    --color-secundario: #6f42c1;
+    --color-secundario-hover: #5a34a3;
+    --color-borde: #ddd;
+    --color-texto: #333;
+    --espaciado: 1rem;
+}
+
+.credito-detalle-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: var(--color-fondo);
+    border-radius: 8px;
+
+    position: relative;
+    left: 130px; 
+}
+
+.credito-titulo {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-principal);
+    text-align: center;
+}
+
+.credito-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.credito-card-body {
+    padding: 2rem;
+}
+
+.credito-id {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--color-principal);
+}
+
+.credito-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.credito-lista li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-borde);
+    color: var(--color-texto);
+}
+
+.credito-lista li:last-child {
+    border-bottom: none;
+}
+
+.credito-botones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-volver,
+.btn-pagar {
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-volver {
+    background-color: #ccc;
+    color: #000;
+}
+
+.btn-volver:hover {
+    background-color: #bbb;
+}
+
+.btn-pagar {
+    background-color: var(--color-secundario);
+    color: white;
+    cursor: pointer;
+}
+
+.btn-pagar:hover {
+    background-color: var(--color-secundario-hover);
+}

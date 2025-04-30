@@ -29,15 +29,6 @@
                     <td>{{$cliente->email_cliente}}</td>
                     <td>{{$cliente->telefono_cliente}}</td>
                     <td class="columna-botones">
-                        <a href="" class="btn-editar">
-                            <span class="material-symbols-rounded">edit</span>
-                            <p>editar</p>
-                        </a>
-
-                        <a href="" class="btn-eliminar">
-                            <span class="material-symbols-rounded">delete</span>
-                            <p>Eliminar</p>
-                        </a>
 
                         @if ($cliente->credito->first()?->saldo->first()?->saldo_p_interes == 0)
                         <button class="btn-asignar" 
@@ -61,92 +52,6 @@
         </table>
     </div>
 
-    <div class="cotizador-credito">
-        <div class="card shadow-lg">
-            <div class="card-body" style="margintop: 20px;">
-                <h2 class="card-title text-center mb-4">Cotizador de Crédito</h2>
-                <form id="cotizadorForm" >
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="monto" class="form-label">Monto del Crédito ($):</label>
-                            <input type="number" id="monto" class="form-control" value="10000" min="1000" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="plazo" class="form-label">Plazo (meses):</label>
-                            <input type="number" id="plazo" class="form-control" value="12" min="6" max="60" required>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="interes" class="form-label">Tasa de Interés (% anual):</label>
-                            <div class="input-group">
-                                <input type="number" id="interes" class="form-control" value="5" min="0" step="0.1" required>
-                                <span class="input-group-text">%</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="frecuencia" class="form-label">Frecuencia de Pago:</label>
-                            <select id="frecuencia" class="form-select">
-                                <option value="mensual">Mensual</option>
-                                <option value="quincenal">Quincenal</option>
-                                <option value="semanal">Semanal</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Calcular Cuota</button>
-                </form>
-
-                <div id="resultados" class="mt-4 resultados-container">
-                    <h3 class="text-center">Resultados del Cálculo</h3>
-                    <div class="table-responsive">
-                        <table class="table table-bordered resultados-table">
-                            <thead>
-                                <tr>
-                                    <th>Concepto</th>
-                                    <th>Valor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Cuota</td>
-                                    <td id="cuota"></td>
-                                </tr>
-                                <tr>
-                                    <td>Total a Pagar</td>
-                                    <td id="totalPagar"></td>
-                                </tr>
-                                <tr>
-                                    <td>Interés Total</td>
-                                    <td id="interesTotal"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="tablaAmortizacion" class="amortizacion-container">
-                        <h4 class="text-center">Tabla de Amortización</h4>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover amortizacion-table">
-                                <thead>
-                                    <tr>
-                                        <th>Periodo</th>
-                                        <th>Saldo Inicial</th>
-                                        <th>Cuota</th>
-                                        <th>Interés</th>
-                                        <th>Amortización</th>
-                                        <th>Saldo Final</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tablaAmortizacionBody">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal Asignar Crédito -->
     <div class="modal fade" id="asignarCreditoModal" tabindex="-1" aria-labelledby="asignarCreditoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -163,8 +68,8 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label class="form-label">Monto del Crédito ($)</label>
-                                <input type="number" name="monto_facturado" id="monto_facturado" class="form-control" placeholder="1000.00">
-                            </div>
+                                <input type="number" name="monto_facturado" id="monto_facturado" class="form-control" placeholder="1000" max="1000" step="0.01" required>
+                                </div>
                         </div>
 
                         <div class="row mb-3">
@@ -228,4 +133,18 @@
         });
     });
     </script>
+
+<script>
+    document.getElementById('btn-asignar-credito').addEventListener('click', function () {
+        const monto = parseFloat(document.getElementById('monto_facturado').value);
+        if (isNaN(monto) || monto <= 0) {
+            alert('Por favor, ingrese un monto válido mayor a 0.');
+        } else if (monto > 1000) {
+            alert('El monto del crédito no puede ser mayor a $1000.');
+        } else {
+            document.getElementById('form-asignar-credito').submit();
+        }
+    });
+</script>
+
     @endsection
