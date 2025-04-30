@@ -175,3 +175,54 @@
       gap: 0.3rem;
   }
 }
+
+/* Estilo general para notificaciones emergentes */
+.notification-alert {
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  font-size: 0.95rem;
+  opacity: 1;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Personalizaciones por tipo de alerta */
+.alert-success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #664d03;
+  border: 1px solid #ffecb5;
+}
+
+/* Botón de cierre en esquina superior derecha */
+.notification-alert .btn-close {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.notification-alert .btn-close:hover {
+  opacity: 1;
+}
+.notification-alert .btn-close:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}

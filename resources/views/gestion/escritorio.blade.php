@@ -72,8 +72,7 @@
                     <th>Fecha</th>
                     <th>Cliente</th>
                     <th>Total</th>
-                    <th>Estado</th>
-                  </tr>
+                      </tr>
                 </thead>
                 <tbody>
                   <tr>
@@ -81,14 +80,12 @@
                     <td>14-04-2025 08:25 PM</td>
                     <td>EDRAS ARIEL VIERA LAZO</td>
                     <td>$ 5,999.00</td>
-                    <td><span class="badge finalizado">Finalizado</span></td>
                   </tr>
                   <tr>
                     <td>V00000048</td>
                     <td>31-12-2024 09:30 AM</td>
                     <td>Sin cliente</td>
                     <td>$ 0.00</td>
-                    <td><span class="badge pendiente">Pendiente</span></td>
                   </tr>
                 </tbody>
               </table>

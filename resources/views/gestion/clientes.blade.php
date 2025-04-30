@@ -80,9 +80,9 @@
               <span class="material-symbols-rounded">edit</span>
               <span class="btn-text">editar</span>
             </button> --}}
-            <a href="{{route('actualizarClientevista', $cliente->id)}}">
+            <a href="{{route('actualizarClientevista', $cliente->id)}}" class="btn-editar">
               <span class="material-symbols-rounded">edit</span>
-              <span class="btn-text">editar</span>
+              <p class="btn-text">editar</p>
             </a>
             <form action="{{route('borrarCliente', $cliente->id)}}" method="POST">
               @csrf
@@ -123,11 +123,17 @@
             </div>
             <div class="col">
               <label class="form-label">Apellidos</label>
-              <input type="text" name="apellidos_cliente" class="form-control" placeholder="Apellidos">
+              <input type="text" name="apellidos_cliente" class="form-control" placeholder="Apellidos" required>
+              @error('apellidos_cliente')
+              <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
             <div class="col">
               <label class="form-label">DUI</label>
-              <input type="text" name="dui_cliente" class="form-control" placeholder="00000000-0">
+              <input type="text" name="dui_cliente" class="form-control" placeholder="00000000-0" required maxlength="9" pattern="\d{8}-\d">  
+              @error('dui_cliente')
+              <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
           </div>
 
@@ -138,10 +144,17 @@
                 <div class="referencia-item mb-2">
                   <div class="row g-2">
                     <div class="col-md-5">
-                      <input type="text" class="form-control nombre-referencia" placeholder="Nombre referencia">
+                      <input type="text" class="form-control nombre-referencia" placeholder="Nombre referencia" maxlength="50">
+                      @error('nombre_ref')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
+
                     </div>
                     <div class="col-md-5">
                       <input type="tel" class="form-control telefono-referencia" id="telefono" placeholder="0000-0000" maxlength="9">
+                      @error('telefono_ref')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
                     </div>
                     <div class="col-md-2">
                       <button type="button" class="btn btn-sm btn-outline-danger add-referencia">
@@ -160,11 +173,17 @@
           <div class="row mb-3">
             <div class="col">
               <label class="form-label">NIT</label>
-              <input type="text" name="nit_cliente" class="form-control" placeholder="0000-000000-000-0">
+              <input type="text" name="nit_cliente" class="form-control" placeholder="0000-000000-000-0" required maxlength="14">
+              @error('nit_cliente')
+              <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
             <div class="col">
               <label class="form-label">Correo</label>
-              <input type="email" name="email_cliente" class="form-control" placeholder="Correo">
+              <input type="email" name="email_cliente" class="form-control" placeholder="Correo" required>
+              @error('email_cliente')
+              <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
           </div>
 
@@ -172,11 +191,14 @@
           <div class="row mb-3">
             <div class="col">
               <label class="form-label">Teléfono</label>
-              <input type="tel" name="telefono_cliente" class="form-control" placeholder="0000-0000" ">
+              <input type="tel" name="telefono_cliente" class="form-control" placeholder="0000-0000"  required maxlength="9">
+              @error('telefono_cliente')
+              <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
             <div class=" col">
               <label class="form-label">Departamento</label>
-              <select id="departamentoSelect" class="form-select" name="id_departamento">
+              <select id="departamentoSelect" class="form-select" name="id_departamento" requerid>
                 <option value="" selected disabled>Seleccione un departamento</option>
                 @foreach ($departamentos as $departamento)
                 <option value="{{ $departamento->id }}">{{ $departamento->nombre_departamento }}</option>
@@ -188,14 +210,17 @@
           <div class="row mb-3">
             <div class="col">
               <label class="form-label">Municipio</label>
-              <select id="municipioSelect" class="form-select" name="id_municipio">
+              <select id="municipioSelect" class="form-select" name="id_municipio" requerid>
                 <option value="" selected disabled>Seleccione un municipio</option>
                 <!-- Opciones se agregarán aquí -->
               </select>
             </div>
             <div class="col">
               <label class="form-label">Barrio/Colonia</label>
-              <input type="text" name="barrio" class="form-control" placeholder="Dirección">
+              <input type="text" name="barrio" class="form-control" placeholder="Dirección" required>
+              @error('barrio')
+              <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Guardar</button>
@@ -296,12 +321,7 @@
       municipioSelect.disabled = true;
     }
   });
-
 </script>
-
 <script src="{{ asset('js/Auth/modal_validation.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-
 
 @endsection

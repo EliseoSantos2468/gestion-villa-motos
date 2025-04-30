@@ -64,7 +64,7 @@
     color: var(--blanco);
     text-decoration: none;
     border-radius: 5px;
-    gap: 8px;
+    gap: 4px; /* Reducido para acercar ícono y texto */
     padding: 0.5rem;
 }
 
@@ -73,6 +73,27 @@
 }
 
 .boton-crear p {
+    margin: 0;
+}
+
+.boton-crearMarca {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    background-color: var(--botonCrear);
+    color: var(--blanco);
+    text-decoration: none;
+    border-radius: 5px;
+    gap: 4px; /* Igual que el anterior */
+    padding: 0.5rem;
+}
+
+.boton-crearMarca:hover {
+    background-color: var(--botonCrearHover);
+}
+
+.boton-crearMarca p {
     margin: 0;
 }
 

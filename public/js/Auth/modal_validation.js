@@ -11,6 +11,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+     // Formateo automático de DUI
+     document.querySelector('input[name="dui_cliente"]').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 8) {
+            value = value.substring(0, 8) + '-' + value.substring(8, 9);
+        }
+        e.target.value = value.substring(0, 10);
+    });
+
+    // Formateo automático de NIT
+    document.querySelector('input[name="nit_cliente"]').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 0) {
+            // Formatear NIT: 0000-000000-000-0
+            if (value.length > 4) {
+                value = value.substring(0, 4) + '-' + value.substring(4);
+            }
+            if (value.length > 11) {
+                value = value.substring(0, 11) + '-' + value.substring(11);
+            }
+            if (value.length > 15) {
+                value = value.substring(0, 15) + '-' + value.substring(15);
+            }
+        }
+        e.target.value = value.substring(0, 17);
+    });
+
+    // Formateo automático de teléfono
+    document.querySelector('input[name="telefono_cliente"]').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 4) {
+            value = value.substring(0, 4) + '-' + value.substring(4);
+        }
+        e.target.value = value.substring(0, 9);
+    });
+
+    // Validación para nombres y apellidos (solo letras)
+    document.querySelector('input[name="nombres_cliente"]').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+        e.target.value = value;
+    });
+
+    document.querySelector('input[name="apellidos_cliente"]').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+        e.target.value = value;
+    });
+
+    // Formateo automático para teléfono de referencia
+    document.querySelector('.telefono-referencia').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 4) {
+            value = value.substring(0, 4) + '-' + value.substring(4);
+        }
+        e.target.value = value.substring(0, 9);
+    });
+
     const editarClienteModal = document.getElementById('editarClienteModal');
   editarClienteModal.addEventListener('show.bs.modal', function (event) {
     // Obtén los datos del cliente
@@ -171,61 +227,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Exponer la función de mostrar notificación globalmente
     window.mostrarNotificacion = mostrarNotificacion;
-
-    // Formateo automático de DUI
-    document.querySelector('input[name="dui_cliente"]').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 8) {
-            value = value.substring(0, 8) + '-' + value.substring(8, 9);
-        }
-        e.target.value = value.substring(0, 10);
-    });
-
-    // Formateo automático de NIT
-    document.querySelector('input[name="nit_cliente"]').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 0) {
-            // Formatear NIT: 0000-000000-000-0
-            if (value.length > 4) {
-                value = value.substring(0, 4) + '-' + value.substring(4);
-            }
-            if (value.length > 11) {
-                value = value.substring(0, 11) + '-' + value.substring(11);
-            }
-            if (value.length > 15) {
-                value = value.substring(0, 15) + '-' + value.substring(15);
-            }
-        }
-        e.target.value = value.substring(0, 17);
-    });
-
-    // Formateo automático de teléfono
-    document.querySelector('input[name="telefono_cliente"]').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 4) {
-            value = value.substring(0, 4) + '-' + value.substring(4);
-        }
-        e.target.value = value.substring(0, 9);
-    });
-
-    // Validación para nombres y apellidos (solo letras)
-    document.querySelector('input[name="nombres_cliente"]').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
-        e.target.value = value;
-    });
-
-    document.querySelector('input[name="apellidos_cliente"]').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
-        e.target.value = value;
-    });
-
-    // Formateo automático para teléfono de referencia
-    document.querySelector('.telefono-referencia').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 4) {
-            value = value.substring(0, 4) + '-' + value.substring(4);
-        }
-        e.target.value = value.substring(0, 9);
-    });
-
 });
