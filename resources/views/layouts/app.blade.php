@@ -72,7 +72,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('inicio.ventas')}}" class="nav-link">
+                    <a href="{{route('mostrarRecibos')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             shopping_cart
                         </span>

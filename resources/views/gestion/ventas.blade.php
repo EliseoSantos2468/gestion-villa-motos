@@ -9,7 +9,7 @@
         <div class="ventas-acciones">
             <input type="text" placeholder="Buscar ventas">
 
-            <a href="{{route('inicio.ventas.nueva')}}" class="boton-crear">
+            <a href="{{route('nuevaVenta')}}" class="boton-crear">
                 <span class="material-symbols-rounded">
                     add
                 </span>
@@ -30,36 +30,38 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>V00000052</td>
-                    <td>17-04-2025 06:56 PM</td>
-                    <td>EDRAS ARIEL VIERA LAZO</td>
-                    <td>$ 5,999.00</td>
-                    <td>Finalizado</td>
-                    <td class="columna-botones">
-                        <a href="" class="btn-editar">
-                            <span class="material-symbols-rounded">
-                                edit
-                            </span>
-                            <p>editar</p>
-                        </a>
-
-                        <a href="" class="btn-pdf">
-                            <span class="material-symbols-rounded">
-                                description
-                            </span>
-                            <p>PDF</p>
-                        </a>
-
-                        <a href="" class="btn-eliminar">
-                            <span class="material-symbols-rounded">
-                                block
-                            </span>
-                            <p>Anular</p>
-                        </a>
-
-                    </td>
-                  </tr>
+                    @forEach($recibos as $recibo)
+                    <tr>
+                      <td>{{$recibo->id}}</td>
+                      <td>{{$recibo->fecha}}</td>
+                      <td>{{ $recibo->cliente->nombres_cliente ?? 'Sin cliente' }}</td>
+                      <td>{{$recibo->total}}</td>
+                      <td>Finalizado</td>
+                      <td class="columna-botones">
+                          <a href="" class="btn-editar">
+                              <span class="material-symbols-rounded">
+                                  edit
+                              </span>
+                              <p>editar</p>
+                          </a>
+  
+                          <a href="" class="btn-pdf">
+                              <span class="material-symbols-rounded">
+                                  description
+                              </span>
+                              <p>PDF</p>
+                          </a>
+  
+                          <a href="" class="btn-eliminar">
+                              <span class="material-symbols-rounded">
+                                  block
+                              </span>
+                              <p>Anular</p>
+                          </a>
+  
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
         </div>
