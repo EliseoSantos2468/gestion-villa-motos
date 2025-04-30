@@ -19,18 +19,18 @@ class Credito extends Model
     ];
 
     public function cuotas(){
-        return $this->belongsTo(Cuota::class);
+        return $this->belongsTo(Cuota::class, 'cuota_id');
     }
     public function intereses(){
-        return $this->belongsTo(Interes::class);
+        return $this->belongsTo(Interes::class, 'interes_id');
     }
     public function saldo(){
         return $this->hasMany(Saldos::class);
     }
     public function clientes(){
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Cliente::class, 'cliente_id');
     }
     public function fechas(){
-        return $this->belongsTo(Fechas::class);
+        return $this->belongsTo(Fechas::class, 'fechas_id');
     }
 }

@@ -13,9 +13,31 @@ class InteresSeeder extends Seeder
     public function run(): void
     {
         DB::table('interes')->insert([
-            'interes_general' => 1.10, // 10%
-            'created_at' => now(),
-            'updated_at' => now(),
+            [
+                'interes_general' => 1.10, // 10%
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'interes_general' => 1.20, // 20%
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'interes_general' => 1.30, // 30%
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'interes_general' => 1.40, // 40%
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'interes_general' => 1.50, // 50%
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
