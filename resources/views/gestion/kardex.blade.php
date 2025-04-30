@@ -19,7 +19,7 @@
 
     <div class="modal fade" id="nuevaMarcaModal" tabindex="-1" aria-labelledby="nuevaMarcaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form action="" method="POST">
+            <form action="{{route('crearMarca')}}" method="POST">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -39,14 +39,13 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <button type="button" class="btn btn-success btn-sm" id="btn-agregar-campo">
                             + Agregar otra marca
                         </button>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Guardar Marcas</button>
                     </div>
                 </div>
@@ -232,5 +231,31 @@
 
     // Inicial
     updateSelectOptions();
+</script>
+
+<script>
+    document.getElementById('btn-agregar-campo').addEventListener('click', function () {
+        const contenedor = document.getElementById('contenedor-marcas');
+
+        const nuevoCampo = document.createElement('div');
+        nuevoCampo.classList.add('row', 'mb-3', 'grupo-marca');
+        nuevoCampo.innerHTML = `
+            <div class="col-10">
+                <input type="text" name="nombres_marcas[]" class="form-control" placeholder="Nombre de la marca" required>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-danger btn-sm btn-eliminar-campo">X</button>
+            </div>
+        `;
+
+        contenedor.appendChild(nuevoCampo);
+    });
+
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('btn-eliminar-campo')) {
+            const grupo = e.target.closest('.grupo-marca');
+            grupo.remove();
+        }
+    });
 </script>
 @endsection

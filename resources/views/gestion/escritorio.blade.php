@@ -7,12 +7,12 @@
         
         <h1 class="escritorio-titulo">Escritorio</h1>
 
-        <div class="graficas">
+        {{-- <div class="graficas">
             <div class="graficas-dias">
 
                 <h2>Totales Ultimos 30 dias</h2>
 
-                <div id="grafica1"></div>
+                <div id="grafica1"></div> --}}
 
                     
                 {{-- <script>
@@ -34,12 +34,12 @@
                     var chart = new ApexCharts(document.querySelector("#chart"), options);
                     chart.render();
                 </script> --}}
-            </div>
+            {{-- </div>
             <div class="graficas-meses">
 
                 <h2>Totales por Meses</h2>
 
-                <div id="grafica2"></div>
+                <div id="grafica2"></div> --}}
 
                 {{-- <script>
                     var authors = @json($librosPorAutor->pluck('autor'));
@@ -60,8 +60,8 @@
                     var chart = new ApexCharts(document.querySelector("#chart"), options);
                     chart.render();
                 </script> --}}
-            </div>
-        </div>
+            {{-- </div>
+        </div> --}}
 
         <div class="escritorio-ultimasVentas">
             <h2>Historico de Ventas</h2>
@@ -75,18 +75,14 @@
                       </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>V00000049</td>
-                    <td>14-04-2025 08:25 PM</td>
-                    <td>EDRAS ARIEL VIERA LAZO</td>
-                    <td>$ 5,999.00</td>
-                  </tr>
-                  <tr>
-                    <td>V00000048</td>
-                    <td>31-12-2024 09:30 AM</td>
-                    <td>Sin cliente</td>
-                    <td>$ 0.00</td>
-                  </tr>
+                    @foreach ($recibos as $recibo)
+                        <tr>
+                        <td>{{$recibo->id}}</td>
+                        <td>{{$recibo->fecha}}</td>
+                        <td>{{$recibo->cliente->nombres_cliente}}</td>
+                        <td>{{$recibo->total}}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
               </table>
         </div>
