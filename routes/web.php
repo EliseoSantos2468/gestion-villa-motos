@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,13 +45,14 @@ Route::middleware('auth')->prefix('inicio')->group(function () {
         Route::delete('/borrar/{id}', [ClienteController::class, 'destroy'])->name('borrarCliente');
     });
 
-    Route::get('/ventas', function () {
-        return view('gestion.ventas');
-    })->name('inicio.ventas');
-
-    Route::get('/ventas/nueva', function () {
-        return view('gestion.venta_nueva');
-    })->name('inicio.ventas.nueva');
+    Route::prefix('recibo')->group(function(){
+        Route::get('/mostrar', [ReciboController::class, 'index'])->name('mostrarRecibos');
+        Route::get('/venta', [ReciboController::class, 'indexVenta'])->name('nuevaVenta');  
+        Route::get('/mostrar/{id}', [ReciboController::class, 'show'])->name('mostrarRecibo');
+        Route::post('/crear', [ReciboController::class, 'store'])->name('crearResibo');
+        Route::put('/actualizar/{id}', [ReciboController::class, 'update'])->name('actualizarResibo');
+        Route::delete('/borrar/{id}', [ReciboController::class, 'destroy'])->name('borrarResibo');
+    });
 
     Route::get('/creditos', function () {
         return view('gestion.creditos');

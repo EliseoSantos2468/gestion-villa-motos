@@ -32,7 +32,7 @@ class Cliente extends Model
     }
 
     public function recibos(){
-        return $this->hasMany(Recibo::class);
+        return $this->hasMany(Recibo::class,'id_cliente');
     }
 
     public function referencias(){
