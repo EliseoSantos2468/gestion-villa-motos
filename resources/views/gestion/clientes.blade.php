@@ -33,18 +33,18 @@
 
 
   <div class="clientes-acciones">
-    <input type="text" placeholder="Buscar Clientes">
+    <form method="GET" action="{{ route('mostrarClientes') }}" style="display: flex; align-items: center; gap: 0.5rem;">
+    <input type="text" id="buscadorClientes" name="buscar" placeholder="Buscar por ID o nombre" style="padding: 0.5rem; width: 18rem;">
+    </form>
 
     <button class="boton-crear" type="button" data-bs-toggle="modal" data-bs-target="#nuevoClienteModal">
-      <span class="material-symbols-rounded">
-        add
-      </span>
+      <span class="material-symbols-rounded">add</span>
       <p>Nuevo Cliente</p>
     </button>
   </div>
 
   <div class="tabla">
-    <table class="tabla-clientes">
+    <table class="tabla-clientes" id="tablaClientes">
       <thead>
         <tr>
           <th>ID</th>
@@ -67,18 +67,18 @@
           <td class="columna-botones">
             {{-- <button type="button" class="btn-editar" title="Editar" data-bs-toggle="modal" data-bs-target="#editarClienteModal"
               data-id="{{ $cliente->id }}"
-              data-nombres="{{ $cliente->nombres_cliente }}"
-              data-apellidos="{{ $cliente->apellidos_cliente }}"
-              data-dui="{{ $cliente->dui_cliente }}"
-              data-nit="{{ $cliente->nit_cliente }}"
-              data-id_departamento="{{ $cliente->id_departamento }}"
-              data-id_municipio="{{ $cliente->id_municipio }}"
-              data-email="{{ $cliente->email_cliente }}"
-              data-telefono="{{ $cliente->telefono_cliente }}"
-              data-referencias='@json($cliente->referencias)'
-              data-barrio="{{ $cliente->barrio }}">
-              <span class="material-symbols-rounded">edit</span>
-              <span class="btn-text">editar</span>
+            data-nombres="{{ $cliente->nombres_cliente }}"
+            data-apellidos="{{ $cliente->apellidos_cliente }}"
+            data-dui="{{ $cliente->dui_cliente }}"
+            data-nit="{{ $cliente->nit_cliente }}"
+            data-id_departamento="{{ $cliente->id_departamento }}"
+            data-id_municipio="{{ $cliente->id_municipio }}"
+            data-email="{{ $cliente->email_cliente }}"
+            data-telefono="{{ $cliente->telefono_cliente }}"
+            data-referencias='@json($cliente->referencias)'
+            data-barrio="{{ $cliente->barrio }}">
+            <span class="material-symbols-rounded">edit</span>
+            <span class="btn-text">editar</span>
             </button> --}}
             <a href="{{route('actualizarClientevista', $cliente->id)}}" class="btn-editar">
               <span class="material-symbols-rounded">edit</span>
@@ -130,7 +130,7 @@
             </div>
             <div class="col">
               <label class="form-label">DUI</label>
-              <input type="text" name="dui_cliente" class="form-control" placeholder="00000000-0" required maxlength="9" pattern="\d{8}-\d">  
+              <input type="text" name="dui_cliente" class="form-control" placeholder="00000000-0" required maxlength="9" pattern="\d{8}-\d">
               @error('dui_cliente')
               <small class="text-danger">{{ $message }}</small>
               @enderror
@@ -191,7 +191,7 @@
           <div class="row mb-3">
             <div class="col">
               <label class="form-label">Teléfono</label>
-              <input type="tel" name="telefono_cliente" class="form-control" placeholder="0000-0000"  required maxlength="9">
+              <input type="tel" name="telefono_cliente" class="form-control" placeholder="0000-0000" required maxlength="9">
               @error('telefono_cliente')
               <small class="text-danger">{{ $message }}</small>
               @enderror
@@ -314,7 +314,7 @@
       departamento.municipios.forEach(municipio => {
         const option = document.createElement('option');
         option.value = municipio.id;
-        option.textContent = municipio.nombre_municipio; 
+        option.textContent = municipio.nombre_municipio;
         municipioSelect.appendChild(option);
       });
     } else {
@@ -322,6 +322,25 @@
     }
   });
 </script>
+
+<script>
+  document.getElementById('buscadorClientes').addEventListener('keyup', function () {
+    const filtro = this.value.toLowerCase();
+    const filas = document.querySelectorAll('#tablaClientes tbody tr');
+
+    filas.forEach(fila => {
+      const id = fila.cells[0].textContent.trim().toLowerCase();
+      const nombre = fila.cells[1].textContent.trim().toLowerCase();
+
+      if (id.includes(filtro) || nombre.includes(filtro)) {
+        fila.style.display = '';
+      } else {
+        fila.style.display = 'none';
+      }
+    });
+  });
+</script>
+
 <script src="{{ asset('js/Auth/modal_validation.js') }}"></script>
 
 @endsection

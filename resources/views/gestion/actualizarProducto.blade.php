@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/actualizar_producto.css') }}">
+
 <div class="container">
     <h2>Actualizar Producto</h2>
 
