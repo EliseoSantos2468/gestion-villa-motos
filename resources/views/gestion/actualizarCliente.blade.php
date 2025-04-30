@@ -1,120 +1,129 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{asset('css/actualizar_cliente.css')}}">
 
 <form method="POST" action="{{route('actualizarCliente', $cliente->id)}}">
     @csrf
     @method('PUT')
 
-    <div class="row mb-3">
-      <div class="col">
-        <label class="form-label">Nombre Completo</label>
-        <input type="text" name="nombres_cliente" id="nombres_cliente" class="form-control" placeholder="Nombre" required value="{{$cliente->nombres_cliente}}">
-      </div>
-      <div class="col">
-        <label class="form-label">Apellidos</label>
-        <input type="text" name="apellidos_cliente" id="apellidos_cliente" class="form-control" placeholder="Apellidos" required value="{{$cliente->apellidos_cliente}}">
-      </div>
-      <div class="col">
-        <label class="form-label">DUI</label>
-        <input type="text" name="dui_cliente" id="dui_cliente" class="form-control" placeholder="00000000-0" required value="{{$cliente->dui_cliente}}">
-      </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col">
-            <label class="form-label">Monto maximo</label>
-            <input type="number" name="monto_max" id="monto_max" class="form-control" placeholder="" required value="{{$cliente->monto_max}}">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="form-card">
+        <div class="row mb-4">
+          <h5 class="card-title display-6">Editar Cliente</h5>
+        </div>
+        <!-- Aquí empieza el contenido del formulario -->
+        <form>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">Nombre Completo</label>
+              <input type="text" name="nombres_cliente" id="nombres_cliente" class="form-control" placeholder="Nombre" required value="{{$cliente->nombres_cliente}}">
+            </div>
+            <div class="col">
+              <label class="form-label">Apellidos</label>
+              <input type="text" name="apellidos_cliente" id="apellidos_cliente" class="form-control" placeholder="Apellidos" required value="{{$cliente->apellidos_cliente}}">
+            </div>
+            <div class="col">
+              <label class="form-label">DUI</label>
+              <input type="text" name="dui_cliente" id="dui_cliente" class="form-control" placeholder="00000000-0" required value="{{$cliente->dui_cliente}}">
+            </div>
           </div>
-        <div class="col">
-            <label class="form-label">Clasificacion</label>
-            <select name="id_clasificacion" id="id_clasificacion">
-                <option value="" disabled selected>selecione una clasificacion</option>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">Monto máximo</label>
+              <input type="number" name="monto_max" id="monto_max" class="form-control" required value="{{$cliente->monto_max}}">
+            </div>
+            <div class="col">
+              <label class="form-label">Clasificación</label>
+              <select name="id_clasificacion" id="id_clasificacion" class="form-select">
+                <option value="" disabled selected>Seleccione una clasificación</option>
                 @foreach ($clasificaciones as $clasificacion)
-                    <option value="{{$clasificacion->id}}" {{ $clasificacion->id == $cliente->id_clasificacion ? 'selected' : '' }}>
+                  <option value="{{$clasificacion->id}}" {{ $clasificacion->id == $cliente->id_clasificacion ? 'selected' : '' }}>
                     {{$clasificacion->nombre_clasificacion}}
-                    </option>
+                  </option>
                 @endforeach
-            </select>
+              </select>
+            </div>
           </div>
-    </div>
 
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">NIT</label>
+              <input type="text" name="nit_cliente" id="nit_cliente" class="form-control" placeholder="0000-000000-000-0" required value="{{$cliente->nit_cliente}}">
+            </div>
+            <div class="col">
+              <label class="form-label">Correo</label>
+              <input type="email" name="email_cliente" id="email_cliente" class="form-control" placeholder="Correo" required value="{{$cliente->email_cliente}}">
+            </div>
+          </div>
 
-    <div class="row mb-3">
-      <div class="col">
-        <label class="form-label">NIT</label>
-        <input type="text" name="nit_cliente" id="nit_cliente" class="form-control" placeholder="0000-000000-000-0" required value="{{$cliente->nit_cliente}}">
-      </div>
-      <div class="col">
-        <label class="form-label">Correo</label>
-        <input type="email" name="email_cliente" id="email_cliente" class="form-control" placeholder="Correo" required value="{{$cliente->email_cliente}}">
-      </div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col">
-        <label class="form-label">Referencias Personales</label>
-        <div class="referencias-containerA">
-          <div class="referencia-item mb-2">
-            <div class="row g-2">
-              <div class="col-md-5">
-                <input type="text" class="form-control nombre-referenciaA" placeholder="Nombre referencia" name="nombre_ref">
-              </div>
-              <div class="col-md-5">
-                <input type="tel" class="form-control telefono-referenciaA" id="telefono" placeholder="0000-0000" maxlength="9" name="telefono_ref ">
-              </div>
-              <div class="col-md-2">
-                <button type="button" class="btn btn-sm btn-outline-danger add-referenciaA">
-                  <span class="material-symbols-rounded">add</span>
-                </button>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">Referencias Personales</label>
+              <div class="referencias-containerA">
+                <div class="referencia-item mb-2">
+                  <div class="row g-2">
+                    <div class="col-md-5">
+                      <input type="text" class="form-control nombre-referenciaA" placeholder="Nombre referencia" name="nombre_ref">
+                    </div>
+                    <div class="col-md-5">
+                      <input type="tel" class="form-control telefono-referenciaA" id="telefono" placeholder="0000-0000" maxlength="9" name="telefono_ref">
+                    </div>
+                    <div class="col-md-2">
+                      <button type="button" class="btn btn-sm btn-outline-danger add-referenciaA">
+                        <span class="material-symbols-rounded">add</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div id="referencias-listaA"></div>
               </div>
             </div>
           </div>
-          <div id="referencias-listaA">
-            <!-- Aquí se mostrarán las referencias agregadas -->
+
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" name="telefono_cliente" id="telefono_cliente" class="form-control" placeholder="0000-0000" value="{{$cliente->telefono_cliente}}">
+            </div>
+            <div class="col">
+              <label class="form-label">Departamento</label>
+              <select id="departamentoSelectE" class="form-select" name="id_departamento">
+                <option value="" disabled>Seleccione un departamento</option>
+                @foreach ($departamentos as $departamento)
+                  <option value="{{ $departamento->id }}" {{ $departamento->id == $cliente->id_departamento ? 'selected' : '' }}>
+                    {{ $departamento->nombre_departamento }}
+                  </option>
+                @endforeach
+              </select>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Resto de tu formulario... -->
-    <div class="row mb-3">
-      <div class="col">
-        <label class="form-label">Teléfono</label>
-        <input type="tel" name="telefono_cliente" id="telefono_cliente" class="form-control" placeholder="0000-0000" value="{{$cliente->telefono_cliente}}">
-      </div>
-      <div class=" col">
-        <label class="form-label">Departamento</label>
-        <select id="departamentoSelectE" class="form-select" name="id_departamento">
-            <option value="" disabled>Seleccione un departamento</option>
-            @foreach ($departamentos as $departamento)
-              <option 
-                value="{{ $departamento->id }}" 
-                {{ $departamento->id == $cliente->id_departamento ? 'selected' : '' }}>
-                {{ $departamento->nombre_departamento }}
-              </option>
-            @endforeach
-          </select>
-      </div>
-    </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">Municipio</label>
+              <select id="municipioSelectE" class="form-select" name="id_municipio">
+                <option value="" selected disabled>Seleccione un municipio</option>
+              </select>
+            </div>
+            <div class="col">
+              <label class="form-label">Barrio/Colonia</label>
+              <input type="text" name="barrio" id="barrio" class="form-control" placeholder="Dirección" value="{{$cliente->barrio}}">
+            </div>
+          </div>
 
-    <div class="row mb-3">
-      <div class="col">
-        <label class="form-label">Municipio</label>
-        <select id="municipioSelectE" class="form-select" name="id_municipio">
-          <option value="" selected disabled>Seleccione un municipio</option>
-          <!-- Opciones se agregarán aquí -->
-        </select>
-      </div>
-      <div class="col">
-        <label class="form-label">Barrio/Colonia</label>
-        <input type="text" name="barrio" id="barrio" class="form-control" placeholder="Dirección" value="{{$cliente->barrio}}">
+          <button type="submit" class="btn btn-primary" id="btn-actualizar">
+            Actualizar
+          </button>
+        </form>
+        <!-- Fin del contenido del formulario -->
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" id="btn-actualizar" >
-        Actualizar
-    </button>
-  </form>
+  </div>
+</div>
 
   <script>
     let referenciasCount2 = 0; // Para numerar correctamente
@@ -251,5 +260,5 @@
       }
     });
   </script>
-  
+  <script src="{{ asset('js/Auth/editar.js') }}"></script>
 @endsection

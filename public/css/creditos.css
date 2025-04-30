@@ -256,3 +256,28 @@
         width: 100%;
     }
 }
+
+.btn-pago {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    background-color: #6f42c1; /* Morado Bootstrap */
+    color: var(--blanco);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-pago:hover {
+    background-color: #5936a2; /* Morado más oscuro para hover */
+    color: var(--blanco);
+  }
+  
+  .btn-pago p {
+    margin: 0;
+  }
+  
