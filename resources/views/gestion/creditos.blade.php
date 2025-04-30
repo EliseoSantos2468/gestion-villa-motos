@@ -22,42 +22,41 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($clientes as $cliente)                    
                 <tr>
-                    <td>1</td>
-                    <td>Edras Lazo</td>
-                    <td>lazo@ues.edu.sv</td>
-                    <td>7891-9523</td>
+                    <td>{{$cliente->id}}</td>
+                    <td>{{$cliente->nombres_cliente}}</td>
+                    <td>{{$cliente->email_cliente}}</td>
+                    <td>{{$cliente->telefono_cliente}}</td>
                     <td class="columna-botones">
+                        <a href="" class="btn-editar">
+                            <span class="material-symbols-rounded">edit</span>
+                            <p>editar</p>
+                        </a>
 
-                        <button class="btn-asignar" type="button" data-bs-toggle="modal" data-bs-target="#asignarCreditoModal">
+                        <a href="" class="btn-eliminar">
+                            <span class="material-symbols-rounded">delete</span>
+                            <p>Eliminar</p>
+                        </a>
+
+                        @if ($cliente->credito->first()?->saldo->first()?->saldo_p_interes == 0)
+                        <button class="btn-asignar" 
+                                type="button" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#asignarCreditoModal"
+                                data-cliente-id="{{ $cliente->id }}">
                             <span class="material-symbols-rounded">monetization_on</span>
                             <p>Asignar Crédito</p>
                         </button>
-
-                        <button class="btn-pago" type="button" data-bs-toggle="modal" data-bs-target="#asignarCreditoModal">
-                            <span class="material-symbols-rounded">monetization_on</span>
-                            <p>Pago</p>
-                        </button>
+                    @else
+                        <a href="{{ route('mostrarCredito', ['id' => $cliente->credito->first()->id]) }}" class="btn-pagar">
+                            <span class="material-symbols-rounded">payments</span>
+                            <p>Pagar Cuota</p>
+                        </a>
+                    @endif
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>CRISTIAN ALBERTO PINEDA</td>
-                    <td>lazo@ues.edu.sv</td>
-                    <td>7891-9523</td>
-                    <td class="columna-botones">
-
-                        <button class="btn-asignar" type="button" data-bs-toggle="modal" data-bs-target="#asignarCreditoModal">
-                            <span class="material-symbols-rounded">monetization_on</span>
-                            <p>Asignar Crédito</p>
-                        </button>
-
-                        <button class="btn-pago" type="button" data-bs-toggle="modal" data-bs-target="#asignarCreditoModal">
-                            <span class="material-symbols-rounded">monetization_on</span>
-                            <p>Pago</p>
-                        </button>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -66,7 +65,7 @@
         <div class="card shadow-lg">
             <div class="card-body" style="margintop: 20px;">
                 <h2 class="card-title text-center mb-4">Cotizador de Crédito</h2>
-                <form id="cotizadorForm">
+                <form id="cotizadorForm" >
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="monto" class="form-label">Monto del Crédito ($):</label>
@@ -157,48 +156,76 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="form-asignar-credito" method="POST" action="{{ route('crearCredito') }}">
+                        @csrf
+
+                        <input type="hidden" name="cliente_id" id="cliente_id">
                         <div class="row mb-3">
                             <div class="col">
-                                <label class="form-label">Nombre del Cliente</label>
-                                <input type="text" class="form-control" placeholder="Ej: Cristian Alberto Pineda" readonly>
-                            </div>
-                            <div class="col">
                                 <label class="form-label">Monto del Crédito ($)</label>
-                                <input type="number" class="form-control" placeholder="1000.00">
+                                <input type="number" name="monto_facturado" id="monto_facturado" class="form-control" placeholder="1000.00">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col">
                                 <label class="form-label">Tasa de Interés (%)</label>
-                                <input type="number" class="form-control" placeholder="5%">
+                                <select id="interes_id" name="interes_id" class="form-select">
+                                    <option value="" selected disabled>Seleccione un porcentaje</option>
+                                    @foreach ($intereses as $interes)
+                                        <option value="{{ $interes->id }}">
+                                            {{ number_format(($interes->interes_general - 1) * 100, 0) }}%
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col">
                                 <label class="form-label">Plazo (meses)</label>
-                                <input type="number" class="form-control" placeholder="12">
+                                <input type="number"
+                                       name="numero_cuotas"
+                                       id="numero_cuotas"
+                                       class="form-control"
+                                       placeholder="12"
+                                       min="2"
+                                       max="12"
+                                       step="2">
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label class="form-label">Fecha de Inicio</label>
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="form-label">Observaciones</label>
-                                <textarea class="form-control" rows="2" placeholder="Observaciones del crédito"></textarea>
-                            </div>
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Asignar Crédito</button>
+                    <button type="button" class="btn btn-success" id="btn-asignar-credito">Asignar Crédito</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        document.getElementById('btn-asignar-credito').addEventListener('click', function () {
+            document.getElementById('form-asignar-credito').submit();
+        });
+    </script>
+    <script>
+        const asignarCreditoModal = document.getElementById('asignarCreditoModal');
+    
+        asignarCreditoModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const clienteId = button.getAttribute('data-cliente-id');
+            document.getElementById('cliente_id').value = clienteId;
+        });
+    </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const asignarBtns = document.querySelectorAll('.btn-asignar');
+        asignarBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const clienteId = this.getAttribute('data-cliente-id');
+                document.getElementById('cliente_id_modal').value = clienteId;
+            });
+        });
+    });
+    </script>
     @endsection

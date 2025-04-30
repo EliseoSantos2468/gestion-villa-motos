@@ -85,7 +85,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('inicio.creditos')}}" class="nav-link">
+                    <a href="{{route('mostrarCreditos')}}" class="nav-link">
                         <span class="material-symbols-rounded">
                             description
                         </span>

@@ -118,9 +118,9 @@ Route::prefix('fechas')->group(function(){
 });
 
 Route::prefix('credito')->group(function(){
-    Route::get('/mostrar', [CreditoApiController::class, 'index'])->name('mostrarCreditos');
-    Route::get('/mostrar/{id}', [CreditoApiController::class, 'show'])->name('mostrarCredito');
-    Route::post('/crear', [CreditoApiController::class, 'store'])->name('crearCredito');
-    Route::put('/actualizar/{id}', [CreditoApiController::class, 'update'])->name('actualizarCredito');
-    Route::delete('/borrar/{id}', [CreditoApiController::class, 'destroy'])->name('borrarCredito');
+    Route::get('/mostrar', [CreditoApiController::class, 'index'])->name('mostrarApiCreditos');
+    Route::get('/mostrar/{id}', [CreditoApiController::class, 'show'])->name('mostrarApiCredito');
+    Route::post('/crear', [CreditoApiController::class, 'store'])->name('crearApiCredito');
+    Route::put('/actualizar/{id}', [CreditoApiController::class, 'update'])->name('actualizarApiCredito');
+    Route::delete('/borrar/{id}', [CreditoApiController::class, 'destroy'])->name('borrarApiCredito');
 });

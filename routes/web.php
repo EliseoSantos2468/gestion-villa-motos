@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReciboController;
+use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,6 +58,15 @@ Route::middleware('auth')->prefix('inicio')->group(function () {
     Route::get('/creditos', function () {
         return view('gestion.creditos');
     })->name('inicio.creditos');
+
+    Route::prefix('credito')->group(function(){
+        Route::get('/mostrar', [CreditoController::class, 'index'])->name('mostrarCreditos');
+        Route::get('/mostrar/{id}', [CreditoController::class, 'show'])->name('mostrarCredito');
+        Route::post('/credito/{id}/pagar-cuota', [CreditoController::class, 'pagarCuota'])->name('pagar.cuota');
+        Route::post('/crear', [CreditoController::class, 'store'])->name('crearCredito');
+        Route::put('/actualizar/{id}', [CreditoController::class, 'update'])->name('actualizarCredito');
+        Route::delete('/borrar/{id}', [CreditoController::class, 'destroy'])->name('borrarCredito');
+    });
 
     Route::get('/soporte', function () {
         return view('gestion.soporte');

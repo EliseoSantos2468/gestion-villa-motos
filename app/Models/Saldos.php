@@ -16,6 +16,6 @@ class Saldos extends Model
     ];
 
     public function creditos(){
-        return $this->belongsTo(Credito::class);
+        return $this->belongsTo(Credito::class,'credito_id');
     }
 }
