@@ -103,20 +103,6 @@
                         Acceder
                     </button>
 
-                    <div class="divider">o continuar con</div>
-
-                    <div class="social-login">
-                        <button type="button" class="social-btn">
-                            <span class="material-symbols-rounded">mail</span>
-                        </button>
-                        <button type="button" class="social-btn">
-                            <span class="material-symbols-rounded">fingerprint</span>
-                        </button>
-                        <button type="button" class="social-btn">
-                            <span class="material-symbols-rounded">badge</span>
-                        </button>
-                    </div>
-
                     <p class="register-link">¿No tienes una cuenta? <a href="{{route('register')}}">Regístrate aquí</a></p>
                 </form>
             </div>

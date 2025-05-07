@@ -20,8 +20,7 @@
       </div>
 
       <button type="button" class="btn-detalle" data-bs-toggle="modal" data-bs-target="#nuevoDetalleModal">
-        <span class="material-symbols-rounded">add</span>
-        <p>Nuevo Detalle</p>
+        <p>Agregar producto</p>
       </button>
     </div>
 

@@ -7,11 +7,11 @@
     <h1>Asignacion de creditos</h1>
 
     <div class="clientes-acciones">
-        <input type="text" placeholder="Buscar Clientes">
+        <input type="text" id="buscadorClientes" placeholder="Buscar cliente por ID o nombre">
     </div>
 
     <div class="tabla">
-        <table class="tabla-clientes">
+        <table class="tabla-clientes" id="tablaClientes">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($clientes as $cliente)                    
+                @foreach ($clientes as $cliente)
                 <tr>
                     <td>{{$cliente->id}}</td>
                     <td>{{$cliente->nombres_cliente}}</td>
@@ -31,20 +31,20 @@
                     <td class="columna-botones">
 
                         @if ($cliente->credito->first()?->saldo->first()?->saldo_p_interes == 0)
-                        <button class="btn-asignar" 
-                                type="button" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#asignarCreditoModal"
-                                data-cliente-id="{{ $cliente->id }}">
+                        <button class="btn-asignar"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#asignarCreditoModal"
+                            data-cliente-id="{{ $cliente->id }}">
                             <span class="material-symbols-rounded">monetization_on</span>
                             <p>Asignar Crédito</p>
                         </button>
-                    @else
+                        @else
                         <a href="{{ route('mostrarCredito', ['id' => $cliente->credito->first()->id]) }}" class="btn-pagar">
                             <span class="material-symbols-rounded">payments</span>
                             <p>Pagar Cuota</p>
                         </a>
-                    @endif
+                        @endif
                     </td>
                 </tr>
                 @endforeach
@@ -69,7 +69,7 @@
                             <div class="col">
                                 <label class="form-label">Monto del Crédito ($)</label>
                                 <input type="number" min="1000" max="5000" name="monto_facturado" id="monto_facturado" class="form-control" placeholder="1000" max="1000" step="0.01" required>
-                                </div>
+                            </div>
                         </div>
 
                         <div class="row mb-3">
@@ -78,22 +78,22 @@
                                 <select id="interes_id" name="interes_id" class="form-select">
                                     <option value="" selected disabled>Seleccione un porcentaje</option>
                                     @foreach ($intereses as $interes)
-                                        <option value="{{ $interes->id }}">
-                                            {{ number_format(($interes->interes_general - 1) * 100, 0) }}%
-                                        </option>
+                                    <option value="{{ $interes->id }}">
+                                        {{ number_format(($interes->interes_general - 1) * 100, 0) }}%
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col">
                                 <label class="form-label">Plazo (meses)</label>
                                 <input type="number"
-                                       name="numero_cuotas"
-                                       id="numero_cuotas"
-                                       class="form-control"
-                                       placeholder="12"
-                                       min="2"
-                                       max="12"
-                                       step="2">
+                                    name="numero_cuotas"
+                                    id="numero_cuotas"
+                                    class="form-control"
+                                    placeholder="12"
+                                    min="2"
+                                    max="12"
+                                    step="2">
                             </div>
                         </div>
 
@@ -108,43 +108,65 @@
     </div>
 
     <script>
-        document.getElementById('btn-asignar-credito').addEventListener('click', function () {
+        document.getElementById('btn-asignar-credito').addEventListener('click', function() {
             document.getElementById('form-asignar-credito').submit();
         });
     </script>
     <script>
         const asignarCreditoModal = document.getElementById('asignarCreditoModal');
-    
-        asignarCreditoModal.addEventListener('show.bs.modal', function (event) {
+
+        asignarCreditoModal.addEventListener('show.bs.modal', function(event) {
             const button = event.relatedTarget;
             const clienteId = button.getAttribute('data-cliente-id');
             document.getElementById('cliente_id').value = clienteId;
         });
     </script>
 
-<script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const asignarBtns = document.querySelectorAll('.btn-asignar');
+            asignarBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const clienteId = this.getAttribute('data-cliente-id');
+                    document.getElementById('cliente_id_modal').value = clienteId;
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.getElementById('btn-asignar-credito').addEventListener('click', function() {
+            const monto = parseFloat(document.getElementById('monto_facturado').value);
+            if (isNaN(monto) || monto <= 0) {
+                alert('Por favor, ingrese un monto válido mayor a 0.');
+            } else if (monto > 1000) {
+                alert('El monto del crédito no puede ser mayor a $1000.');
+            } else {
+                document.getElementById('form-asignar-credito').submit();
+            }
+        });
+    </script>
+    <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const asignarBtns = document.querySelectorAll('.btn-asignar');
-        asignarBtns.forEach(btn => {
-            btn.addEventListener('click', function () {
-                const clienteId = this.getAttribute('data-cliente-id');
-                document.getElementById('cliente_id_modal').value = clienteId;
+        const buscador = document.getElementById('buscadorClientes');
+        const filas = document.querySelectorAll('#tablaClientes tbody tr');
+
+        buscador.addEventListener('keyup', function () {
+            const filtro = this.value.toLowerCase();
+
+            filas.forEach(fila => {
+                const id = fila.cells[0]?.textContent.trim().toLowerCase();
+                const nombre = fila.cells[1]?.textContent.trim().toLowerCase();
+
+                if (id.includes(filtro) || nombre.includes(filtro)) {
+                    fila.style.display = '';
+                } else {
+                    fila.style.display = 'none';
+                }
             });
         });
     });
-    </script>
-
-<script>
-    document.getElementById('btn-asignar-credito').addEventListener('click', function () {
-        const monto = parseFloat(document.getElementById('monto_facturado').value);
-        if (isNaN(monto) || monto <= 0) {
-            alert('Por favor, ingrese un monto válido mayor a 0.');
-        } else if (monto > 1000) {
-            alert('El monto del crédito no puede ser mayor a $1000.');
-        } else {
-            document.getElementById('form-asignar-credito').submit();
-        }
-    });
 </script>
+
 
     @endsection
