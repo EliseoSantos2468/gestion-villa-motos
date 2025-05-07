@@ -48,6 +48,7 @@ Route::middleware('auth')->prefix('inicio')->group(function () {
 
     Route::prefix('recibo')->group(function(){
         Route::get('/mostrar', [ReciboController::class, 'index'])->name('mostrarRecibos');
+        Route::get('/recibo/{id}/pdf', [ReciboController::class, 'generarPDF'])->name('recibo.pdf');
         Route::get('/venta', [ReciboController::class, 'indexVenta'])->name('nuevaVenta');  
         Route::get('/mostrar/{id}', [ReciboController::class, 'show'])->name('mostrarRecibo');
         Route::post('/crear', [ReciboController::class, 'store'])->name('crearRecibo');
