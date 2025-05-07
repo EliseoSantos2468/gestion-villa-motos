@@ -59,7 +59,14 @@
                 <form class="login-form" method="POST" action="{{ route('login.post') }}">
                 @csrf
                     <div class="form-group">
+                    @if ($errors->has('email'))
+                            <div class="error-message">
+                                <span class="material-symbols-rounded">error</span>
+                                {{ $errors->first('email') }}
+                            </div>
+                        @endif
                         <label for="email" class="form-label">Correo electrónico</label>
+                        
                         <div class="input-group">
                             <span class="material-symbols-rounded input-icon">mail</span>
                             <input type="email" id="email" name="email" class="form-input" value="{{old('email')}}" required placeholder="ejemplo@villamotos.com" required>
@@ -68,6 +75,12 @@
 
                     <div class="form-group">
                         <label for="password" class="form-label">Contraseña</label>
+                        @if ($errors->has('password'))
+                            <div class="error-message">
+                                <span class="material-symbols-rounded">error</span>
+                                {{ $errors->first('password') }}
+                            </div>
+                        @endif
                         <div class="input-group">
                             <span class="material-symbols-rounded input-icon">lock</span>
                             <input type="password" id="password" name="password" class="form-input" placeholder="Ingrese su contraseña" required>
