@@ -88,9 +88,15 @@
     border-radius: 5px;
     background-color: var(--botonAgregar);
     color: var(--blanco);
-    font-size: 1.2rem;
+    font-size: 1.0rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+
 }
 
+.btn-detalle p {
+    margin: 0;
+}
 @media (max-width: 785px) {
     .btn-detalle {
         width: 100%;

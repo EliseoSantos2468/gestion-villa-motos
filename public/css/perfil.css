@@ -1,68 +1,95 @@
 :root {
-    --color-fondo: #f9f9f9;
+    --color-fondo: #f0f2f5;
     --color-card: #ffffff;
-    --color-titulo: #333;
-    --color-borde: #ddd;
+    --color-titulo: #1f1f1f;
+    --color-borde: #e0e0e0;
     --color-acento: #6f42c1;
     --color-hover: #5a34a3;
-    --sombra: 0 4px 12px rgba(0,0,0,0.1);
-    --radio: 12px;
+    --color-texto: #555;
+    --color-claro: #999;
+    --sombra: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --radio: 14px;
+    --transicion: 0.3s ease-in-out;
+    --fuente: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--color-fondo);
+    font-family: var(--fuente);
 }
 
 .perfil-container {
     display: flex;
-    justify-content: flex-start; /* Alineación hacia la izquierda */
+    justify-content: flex-start;
     align-items: center;
-    padding: 2rem;
-    background-color: var(--color-fondo);
-    margin-left: 35rem; /* Mueve todo el contenedor hacia la derecha */
+    padding: 4rem 2rem;
+    margin-left: 32rem; /* desplaza hacia la derecha */
 }
 
 .perfil-card {
     background-color: var(--color-card);
-    padding: 2rem 2.5rem;
+    padding: 3rem;
     border-radius: var(--radio);
     box-shadow: var(--sombra);
-    max-width: 600px;
     width: 100%;
+    max-width: 700px;
+    border: 1px solid var(--color-borde);
+    transition: transform var(--transicion);
+}
+
+.perfil-card:hover {
+    transform: translateY(-4px);
 }
 
 .perfil-titulo {
     text-align: center;
     color: var(--color-titulo);
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.perfil-seccion {
     margin-bottom: 1.5rem;
 }
 
 .perfil-seccion h2 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
     color: var(--color-acento);
+    margin-bottom: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 0.5rem;
 }
 
 .perfil-datos p {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #444;
+    color: var(--color-texto);
+    margin: 0.3rem 0;
+    padding-left: 0.5rem;
 }
 
 .perfil-footer {
     display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2.5rem;
 }
 
 .btn-editar,
 .btn-cambiar {
     background-color: var(--color-acento);
-    color: white;
-    padding: 0.6rem 1.2rem;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transicion), box-shadow var(--transicion);
 }
 
 .btn-editar:hover,
 .btn-cambiar:hover {
     background-color: var(--color-hover);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
