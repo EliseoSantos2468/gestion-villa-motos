@@ -38,12 +38,11 @@
                       <td>{{$recibo->total}}</td>
                       <td>Finalizado</td>
                       <td class="columna-botones">
-                          <a href="" class="btn-pdf">
-                              <span class="material-symbols-rounded">
-                                  description
-                              </span>
-                              <p>PDF</p>
-                          </a>
+                        <a href="{{ route('recibo.pdf', ['id' => $recibo->id]) }}" class="btn-pdf">
+                            <span class="material-symbols-rounded">description</span>
+                            <p>PDF</p>
+                        </a>
+                        
                       </td>
                     </tr>
                   @endforeach

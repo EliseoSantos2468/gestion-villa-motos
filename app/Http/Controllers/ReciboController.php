@@ -8,6 +8,7 @@ use App\Models\Cliente;
 use App\Models\Marca;
 use App\Models\Producto;
 use GuzzleHttp\Client;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReciboController extends Controller
 {
@@ -21,8 +22,17 @@ class ReciboController extends Controller
         
         return view('gestion.ventas', compact('recibos'));
     }
-    public function indexVenta()
-    {
+
+    public function generarPDF($id)
+        {
+            $recibo = Recibo::with(['cliente', 'productos'])->findOrFail($id);
+
+            $pdf = Pdf::loadView('pdf.recibo', compact('recibo'));
+
+            return $pdf->download('recibo_' . $recibo->id . '.pdf');
+        }
+            public function indexVenta()
+            {
         $marcas = Marca::all();
         $productos = Producto::with([
             'marcas' => function ($query) {

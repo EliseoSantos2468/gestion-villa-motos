@@ -68,7 +68,7 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label class="form-label">Monto del Crédito ($)</label>
-                                <input type="number" name="monto_facturado" id="monto_facturado" class="form-control" placeholder="1000" max="1000" step="0.01" required>
+                                <input type="number" min="1000" max="5000" name="monto_facturado" id="monto_facturado" class="form-control" placeholder="1000" max="1000" step="0.01" required>
                                 </div>
                         </div>
 
